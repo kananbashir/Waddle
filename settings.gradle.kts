@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Waddle"
 include(":app")
 include(":theme")
+include(":core")
