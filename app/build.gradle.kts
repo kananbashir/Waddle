@@ -55,6 +55,7 @@ dependencies {
     // Project-specific modules
     implementation(projects.theme)
     implementation(projects.core)
+    implementation(projects.feature.onboarding)
 
     // Core framework dependencies
     implementation(libs.androidx.core.ktx)
