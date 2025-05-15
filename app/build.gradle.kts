@@ -52,6 +52,10 @@ android {
 }
 
 dependencies {
+    // Project-specific modules
+    implementation(projects.theme)
+    implementation(projects.core)
+
     // Core framework dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
