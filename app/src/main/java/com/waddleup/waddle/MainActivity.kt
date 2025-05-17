@@ -23,10 +23,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.waddleup.waddle.navigation.AppNavHost
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.waddle.navigation.bottom_nav.BottomNavDestination
+import com.waddleup.navigation.bottom_nav.BottomNavDestination
 import com.waddleup.theme.WaddleTheme
+import com.waddleup.waddle.navigation.AppNavHost
 import com.waddleup.waddle.presentation.bottom_nav.WaddleBottomNavigation
 import com.waddleup.waddle.viewmodel.MainScreenIntent
 import com.waddleup.waddle.viewmodel.MainViewModel

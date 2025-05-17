@@ -55,6 +55,7 @@ dependencies {
     // Project-specific modules
     implementation(projects.theme)
     implementation(projects.core)
+    implementation(projects.navigation)
     implementation(projects.feature.onboarding)
     implementation(projects.feature.auth)
 

@@ -7,9 +7,9 @@ import com.waddleup.auth.domain.usecase.CheckLoggedInStatusUseCase
 import com.waddleup.core.base.util.DispatchersProvider
 import com.waddleup.core.base.viewmodel.BaseViewModel
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.core.navigation.destinations.auth.AuthDestinations
-import com.waddleup.core.navigation.destinations.home.HomeDestinations
-import com.waddleup.core.navigation.destinations.onboarding.OnboardingDestinations
+import com.waddleup.navigation.auth.AuthDestinations
+import com.waddleup.navigation.home.HomeDestinations
+import com.waddleup.navigation.onboarding.OnboardingDestinations
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlin.coroutines.resume

@@ -6,16 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.waddleup.waddle.navigation.ai_surprise.aiSurpriseNavGraph
-import com.waddleup.app.navigation.auth.authNavGraph
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.waddle.navigation.home.homeNavGraph
-import com.waddleup.waddle.navigation.onboarding.onboardingNavGraph
-import com.waddleup.waddle.navigation.settings.settingsNavGraph
-import com.waddleup.waddle.navigation.statictics.statisticsNavGraph
 
 /**
- * Created on 4/10/2025
+ * Created on 5/16/2025
  * @author Kanan Bashir
  */
 

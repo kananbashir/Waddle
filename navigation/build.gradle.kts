@@ -2,10 +2,11 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.waddleup.auth"
+    namespace = "com.waddleup.navigation"
 
     buildFeatures {
         compose = true
@@ -16,7 +17,6 @@ dependencies {
     // Project-specific modules
     implementation(projects.theme)
     implementation(projects.core)
-    implementation(projects.navigation)
 
     // Core framework dependencies
     implementation(libs.androidx.core.ktx)
@@ -30,22 +30,21 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Dependency Injection (Koin)
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.androidx.compose.navigation)
-
-    // Data storage
-    implementation(libs.data.store)
-    implementation(libs.data.store.core)
-
-    // Networking
-    implementation(libs.retrofit)
+    // Lifecycle and coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.savedstate)
 
     // Logging
     implementation(libs.timber)
+
+    // Data serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // Navigation
+    implementation(libs.navigation.compose)
 
     // Unit testing dependencies
     testImplementation(libs.junit)
