@@ -18,6 +18,7 @@ object KoinModuleLoader {
 
 private enum class Modules(vararg val modules: Module) {
     CoreModules(dataModule, networkModule),
+    MainModules(mainModule),
     FeatureModules(
         *ServiceLoader.load(ModuleLoader::class.java)
         .flatMap { it.getModules() }.toTypedArray()
