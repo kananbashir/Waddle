@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.waddleup.core.navigation.destinations.bottom_nav.BottomNavDestination
+import com.waddleup.waddle.navigation.bottom_nav.BottomNavDestination
 import com.waddleup.theme.WaddleTheme
 
 /**

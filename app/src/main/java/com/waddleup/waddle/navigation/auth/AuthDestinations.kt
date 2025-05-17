@@ -1,4 +1,4 @@
-package com.waddleup.core.navigation.destinations.auth
+package com.waddleup.waddle.navigation.auth
 
 import kotlinx.serialization.Serializable
 

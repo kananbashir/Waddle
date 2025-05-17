@@ -1,4 +1,4 @@
-package com.waddleup.core.navigation.destinations.statistics
+package com.waddleup.waddle.navigation.statictics
 
 import kotlinx.serialization.Serializable
 

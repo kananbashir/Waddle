@@ -1,18 +1,18 @@
-package com.waddleup.core.navigation.destinations.bottom_nav
+package com.waddleup.waddle.navigation.bottom_nav
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.waddleup.core.R
-import com.waddleup.core.navigation.destinations.ai_surprise.AiSurpriseDestinations
-import com.waddleup.core.navigation.destinations.create.CreateDestinations
-import com.waddleup.core.navigation.destinations.home.HomeDestinations
-import com.waddleup.core.navigation.destinations.settings.SettingsDestinations
-import com.waddleup.core.navigation.destinations.statistics.StatisticsDestinations
+import com.waddleup.waddle.navigation.ai_surprise.AiSurpriseDestinations
+import com.waddleup.waddle.navigation.create.CreateDestinations
+import com.waddleup.waddle.navigation.home.HomeDestinations
+import com.waddleup.waddle.navigation.settings.SettingsDestinations
+import com.waddleup.waddle.navigation.statictics.StatisticsDestinations
 
 /**
- * Created on 5/16/2025
+ * Created on 5/8/2025
  * @author Kanan Bashir
  */
 

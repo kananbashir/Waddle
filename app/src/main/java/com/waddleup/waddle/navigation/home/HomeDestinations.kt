@@ -1,4 +1,4 @@
-package com.waddleup.core.navigation.destinations.home
+package com.waddleup.waddle.navigation.home
 
 import androidx.compose.runtime.Immutable
 import kotlinx.serialization.Serializable

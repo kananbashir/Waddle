@@ -1,9 +1,9 @@
-package com.waddleup.core.navigation.destinations.onboarding
+package com.waddleup.waddle.navigation.onboarding
 
 import kotlinx.serialization.Serializable
 
 /**
- * Created on 5/15/2025
+ * Created on 5/16/2025
  * @author Kanan Bashir
  */
 
