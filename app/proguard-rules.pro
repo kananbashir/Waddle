@@ -1,21 +1,27 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# 1) Keep Kotlin metadata & all annotations needed at runtime
+-keep class kotlin.Metadata { *; }
+-keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod,
+               RuntimeVisibleAnnotations,RuntimeInvisibleAnnotations,
+               RuntimeVisibleParameterAnnotations,RuntimeInvisibleParameterAnnotations
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# 2) Keep Koin’s core so DI definitions still resolve
+-keep class org.koin.** { *; }
+-keepclassmembers class org.koin.** { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# 3) Keep DI modules if you’ve put them in a specific package
+-keep class com.waddleup.core.di.DataModuleKt { *; }
+-keep class com.waddleup.core.di.NetworkModuleKt { *; }
+-keep class com.waddleup.waddle.di.MainModuleKt { *; }
+-keep class com.waddleup.auth.di.AuthModuleKt { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# 4) Retrofit 2 – preserve HTTP interfaces & annotations
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature,Exceptions,*Annotation*
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+
+# 5) OkHttp – avoid warnings & keep core classes
+-dontwarn okhttp3.**
+-keep class okhttp3.** { *; }
