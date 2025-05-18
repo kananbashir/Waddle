@@ -31,7 +31,6 @@ fun NavGraphBuilder.authNavGraph(
                 content = { viewModel, uiState ->
                     LoginContent(
                         state = uiState.value.loginState,
-                        loginValidator = viewModel.loginValidator,
                         onIntent = viewModel::onIntent,
                         onEvent = viewModel::sendEvent
                     )
@@ -46,7 +45,6 @@ fun NavGraphBuilder.authNavGraph(
                 content = { viewModel, uiState ->
                     RegisterContent(
                         state = uiState.value.registerState,
-                        registerValidator = viewModel.registerValidator,
                         onIntent = viewModel::onIntent,
                         onEvent = viewModel::sendEvent
                     )

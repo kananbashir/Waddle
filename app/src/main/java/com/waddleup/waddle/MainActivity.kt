@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                     BottomNavDestination.containsDestination(currentDestination?.destination)
                 }
 
-                mainScreenState?.startDestination?.let { startDestination ->
+                mainScreenState.startDestination?.let { startDestination ->
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
                         bottomBar = {

@@ -13,7 +13,6 @@ import com.waddleup.auth.components.auth_R_drawable
 import com.waddleup.auth.components.core_R_drawable
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.presentation.components.input.WaddleTextField
-import com.waddleup.core.presentation.components.input.util.Validator
 
 /**
  * Created on 5/16/2025
@@ -23,7 +22,6 @@ import com.waddleup.core.presentation.components.input.util.Validator
 @Composable
 internal fun EmailTextField(
     authState: AuthState.LoginState,
-    inputValidator: Validator,
     onValueChanged: (text: String) -> Unit
 ) {
     WaddleTextField(
@@ -32,6 +30,8 @@ internal fun EmailTextField(
         onValueChange = { text -> onValueChanged(text) },
         titleText = "Email",
         placeholderText = "Email",
+        errorMessage = authState.emailError,
+        isError = authState.emailError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Next
@@ -42,7 +42,6 @@ internal fun EmailTextField(
 @Composable
 internal fun PasswordTextField(
     authState: AuthState.LoginState,
-    inputValidator: Validator,
     onValueChanged: (text: String) -> Unit,
     onTrailingIconClicked: () -> Unit,
     onDone: () -> Unit
@@ -53,6 +52,8 @@ internal fun PasswordTextField(
         onValueChange = { text ->  onValueChanged(text) },
         titleText = "Password",
         placeholderText = "Password",
+        errorMessage = authState.passwordError,
+        isError = authState.passwordError.isNullOrBlank().not(),
         trailingIconRes = if (authState.isPasswordVisible) core_R_drawable.ic_error  else auth_R_drawable.ic_password_invisible,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = if (authState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),

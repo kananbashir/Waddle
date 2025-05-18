@@ -65,15 +65,8 @@ class MainViewModel(
                 else -> HomeDestinations.HomeRoot
             }
 
-//            updateState {
-//                copy(
-//                    isLoading = false,
-//                    startDestination = destination
-//                )
-//            }
-
             setState {
-                it?.copy(
+                it.copy(
                     isLoading = false,
                     startDestination = destination
                 )
@@ -105,13 +98,7 @@ class MainViewModel(
         execute(
             useCase = completeOnboardingUseCase,
             onSuccess = {
-//                updateState {
-//                    copy(
-//                        startDestination = AuthDestinations.AuthRoot
-//                    )
-//                }
-
-                setState { it?.copy(startDestination = AuthDestinations.AuthRoot) }
+                setState { it.copy(startDestination = AuthDestinations.AuthRoot) }
             },
             onError = { msg, _ -> }
         )

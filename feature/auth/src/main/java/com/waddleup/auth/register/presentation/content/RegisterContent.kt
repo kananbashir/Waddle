@@ -27,7 +27,6 @@ import com.waddleup.auth.viewmodel.AuthIntent
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.button.WaddlePrimaryButton
-import com.waddleup.core.presentation.components.input.util.Validator
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -40,7 +39,6 @@ private val spacingValue = 12.dp
 @Composable
 fun RegisterContent(
     modifier: Modifier = Modifier,
-    registerValidator: Validator,
     state: AuthState.RegisterState,
     onIntent: (AuthIntent.Register) -> Unit,
     onEvent: (UiEvent) -> Unit
@@ -69,7 +67,6 @@ fun RegisterContent(
 
         EmailTextField(
             authState = state,
-            inputValidator = registerValidator,
             onValueChanged = { onIntent(AuthIntent.Register.EmailChanged(it)) }
         )
 
@@ -77,7 +74,6 @@ fun RegisterContent(
 
         PasswordTextField(
             authState = state,
-            inputValidator = registerValidator,
             onValueChanged = { onIntent(AuthIntent.Register.PasswordChanged(it)) },
             onTrailingIconClicked = { onIntent(AuthIntent.Register.TogglePasswordVisibility) },
             onDone = { /* TODO: Handle! */ }
@@ -87,7 +83,6 @@ fun RegisterContent(
 
         TermsAndConditionsCheckBox(
             authState = state,
-            validator = registerValidator,
             onCheckedChange = { onIntent(AuthIntent.Register.ToggleTermsChecked(it)) },
             onTermsClicked = { /* TODO: Handle! */ },
             onConditionsClicked = { /* TODO: Handle! */ }
@@ -98,6 +93,7 @@ fun RegisterContent(
         WaddlePrimaryButton(
             modifier = Modifier.fillMaxWidth(),
             buttonText = "Register",
+            isEnabled = state.allFieldsValid,
             onClick = {}
         )
 

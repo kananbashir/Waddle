@@ -22,7 +22,6 @@ import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.button.WaddlePrimaryButton
 import com.waddleup.core.presentation.components.content.WaddleMainContentWrapper
-import com.waddleup.core.presentation.components.input.util.Validator
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -36,7 +35,6 @@ private val spacingValue = 12.dp
 @Composable
 fun LoginContent(
     state: AuthState.LoginState,
-    loginValidator: Validator,
     onIntent: (AuthIntent.Login) -> Unit,
     onEvent: (UiEvent) -> Unit
 ) {
@@ -53,7 +51,6 @@ fun LoginContent(
 
                 EmailTextField(
                     authState = state,
-                    inputValidator = loginValidator,
                     onValueChanged = { onIntent(AuthIntent.Login.EmailChanged(it)) }
                 )
 
@@ -61,7 +58,6 @@ fun LoginContent(
 
                 PasswordTextField(
                     authState = state,
-                    inputValidator = loginValidator,
                     onValueChanged = {  onIntent(AuthIntent.Login.PasswordChanged(it)) },
                     onTrailingIconClicked = { onIntent(AuthIntent.Login.TogglePasswordVisibility) },
                     onDone = { /* TODO: Handle! */ }
@@ -84,6 +80,7 @@ fun LoginContent(
 
                 WaddlePrimaryButton(
                     modifier = Modifier.fillMaxWidth(),
+                    isEnabled = state.allFieldsValid,
                     buttonText = "Log in",
                     onClick = { onIntent(AuthIntent.Login.SubmitLogin) }
                 )

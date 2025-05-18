@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -39,15 +40,21 @@ fun WaddleMainContentWrapper(
 
     Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
         Scaffold(
-            modifier = Modifier.padding(paddingValues),
+            modifier = Modifier
+                .let { if (isLoading) it.blur(blurRadius) else it }
+                .imePadding()
+                .padding(paddingValues),
             containerColor = backgroundColor,
             topBar    = { topBar?.invoke() },
             bottomBar = { bottomBar?.invoke() },
-            content   = { _ ->
+            content   = { paddings ->
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .let { if (isLoading) it.blur(blurRadius) else it }
+                        .padding(
+                            top = paddings.calculateTopPadding(),
+                            bottom = paddings.calculateBottomPadding()
+                        )
                 ) {
                     content()
                 }

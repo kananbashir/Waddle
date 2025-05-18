@@ -206,10 +206,12 @@ internal fun WaddleTextFieldWrapper(
             colors = colors
         )
 
-        AnimatedErrorMessage(
-            errorState = isError,
-            errorText = errorMessage ?: ""
-        )
+        if (errorMessage.isNullOrBlank().not()) {
+            AnimatedErrorMessage(
+                errorState = isError,
+                errorText = errorMessage!!
+            )
+        }
     }
 }
 

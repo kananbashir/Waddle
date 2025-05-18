@@ -1,6 +1,7 @@
 package com.waddleup.auth.password_recovery.content
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -47,6 +48,8 @@ fun PasswordRecoveryContent(
     }
 
     WaddleMainContentWrapper(
+        paddingValues = PaddingValues(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
+        isLoading = state.isLoading,
         topBar = {
             if (state.currentPage < 2) {
                 WaddleMainTopBar(
@@ -65,16 +68,8 @@ fun PasswordRecoveryContent(
             ) {page ->
                 when (page) {
                     0 -> PasswordRecoveryFirstPage(state, onIntent)
-                    1 -> PasswordRecoverySecondPage(
-                        authState = state,
-                        onIntent = onIntent,
-                        onWriteToUsClicked = {}
-                    )
-                    2 -> PasswordRecoveryThirdPage(
-                        authState = state,
-                        onIntent = onIntent,
-                        onWriteToUsClicked = {}
-                    )
+                    1 -> PasswordRecoverySecondPage(state, onIntent) {}
+                    2 -> PasswordRecoveryThirdPage(state, onIntent) {}
                     3 -> PasswordRecoveryFourthPage()
                 }
             }
@@ -110,6 +105,15 @@ fun PasswordRecoveryContent(
                     buttonText = stringResource(
                         id = if (pagerState.currentPage < 3) R.string.button_next
                         else R.string.button_go_to_login),
+                    isEnabled = state.run {
+                        when (pagerState.currentPage) {
+                            0 -> isEmailValid && !isLoading
+                            1 -> isConfirmationCodeValid && !isLoading
+                            2 -> arePasswordsValid && !isLoading
+                            3 -> true
+                            else -> false
+                        }
+                    },
                     onClick = {
                         onIntent(
                             when (pagerState.currentPage) {

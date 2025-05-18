@@ -29,7 +29,7 @@ fun FullScreenLoadingIndicator(
 ) {
     if (visible) {
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .pointerInput(Unit) {
                     awaitPointerEventScope {
