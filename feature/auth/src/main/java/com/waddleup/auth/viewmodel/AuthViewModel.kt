@@ -248,15 +248,16 @@ class AuthViewModel(
             useCase = loginUseCase,
             onStart = { updateLoginState { copy(isLoading = true) } },
             onSuccess = {
-//                updateLoginState { copy(loginDto = it) }
+                updateLoginState { copy(loginDto = it) }
                 sendEvent(
                     UiEvent.Navigate(
-                        route = HomeDestinations.HomeRoot(someData = "some dataa"),
+                        route = HomeDestinations.HomeRoot,
                         popUpTo = AuthDestinations.AuthRoot
                     )
                 )
             },
-            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) }
+            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) },
+            onCompleted = { updateLoginState { copy(isLoading = false) } }
         )
     }
 

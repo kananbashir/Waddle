@@ -31,6 +31,7 @@ import com.waddleup.waddle.presentation.bottom_nav.WaddleBottomNavigation
 import com.waddleup.waddle.viewmodel.MainScreenIntent
 import com.waddleup.waddle.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
 

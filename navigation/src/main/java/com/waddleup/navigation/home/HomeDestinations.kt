@@ -1,6 +1,5 @@
 package com.waddleup.navigation.home
 
-import androidx.compose.runtime.Immutable
 import kotlinx.serialization.Serializable
 
 /**
@@ -8,13 +7,10 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Immutable
 @Suppress("unused")
 @Serializable
 sealed class HomeDestinations {
     @Serializable
-    data class HomeRoot(
-        val someData: String
-    ): HomeDestinations()
+    data object  HomeRoot: HomeDestinations()
     @Serializable data object Home: HomeDestinations()
 }

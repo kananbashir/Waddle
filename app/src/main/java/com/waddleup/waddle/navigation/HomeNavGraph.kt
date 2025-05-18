@@ -42,12 +42,6 @@ fun NavGraphBuilder.homeNavGraph(
             popEnterTransition = { fadeIn() },
             popExitTransition = { fadeOut() }
         ) {
-            val navArgs = remember { navController.getArgsFromRoot<HomeDestinations.HomeRoot>() }
-
-            LaunchedEffect(navArgs) {
-                Timber.tag("nav_args").d("someData=${navArgs.someData}")
-            }
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
