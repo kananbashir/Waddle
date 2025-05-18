@@ -5,14 +5,19 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.waddleup.core.presentation.components.indicator.loading_indicator.FullScreenLoadingIndicator
@@ -36,14 +41,35 @@ fun WaddleMainContentWrapper(
     blurRadius: Dp = 3.dp,
     content: @Composable () -> Unit
 ) {
+    val density = LocalDensity.current
+
+    val imeBottomDp = with(density) {
+        WindowInsets
+            .ime
+            .only(WindowInsetsSides.Bottom)
+            .getBottom(this)
+            .toDp()
+    }
+
+    val navBarBottomDp = with(density) {
+        WindowInsets
+            .navigationBars
+            .only(WindowInsetsSides.Bottom)
+            .getBottom(this)
+            .toDp()
+    }
+
+    val keyboardOnlyInset = (imeBottomDp - navBarBottomDp).coerceAtLeast(0.dp)
+
     BackHandler(enabled = onBack != null) { onBack?.invoke() }
 
     Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
         Scaffold(
             modifier = Modifier
                 .let { if (isLoading) it.blur(blurRadius) else it }
-                .imePadding()
-                .padding(paddingValues),
+                .padding(paddingValues)
+                .padding(bottom = keyboardOnlyInset),
+            contentWindowInsets = WindowInsets(0),
             containerColor = backgroundColor,
             topBar    = { topBar?.invoke() },
             bottomBar = { bottomBar?.invoke() },
