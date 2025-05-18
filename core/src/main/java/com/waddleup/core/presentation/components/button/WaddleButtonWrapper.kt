@@ -29,7 +29,7 @@ import com.waddleup.theme.WaddleTheme
  */
 
 @Composable
-internal fun WaddleButton(
+internal fun WaddleButtonWrapper(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape,
