@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -39,7 +40,7 @@ fun WaddleMainContentWrapper(
     bottomBar: @Composable (() -> Unit)? = null,
     onBack: (() -> Unit)? = null,
     blurRadius: Dp = 3.dp,
-    content: @Composable () -> Unit
+    content: @Composable (paddings: PaddingValues) -> Unit
 ) {
     val density = LocalDensity.current
 
@@ -63,7 +64,11 @@ fun WaddleMainContentWrapper(
 
     BackHandler(enabled = onBack != null) { onBack?.invoke() }
 
-    Box(modifier = modifier.fillMaxSize().background(backgroundColor)) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+    ) {
         Scaffold(
             modifier = Modifier
                 .let { if (isLoading) it.blur(blurRadius) else it }
@@ -71,7 +76,13 @@ fun WaddleMainContentWrapper(
                 .padding(bottom = keyboardOnlyInset),
             contentWindowInsets = WindowInsets(0),
             containerColor = backgroundColor,
-            topBar    = { topBar?.invoke() },
+            topBar    = {
+                Box(
+                    modifier = Modifier.statusBarsPadding()
+                ) {
+                    topBar?.invoke()
+                }
+            },
             bottomBar = { bottomBar?.invoke() },
             content   = { paddings ->
                 Box(
@@ -82,7 +93,7 @@ fun WaddleMainContentWrapper(
                             bottom = paddings.calculateBottomPadding()
                         )
                 ) {
-                    content()
+                    content(paddings)
                 }
             }
         )

@@ -68,6 +68,7 @@ val poppinsFontFamily = FontFamily(
  * body2 - 14sp
  * caption - 12sp
  * overline - 11sp
+ * overline2 - 10sp
  * */
 @Immutable
 data class WaddleTypography(
@@ -126,14 +127,34 @@ data class WaddleTypography(
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal
     ),
+    /**12sp*/ val captionLight: TextStyleParams = TextStyleParams(
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Light,
+        fontStyle = FontStyle.Normal
+    ),
+    /**12sp*/ val captionRegular: TextStyleParams = TextStyleParams(
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal,
+        fontStyle = FontStyle.Normal
+    ),
     /**12sp*/ val captionMedium: TextStyleParams = TextStyleParams(
         fontSize = 12.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
+    /**12sp*/ val captionSemiBold: TextStyleParams = TextStyleParams(
+        fontSize = 12.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontStyle = FontStyle.Normal
+    ),
     /**11sp*/ val overlineMedium: TextStyleParams = TextStyleParams(
         fontSize = 11.sp,
         fontWeight = FontWeight.Medium,
+        fontStyle = FontStyle.Normal
+    ),
+    /**10sp*/ val overline2Regular: TextStyleParams = TextStyleParams(
+        fontSize = 10.sp,
+        fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal
     )
 ) {

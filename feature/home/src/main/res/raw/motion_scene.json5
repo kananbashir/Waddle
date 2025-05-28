@@ -1,0 +1,88 @@
+{
+  ConstraintSets: {
+    start: {
+      daily_limit_title: {
+        start: ['parent', 'start', 16],
+        top: ['parent', 'top', 32],
+      },
+      daily_limit_text: {
+        start: ['parent', 'start', 16],
+        top: ['daily_limit_title', 'bottom', 8],
+        custom: { textSize: 48 }
+      },
+      mascot: {
+        width: 140.54,
+        height: 179.37,
+        end: ['parent', 'end', 0],
+        top: ['transaction_history_header', 'top', 0],
+        translationY: -85,
+        alpha: 1,
+      },
+      transaction_history_box: {
+        width: 'spread',
+        height: 'spread',
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        top: ['transaction_history_header', 'bottom', 0],
+        bottom: ['parent', 'bottom', 0],
+      },
+      transaction_history_header: {
+        width: 'spread',
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        top: ['daily_limit_text', 'bottom', 24]
+      }
+    },
+
+    end: {
+      daily_limit_title: {
+        start: ['parent', 'start', 16],
+        top: ['parent', 'top', 32],
+      },
+      daily_limit_text: {
+        start: ['daily_limit_title', 'end', 8],
+        top: ['daily_limit_title', 'top', 0],
+        bottom: ['daily_limit_title', 'bottom', 0],
+        custom: { textSize: 14 }
+      },
+      mascot: {
+        width: 140.54,
+        height: 179.37,
+        end: ['parent', 'end', 0],
+        top: ['transaction_history_header', 'top', 0],
+        translationY: 15,
+        alpha: 0,
+      },
+      transaction_history_box: {
+        width: 'spread',
+        height: 'spread',
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        top: ['daily_limit_text', 'bottom', 16],
+        bottom: ['parent', 'bottom', 0],
+      },
+      transaction_history_header: {
+        width: 'spread',
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        top: ['transaction_history_box', 'top', 0],
+      }
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+      pathMotionArc: 'startHorizontal',
+      KeyFrames: {
+        KeyAttributes: [
+          {
+            target: 'daily_limit_text',
+            frames: [0, 30, 100],
+            translationX: [0, 70, 0],
+          }
+        ],
+      }
+    }
+  }
+}
