@@ -10,7 +10,9 @@ import com.waddleup.auth.viewmodel.AuthState.RegisterState
 import com.waddleup.core.base.util.DispatchersProvider
 import com.waddleup.core.base.viewmodel.BaseViewModel
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.core.presentation.components.input.util.Validator
+import com.waddleup.core.presentation.components.input.util.ValidatorParam.ValidationConditionParams
+import com.waddleup.core.presentation.components.input.util.ValidatorParam.ValidationRegexParams
+import com.waddleup.core.util.Regexes
 import com.waddleup.navigation.auth.AuthDestinations
 import com.waddleup.navigation.home.HomeDestinations
 
@@ -29,10 +31,6 @@ class AuthViewModel(
     override val initialState: AuthState
         get() = AuthState()
 
-    val loginValidator = Validator(safeCoroutineScope)
-    val registerValidator = Validator(safeCoroutineScope)
-    val passwordRecoveryValidator = Validator(safeCoroutineScope)
-
     override fun onIntent(intent: AuthIntent) {
         when (intent) {
             is AuthIntent.Login -> handleLoginIntent(intent)
@@ -43,8 +41,8 @@ class AuthViewModel(
 
     private fun handleLoginIntent(intent: AuthIntent.Login) {
         when (intent) {
-            is AuthIntent.Login.EmailChanged -> updateLoginState { copy(email = intent.value) }
-            is AuthIntent.Login.PasswordChanged -> updateLoginState { copy(password = intent.value) }
+            is AuthIntent.Login.EmailChanged -> updateLoginEmail(intent.value)
+            is AuthIntent.Login.PasswordChanged -> updateLoginPassword(intent.value)
             AuthIntent.Login.SubmitForgotPassword -> sendEvent(UiEvent.Navigate(AuthDestinations.PasswordRecovery))
             AuthIntent.Login.SubmitLogin -> login()
             AuthIntent.Login.SubmitDoNotHaveAccount -> sendEvent(UiEvent.Navigate(AuthDestinations.Register))
@@ -54,9 +52,9 @@ class AuthViewModel(
 
     private fun handleRegisterIntent(intent: AuthIntent.Register) {
         when (intent) {
-            is AuthIntent.Register.EmailChanged -> updateRegisterState { copy(email = intent.value) }
-            is AuthIntent.Register.FullNameChanged -> updateRegisterState { copy(fullName = intent.value) }
-            is AuthIntent.Register.PasswordChanged -> updateRegisterState { copy(password = intent.value) }
+            is AuthIntent.Register.EmailChanged -> updateRegisterEmail(intent.value)
+            is AuthIntent.Register.FullNameChanged -> updateRegisterFullName(intent.value)
+            is AuthIntent.Register.PasswordChanged -> updateRegisterPassword(intent.value)
             is AuthIntent.Register.ToggleTermsChecked -> updateRegisterState { copy(isCheckedTerms = intent.value) }
             AuthIntent.Register.SubmitRegister -> { /* Register */ }
             AuthIntent.Register.SubmitAlreadyHaveAccount -> sendEvent(UiEvent.NavigateBack)
@@ -66,20 +64,11 @@ class AuthViewModel(
 
     private fun handlePasswordRecoveryIntent(intent: AuthIntent.PasswordRecovery) {
         when (intent) {
-            is AuthIntent.PasswordRecovery.ConfirmPasswordChanged ->
-                updatePasswordRecoveryState { copy(confirmPassword = intent.value) }
-
-            is AuthIntent.PasswordRecovery.CreatePasswordChanged ->
-                updatePasswordRecoveryState { copy(createPassword = intent.value) }
-
-            is AuthIntent.PasswordRecovery.ConfirmationCodeChanged ->
-                updatePasswordRecoveryState { copy(confirmationCode = intent.value) }
-
-            is AuthIntent.PasswordRecovery.CurrentPageChanged ->
-                updatePasswordRecoveryState { copy(currentPage = intent.value) }
-
-            is AuthIntent.PasswordRecovery.EmailChanged ->
-                updatePasswordRecoveryState { copy(email = intent.value) }
+            is AuthIntent.PasswordRecovery.ConfirmPasswordChanged -> updatePassRecoveryConfirmPass(intent.value)
+            is AuthIntent.PasswordRecovery.CreatePasswordChanged -> updatePassRecoveryCreatePass(intent.value)
+            is AuthIntent.PasswordRecovery.ConfirmationCodeChanged -> updatePassRecoveryConfCode(intent.value)
+            is AuthIntent.PasswordRecovery.CurrentPageChanged -> updatePassRecoveryState { copy(currentPage = intent.value) }
+            is AuthIntent.PasswordRecovery.EmailChanged -> updatePassRecoveryEmail(intent.value)
 
             AuthIntent.PasswordRecovery.SubmitEmailConfirmation -> sendOtpToEmail()
             AuthIntent.PasswordRecovery.SubmitConfirmationCode -> confirmOtp()
@@ -88,37 +77,187 @@ class AuthViewModel(
             AuthIntent.PasswordRecovery.AbortProcess-> navigateBackAndReset()
 
             AuthIntent.PasswordRecovery.ToggleConfirmPasswordVisibility ->
-                updatePasswordRecoveryState { copy(isConfirmPasswordVisible = !isConfirmPasswordVisible) }
+                updatePassRecoveryState { copy(isConfirmPasswordVisible = !isConfirmPasswordVisible) }
 
             AuthIntent.PasswordRecovery.ToggleCreatePasswordVisibility ->
-                updatePasswordRecoveryState { copy(isCreatePasswordVisible = !isCreatePasswordVisible) }
+                updatePassRecoveryState { copy(isCreatePasswordVisible = !isCreatePasswordVisible) }
         }
     }
 
+    private fun updateLoginEmail(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "Should not contain white spaces"
+            ),
+            ValidationRegexParams(
+                regexString = Regexes.NOT_EMPTY
+            ),
+            ValidationRegexParams(
+                regexString = Regexes.VALID_EMAIL,
+                errorMessage = "Invalid email address"
+            )
+        ) { errorMessage ->
+            updateLoginState { copy(email = value, emailError = errorMessage) }
+        }
+    }
+
+    private fun updateLoginPassword(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(regexString = Regexes.NOT_EMPTY),
+            ValidationRegexParams(
+                regexString = Regexes.minChars(8),
+                errorMessage = "At least 8 character needed"
+            )
+        ) { errorMessage ->
+            updateLoginState { copy(password = value, passwordError = errorMessage) }
+        }
+    }
+
+    private fun updateRegisterFullName(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "No white space in name"
+            ),
+            ValidationRegexParams(
+                regexString = Regexes.NOT_EMPTY
+            )
+        ) { errorMessage ->
+            updateRegisterState { copy(fullName = value, fullNameError = errorMessage) }
+        }
+    }
+
+    private fun updateRegisterEmail(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "Should not contain white spaces"
+            ),
+            ValidationRegexParams(
+                regexString = Regexes.NOT_EMPTY
+            ),
+            ValidationRegexParams(
+                regexString = Regexes.VALID_EMAIL,
+                errorMessage = "Invalid email address"
+            )
+        ) { errorMessage ->
+            updateRegisterState { copy(email = value, emailError = errorMessage) }
+        }
+    }
+
+    private fun updateRegisterPassword(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(regexString = Regexes.NOT_EMPTY),
+            ValidationRegexParams(
+                regexString = Regexes.minChars(8),
+                errorMessage = "At least 8 character needed"
+            )
+        ) { errorMessage ->
+            updateRegisterState { copy(password = value, passwordError = errorMessage) }
+        }
+    }
+
+    private fun updatePassRecoveryEmail(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "Should not contain white spaces"
+            ),
+            ValidationRegexParams(Regexes.NOT_EMPTY),
+            ValidationRegexParams(
+                regexString = Regexes.VALID_EMAIL,
+                errorMessage = "Invalid email address"
+            )
+        ) { errorMessage ->
+            updatePassRecoveryState { copy(email = value, emailError = errorMessage) }
+        }
+    }
+
+    private fun updatePassRecoveryConfCode(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "Should not contain white spaces"
+            ),
+            ValidationRegexParams(Regexes.NOT_EMPTY)
+        ) { errorMessage ->
+            updatePassRecoveryState { copy(confirmationCode = value, confirmationCodeError = errorMessage) }
+        }
+    }
+
+    private fun updatePassRecoveryCreatePass(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "Should not contain white spaces"
+            ),
+            ValidationRegexParams(Regexes.NOT_EMPTY),
+            ValidationRegexParams(Regexes.MAIN_PASSWORD),
+            ValidationRegexParams(
+                regexString = Regexes.minChars(8),
+                errorMessage = "At least 8 characters needed"
+            )
+        ) { errorMessage ->
+            updatePassRecoveryState { copy(createPassword = value, createPasswordError = errorMessage) }
+        }
+    }
+
+    private fun updatePassRecoveryConfirmPass(value: String) {
+        validate(
+            value,
+            ValidationRegexParams(
+                regexString = Regexes.NO_WHITE_SPACE,
+                errorMessage = "Should not contain white spaces"
+            ),
+            ValidationRegexParams(Regexes.NOT_EMPTY),
+            ValidationRegexParams(Regexes.MAIN_PASSWORD),
+            ValidationRegexParams(
+                regexString = Regexes.minChars(8),
+                errorMessage = "At least 8 characters needed"
+            ),
+            ValidationConditionParams(
+                condition = { value == uiState.value.passwordRecoveryState.createPassword },
+                errorMessage = "Passwords doesn't match"
+            )
+        ) { errorMessage ->
+            updatePassRecoveryState { copy(confirmPassword = value, confirmPasswordError = errorMessage) }
+        }
+    }
+
+
     private fun updateLoginState(block: LoginState.() -> LoginState) =
-        setState { it?.copy(loginState = it.loginState.block()) }
+        setState { it.copy(loginState = it.loginState.block()) }
 
     private fun updateRegisterState(block: RegisterState.() -> RegisterState) =
-        setState { it?.copy(registerState = it.registerState.block()) }
+        setState { it.copy(registerState = it.registerState.block()) }
 
-
-    private fun updatePasswordRecoveryState(block: PasswordRecoveryState.() -> PasswordRecoveryState) =
-        setState { it?.copy(passwordRecoveryState = it.passwordRecoveryState.block()) }
+    private fun updatePassRecoveryState(block: PasswordRecoveryState.() -> PasswordRecoveryState) =
+        setState { it.copy(passwordRecoveryState = it.passwordRecoveryState.block()) }
 
     private fun login() {
         execute(
             useCase = loginUseCase,
             onStart = { updateLoginState { copy(isLoading = true) } },
             onSuccess = {
-//                updateLoginState { copy(loginDto = it) }
+                updateLoginState { copy(loginDto = it) }
                 sendEvent(
                     UiEvent.Navigate(
-                        route = HomeDestinations.HomeRoot(someData = "some dataa"),
+                        route = HomeDestinations.HomeRoot,
                         popUpTo = AuthDestinations.AuthRoot
                     )
                 )
             },
-            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) }
+            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) },
+            onCompleted = { updateLoginState { copy(isLoading = false) } }
         )
     }
 
@@ -126,8 +265,10 @@ class AuthViewModel(
         execute(
             useCase = sendOtpToEmailUseCase,
             params = currentUiStateData?.passwordRecoveryState?.email,
+            onStart = { updatePassRecoveryState { copy(isLoading = true) } },
             onSuccess = { incrementCurrentPage() },
-            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) }
+            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) },
+            onCompleted = { updatePassRecoveryState { copy(isLoading = false) } }
         )
     }
 
@@ -135,8 +276,10 @@ class AuthViewModel(
         execute(
             useCase = confirmOtpUseCase,
             params = currentUiStateData?.passwordRecoveryState?.confirmationCode,
+            onStart = { updatePassRecoveryState { copy(isLoading = true) } },
             onSuccess = { incrementCurrentPage() },
-            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) }
+            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) },
+            onCompleted = { updatePassRecoveryState { copy(isLoading = false) } }
         )
     }
 
@@ -144,17 +287,18 @@ class AuthViewModel(
         execute(
             useCase = updateAccountPasswordUseCase,
             params = currentUiStateData?.passwordRecoveryState?.confirmPassword,
+            onStart = { updatePassRecoveryState { copy(isLoading = true) } },
             onSuccess = {
                 incrementCurrentPage()
             },
-            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) }
+            onError = { msg, _ -> sendEvent(UiEvent.ShowError(msg)) },
+            onCompleted = { updatePassRecoveryState { copy(isLoading = false) } }
         )
     }
 
     private fun navigateBackAndReset() {
-        passwordRecoveryValidator.clear()
-        updatePasswordRecoveryState { PasswordRecoveryState() }
         sendEvent(UiEvent.NavigateBack)
+        updatePassRecoveryState { PasswordRecoveryState() }
     }
 
     private fun incrementCurrentPage() {

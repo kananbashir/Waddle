@@ -1,5 +1,6 @@
 package com.waddleup.core.base.viewmodel
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.waddleup.core.base.usecase.NoParamUseCase
@@ -33,6 +34,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
 import com.waddleup.core.base.usecase.Result
+import com.waddleup.core.presentation.components.input.util.ValidatorParam
 import timber.log.Timber
 
 /**
@@ -40,11 +42,12 @@ import timber.log.Timber
  * @author Kanan Bashir
  */
 
+@Suppress("MemberVisibilityCanBePrivate")
 abstract class BaseViewModel<State, Intent>(
     private val dispatchersProvider: DispatchersProvider
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow<State?>(initialState)
-    val uiState: StateFlow<State?> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(initialState)
+    val uiState: StateFlow<State> = _uiState.asStateFlow()
 
     abstract val initialState: State
     open fun onIntent(intent: Intent) { /* only override when needed */ }
@@ -55,7 +58,7 @@ abstract class BaseViewModel<State, Intent>(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    protected val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         Timber.tag("${this::class.simpleName}_ex_handler").e("Caught exception in ViewModel: ${throwable.message}")
         throwable.printStackTrace()
         handleCoroutineException(throwable)
@@ -108,7 +111,8 @@ abstract class BaseViewModel<State, Intent>(
         sendEvent(UiEvent.ShowError(throwable.message ?: "An error occurred"))
     }
 
-    protected fun setState(producer: (State?) -> State?) {
+    @MainThread
+    protected fun setState(producer: (State) -> State) {
         _uiState.update { producer(it) }
     }
 
@@ -126,6 +130,13 @@ abstract class BaseViewModel<State, Intent>(
         }
     }
 
+    protected fun launchDefault(block: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch(dispatchersProvider.default) {
+            block()
+        }
+    }
+
+
     protected suspend fun <T> withMainContext(block: suspend CoroutineScope.() -> T): T {
         return withContext(dispatchersProvider.main) {
             block()
@@ -136,6 +147,30 @@ abstract class BaseViewModel<State, Intent>(
         return withContext(dispatchersProvider.io) {
             block()
         }
+    }
+
+    protected suspend fun <T> withDefaultContext(block: suspend CoroutineScope.() -> T): T {
+        return withContext(dispatchersProvider.default) {
+            block()
+        }
+    }
+
+    protected fun validate(
+        value: String,
+        vararg validators: ValidatorParam,
+        onResult: (errorMessage: String?) -> Unit,
+    ) = launchDefault {
+        val error = validators.firstNotNullOfOrNull { validator ->
+            when (validator) {
+                is ValidatorParam.ValidationRegexParams ->
+                    if (!value.matches(validator.regex)) validator.errorMessage ?: "" else null
+
+                is ValidatorParam.ValidationConditionParams ->
+                    if (!validator.condition()) validator.errorMessage ?: "" else null
+            }
+        }
+
+        withMainContext { onResult(error) }
     }
 
     open fun parseErrorMessage(throwable: Throwable): String {

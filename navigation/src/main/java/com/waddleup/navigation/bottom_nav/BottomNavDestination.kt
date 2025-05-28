@@ -19,6 +19,7 @@ import com.waddleup.navigation.statictics.StatisticsDestinations
 @Suppress("unused")
 sealed class BottomNavDestination(
     val route: Any,
+    val startDestination: Any,
     @StringRes val labelResId: Int,
     @DrawableRes val iconResId: Int
 ) {
@@ -26,30 +27,35 @@ sealed class BottomNavDestination(
 
     data object Home: BottomNavDestination(
         route = HomeDestinations.HomeRoot,
+        startDestination = HomeDestinations.Home,
         labelResId = R.string.bottom_nav_item_home,
         iconResId = R.drawable.ic_bottom_nav_home,
     )
 
     data object Statistics: BottomNavDestination(
         route = StatisticsDestinations.StatisticsRoot,
+        startDestination = StatisticsDestinations.Statistics,
         labelResId = R.string.bottom_nav_item_statistics,
         iconResId = R.drawable.ic_bottom_nav_statistics,
     )
 
     data object Create: BottomNavDestination(
-        route = CreateDestinations.Create,
+        route = CreateDestinations.CreateRoot,
+        startDestination = CreateDestinations.Create,
         labelResId = -1,
         iconResId = R.drawable.ic_bottom_nav_create,
     )
 
     data object AiSurprise: BottomNavDestination(
         route = AiSurpriseDestinations.AiSurpriseRoot,
+        startDestination = AiSurpriseDestinations.AiSurprise,
         labelResId = R.string.bottom_nav_item_ai_surprise,
         iconResId = R.drawable.ic_bottom_nav_ai_surprise,
     )
 
     data object Settings: BottomNavDestination(
         route = SettingsDestinations.SettingsRoot,
+        startDestination = SettingsDestinations.Settings,
         labelResId = R.string.bottom_nav_item_settings,
         iconResId = R.drawable.ic_bottom_nav_settings,
     )
@@ -61,7 +67,7 @@ sealed class BottomNavDestination(
             return destination?.let { dest ->
                 items.any { bottomNavItem ->
                     dest.hierarchy.any { navDest ->
-                        navDest.route == bottomNavItem.route::class.qualifiedName
+                        navDest.route == bottomNavItem.startDestination::class.qualifiedName
                     }
                 }
             } ?: false

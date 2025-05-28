@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -31,6 +32,7 @@ import com.waddleup.waddle.presentation.bottom_nav.WaddleBottomNavigation
 import com.waddleup.waddle.viewmodel.MainScreenIntent
 import com.waddleup.waddle.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
 
@@ -57,7 +59,7 @@ class MainActivity : ComponentActivity() {
                     BottomNavDestination.containsDestination(currentDestination?.destination)
                 }
 
-                mainScreenState?.startDestination?.let { startDestination ->
+                mainScreenState.startDestination?.let { startDestination ->
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
                         bottomBar = {
@@ -81,8 +83,9 @@ class MainActivity : ComponentActivity() {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(WaddleTheme.colors.primaryBackground)
-                                .padding(paddings)
+                                .padding(
+                                    bottom = paddings.calculateBottomPadding()
+                                )
                         ) {
                             AppNavHost(
                                 navController = navController,

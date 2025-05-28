@@ -20,7 +20,6 @@ import com.waddleup.auth.components.core_R_drawable
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.presentation.components.checkbox.WaddleCheckBox
 import com.waddleup.core.presentation.components.input.WaddleTextField
-import com.waddleup.core.presentation.components.input.util.Validator
 import com.waddleup.core.presentation.components.text.WaddleClickableText
 import com.waddleup.core.presentation.components.text.util.ClickableTextParams
 import com.waddleup.theme.WaddleTheme
@@ -41,6 +40,8 @@ internal fun FullNameTextField(
         onValueChange = { text -> onValueChanged(text) },
         titleText = "Full name",
         placeholderText = "Full name",
+        errorMessage = authState.fullNameError,
+        isError = authState.fullNameError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
@@ -51,7 +52,6 @@ internal fun FullNameTextField(
 @Composable
 internal fun EmailTextField(
     authState: AuthState.RegisterState,
-    inputValidator: Validator?,
     onValueChanged: (text: String) -> Unit
 ) {
     WaddleTextField(
@@ -60,6 +60,8 @@ internal fun EmailTextField(
         onValueChange = { text -> onValueChanged(text) },
         titleText = "Email",
         placeholderText = "Email",
+        errorMessage = authState.emailError,
+        isError = authState.emailError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Next
@@ -70,7 +72,6 @@ internal fun EmailTextField(
 @Composable
 internal fun PasswordTextField(
     authState: AuthState.RegisterState,
-    inputValidator: Validator?,
     onValueChanged: (text: String) -> Unit,
     onTrailingIconClicked: () -> Unit,
     onDone: () -> Unit
@@ -81,6 +82,8 @@ internal fun PasswordTextField(
         onValueChange = { text ->  onValueChanged(text) },
         titleText = "Password",
         placeholderText = "Password",
+        errorMessage = authState.passwordError,
+        isError = authState.passwordError.isNullOrBlank().not(),
         trailingIconRes = if (authState.isPasswordVisible) core_R_drawable.ic_error  else auth_R_drawable.ic_password_invisible,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = if (authState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -100,7 +103,6 @@ internal fun PasswordTextField(
 internal fun TermsAndConditionsCheckBox(
     modifier: Modifier = Modifier,
     authState: AuthState.RegisterState,
-    validator: Validator?,
     onCheckedChange: (value: Boolean) -> Unit,
     onTermsClicked: () -> Unit,
     onConditionsClicked: () -> Unit
@@ -112,6 +114,7 @@ internal fun TermsAndConditionsCheckBox(
     ) {
         WaddleCheckBox(
             isChecked = authState.isCheckedTerms,
+            isError = authState.isCheckedTerms.not(),
             onValueChange = { value -> onCheckedChange(value) },
         )
 

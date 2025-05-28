@@ -7,7 +7,7 @@ plugins {
 
 val waddleKeyAlias = project.properties["KEY_ALIAS"] as? String
 val waddleKeyStorePass = project.properties["KEY_STORE_PASS"] as? String
-val waddleKeyStoreFilePath = file("$rootDir/app/key/waddle_key.jks")
+val waddleKeyStoreFilePath = file("$rootDir/app/key.jks")
 
 android {
     namespace = "com.waddleup.app"
@@ -58,6 +58,7 @@ dependencies {
     implementation(projects.navigation)
     implementation(projects.feature.onboarding)
     implementation(projects.feature.auth)
+    implementation(projects.feature.home)
 
     // Core framework dependencies
     implementation(libs.androidx.core.ktx)

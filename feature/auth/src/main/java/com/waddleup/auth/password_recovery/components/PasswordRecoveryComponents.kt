@@ -48,6 +48,8 @@ fun EmailTextField(
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.EmailChanged(it)) },
         titleText = "Email",
         placeholderText = "Email",
+        errorMessage = authState.emailError,
+        isError = authState.emailError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Done
@@ -66,6 +68,8 @@ fun ConfirmationCodeTextField(
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.ConfirmationCodeChanged(it)) },
         titleText = "Enter confirmation code",
         placeholderText = "Confirmation code",
+        errorMessage = authState.confirmationCodeError,
+        isError = authState.confirmationCodeError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Number,
             imeAction = ImeAction.Next
@@ -85,6 +89,8 @@ fun CreatePasswordTextField(
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.CreatePasswordChanged(it)) },
         titleText = "Create password",
         placeholderText = "Create password",
+        errorMessage = authState.createPasswordError,
+        isError = authState.createPasswordError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
@@ -107,6 +113,8 @@ fun ConfirmPasswordTextField(
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.ConfirmPasswordChanged(it)) },
         titleText = "Confirm password",
         placeholderText = "Confirm password",
+        errorMessage = authState.confirmPasswordError,
+        isError = authState.confirmPasswordError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Done

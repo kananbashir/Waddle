@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_top_bar_say_hi">Hi, %s</string>
+    <string name="home_top_bar_welcome_back">Welcome back</string>
+
+    <string name="text_your_daily_limit">Your daily limit:</string>
+</resources>

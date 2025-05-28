@@ -7,9 +7,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +17,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.waddleup.core.base.viewmodel.state.UiEvent
+import com.waddleup.home.presentation.content.HomeContent
+import com.waddleup.home.viewmodel.state.HomeState
 import com.waddleup.navigation.home.HomeDestinations
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
@@ -42,19 +41,17 @@ fun NavGraphBuilder.homeNavGraph(
             popEnterTransition = { fadeIn() },
             popExitTransition = { fadeOut() }
         ) {
-            val navArgs = remember { navController.getArgsFromRoot<HomeDestinations.HomeRoot>() }
-
-            LaunchedEffect(navArgs) {
-                Timber.tag("nav_args").d("someData=${navArgs.someData}")
-            }
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color.White),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Welcome Home!")
+                HomeContent(
+                    state = HomeState(),
+                    onIntent = {},
+                    onEvent = {}
+                )
             }
         }
     }

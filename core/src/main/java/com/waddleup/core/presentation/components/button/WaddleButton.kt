@@ -23,7 +23,7 @@ fun WaddlePrimaryButton(
     colors: ButtonColors = ButtonDefaults.primaryWaddleColors(),
     hideKeyboardOnClick: Boolean = true,
 ) {
-    WaddleButton(
+    WaddleButtonWrapper(
         onClick = onClick,
         modifier = modifier,
         enabled = isEnabled,
@@ -47,7 +47,7 @@ fun WaddlePrimaryButton(
     hideKeyboardOnClick: Boolean = true,
     content: @Composable (RowScope.() -> Unit)? = null
 ) {
-    WaddleButton(
+    WaddleButtonWrapper(
         onClick = onClick,
         modifier = modifier,
         enabled = isEnabled,
