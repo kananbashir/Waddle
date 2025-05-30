@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Serializable
 sealed class OnboardingDestinations {
     @Serializable data object OnboardingRoot: OnboardingDestinations()
     @Serializable data object Onboarding: OnboardingDestinations()

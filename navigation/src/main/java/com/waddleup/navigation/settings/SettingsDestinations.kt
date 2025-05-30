@@ -8,7 +8,6 @@ import kotlinx.serialization.Serializable
  */
 
 @Suppress("unused")
-@Serializable
 sealed class SettingsDestinations {
     @Serializable data object SettingsRoot: SettingsDestinations()
     @Serializable data object Settings: SettingsDestinations()

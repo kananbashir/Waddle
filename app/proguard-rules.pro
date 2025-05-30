@@ -25,3 +25,7 @@
 # 5) OkHttp – avoid warnings & keep core classes
 -dontwarn okhttp3.**
 -keep class okhttp3.** { *; }
+
+# 6) Keep bottom nav items
+-keep class com.waddleup.navigation.** { *; }
+-keepnames class com.waddleup.navigation.**

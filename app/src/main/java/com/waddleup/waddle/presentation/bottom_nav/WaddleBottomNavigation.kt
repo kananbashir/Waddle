@@ -44,7 +44,6 @@ fun WaddleBottomNavigation(
 
     Box(
         modifier = modifier
-            .height(50.dp)
             .fillMaxWidth()
             .background(colors.primaryBackground)
     ) {
@@ -52,7 +51,9 @@ fun WaddleBottomNavigation(
         val itemWidth = rememberSaveable { screenWidth / BottomNavDestination.items.size }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 5.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             BottomNavDestination.items.forEach { destination ->

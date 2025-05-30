@@ -8,7 +8,6 @@ import kotlinx.serialization.Serializable
  */
 
 @Suppress("unused")
-@Serializable
 sealed class AuthDestinations {
     @Serializable data object AuthRoot: AuthDestinations()
     @Serializable data object Login: AuthDestinations()

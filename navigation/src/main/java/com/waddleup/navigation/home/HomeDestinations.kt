@@ -8,7 +8,6 @@ import kotlinx.serialization.Serializable
  */
 
 @Suppress("unused")
-@Serializable
 sealed class HomeDestinations {
     @Serializable
     data object  HomeRoot: HomeDestinations()
