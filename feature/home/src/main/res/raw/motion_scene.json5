@@ -7,8 +7,7 @@
       },
       daily_limit_text: {
         start: ['parent', 'start', 16],
-        top: ['daily_limit_title', 'bottom', 8],
-        custom: { textSize: 48 }
+        top: ['daily_limit_title', 'bottom', 8]
       },
       mascot: {
         width: 140.54,
@@ -42,8 +41,7 @@
       daily_limit_text: {
         start: ['daily_limit_title', 'end', 8],
         top: ['daily_limit_title', 'top', 0],
-        bottom: ['daily_limit_title', 'bottom', 0],
-        custom: { textSize: 14 }
+        bottom: ['daily_limit_title', 'bottom', 0]
       },
       mascot: {
         width: 140.54,
