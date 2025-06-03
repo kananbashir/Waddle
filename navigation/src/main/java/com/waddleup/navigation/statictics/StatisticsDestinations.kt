@@ -8,7 +8,6 @@ import kotlinx.serialization.Serializable
  */
 
 @Suppress("unused")
-@Serializable
 sealed class StatisticsDestinations {
     @Serializable data object StatisticsRoot: StatisticsDestinations()
     @Serializable data object Statistics: StatisticsDestinations()

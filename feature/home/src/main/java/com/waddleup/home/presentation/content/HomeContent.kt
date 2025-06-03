@@ -1,8 +1,6 @@
 package com.waddleup.home.presentation.content
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,32 +14,33 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
-import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
-import com.primex.core.ExperimentalToolkitApi
 import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.content.WaddleMainContentWrapper
 import com.waddleup.core.presentation.components.info_card.PrimaryInfoCard
@@ -54,17 +53,19 @@ import com.waddleup.home.presentation.components.HomeScreenTopBar
 import com.waddleup.home.presentation.components.MascotGreetingImage
 import com.waddleup.home.presentation.components.TransactionHistoryBoxDragHandler
 import com.waddleup.home.presentation.components.TransactionHistoryHeader
+import com.waddleup.home.util.HomeScreenNestedScrollConnection
 import com.waddleup.home.viewmodel.state.HomeIntent
 import com.waddleup.home.viewmodel.state.HomeState
+import com.waddleup.navigation.notifications.NotificationsDestinations
 import com.waddleup.theme.WaddleTheme
-import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * Created on 5/18/2025
  * @author Kanan Bashir
  */
 
-@OptIn(ExperimentalMotionApi::class, ExperimentalToolkitApi::class)
+@OptIn(ExperimentalMotionApi::class)
 @Composable
 fun HomeContent(
     state: HomeState,
@@ -78,51 +79,33 @@ fun HomeContent(
             .readBytes()
             .decodeToString()
     }
-    val progressAnim = remember { Animatable(0f) }
+    var savedProgress by rememberSaveable { mutableFloatStateOf(0f) }
+    val progressAnim = remember { Animatable(savedProgress) }
+    val lazyListState = rememberLazyListState()
+
+    LaunchedEffect(progressAnim.value) {
+        savedProgress = progressAnim.value
+    }
+
     val dragRange = with(LocalDensity.current) { 300.dp.toPx() }
     val scope = rememberCoroutineScope()
-    val snapThreshold = remember { 0.5f }
-    val nested = remember {
-        object : NestedScrollConnection {
-            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
-                val dy = available.y
-                val new = (progressAnim.value - dy / dragRange).coerceIn(0f, 1f)
-                val consumedY = (progressAnim.value - new) * dragRange
-                return if (consumedY != 0f) {
-                    scope.launch { progressAnim.snapTo(new) }
-                    Offset(0f, consumedY)
-                } else {
-                    Offset.Zero
-                }
-            }
-
-            override suspend fun onPreFling(available: Velocity): Velocity {
-                return if (progressAnim.value < 1f && progressAnim.value > 0f) {
-                    val target = if (progressAnim.value > snapThreshold) 1f else 0f
-                    progressAnim.animateTo(
-                        targetValue = target,
-                        animationSpec = spring(
-                            dampingRatio = Spring.DampingRatioMediumBouncy,
-                            stiffness = Spring.StiffnessHigh
-                        )
-                    )
-                    available
-                } else {
-                    Velocity.Zero
-                }
-            }
-        }
+    val snapThreshold = 0.5f
+    val nested = remember(lazyListState, progressAnim.value) {
+        HomeScreenNestedScrollConnection(progressAnim, lazyListState, dragRange, snapThreshold, scope)
     }
 
     WaddleMainContentWrapper(
         paddingValues = PaddingValues(),
         backgroundColor = WaddleTheme.colors.secondaryBackground,
+        includeBottomNavPadding = true,
         topBar = {
             HomeScreenTopBar(
                 modifier = Modifier
                     .padding(start = 16.dp, end = 16.dp, top = 16.dp),
                 onQuestionsClicked = {},
-                onNotificationsClicked = {}
+                onNotificationsClicked = {
+                    onEvent(UiEvent.Navigate(NotificationsDestinations.NotificationsRoot))
+                }
             )
         },
         content = {
@@ -138,7 +121,7 @@ fun HomeContent(
                 DailyLimitText(
                     modifier = Modifier.layoutId("daily_limit_text"),
                     state = state,
-                    motionLayoutScope = this
+                    progress = progressAnim.value
                 )
 
                 MascotGreetingImage(
@@ -191,7 +174,9 @@ fun HomeContent(
 
                     VerticalSpacer(16.dp)
 
-                    LazyColumn {
+                    LazyColumn(
+                        state = lazyListState
+                    ) {
                         items(state.transactions) {
                             key(it.id) {
                                 Row(
@@ -274,5 +259,3 @@ fun HomeContent(
         }
     )
 }
-
-val items = List(30) { "Item $it" }

@@ -2,7 +2,6 @@ package com.waddleup.home.viewmodel.state
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
-import androidx.core.graphics.toColorInt
 import com.waddleup.home.R
 import com.waddleup.home.domain.Transaction
 import com.waddleup.home.domain.TransactionCategory

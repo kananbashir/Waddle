@@ -4,6 +4,7 @@ import com.waddleup.auth.di.authModule
 import com.waddleup.core.di.dataModule
 import com.waddleup.core.di.networkModule
 import com.waddleup.core.di.util.ModuleLoader
+import com.waddleup.home.di.homeModule
 import org.koin.core.module.Module
 import java.util.ServiceLoader
 
@@ -21,8 +22,5 @@ private enum class Modules(vararg val modules: Module) {
     CoreModules(dataModule, networkModule),
     MainModules(mainModule),
     AuthModules(authModule),
-    FeatureModules(
-        *ServiceLoader.load(ModuleLoader::class.java)
-        .flatMap { it.getModules() }.toTypedArray()
-    )
+    HomeModules(homeModule)
 }

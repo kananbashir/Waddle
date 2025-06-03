@@ -28,8 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ExperimentalMotionApi
-import androidx.constraintlayout.compose.MotionLayoutScope
+import androidx.compose.ui.unit.sp
 import com.waddleup.core.presentation.components.other.DragHandler
 import com.waddleup.home.R
 import com.waddleup.home.viewmodel.state.HomeState
@@ -118,22 +117,21 @@ fun DailyLimitTitle(
     )
 }
 
-@OptIn(ExperimentalMotionApi::class)
 @Composable
 fun DailyLimitText(
     modifier: Modifier = Modifier,
     state: HomeState,
-    motionLayoutScope: MotionLayoutScope
+    progress: Float
 ) {
-    motionLayoutScope.apply {
-        Text(
-            modifier = modifier,
-            text = "${state.dailyLimit ?: 0.0}€",
-            style = WaddleTheme.typography.headline1Bold.Poppins,
-            fontSize = customFontSize("daily_limit_text", "textSize"),
-            color = WaddleTheme.colors.tertiaryText
-        )
-    }
+    val textSize = 48f - (34f * progress)
+
+    Text(
+        modifier = modifier,
+        text = "${state.dailyLimit ?: 0.0}€",
+        style = WaddleTheme.typography.headline1Bold.Poppins,
+        fontSize = textSize.sp,
+        color = WaddleTheme.colors.tertiaryText
+    )
 }
 
 @Composable

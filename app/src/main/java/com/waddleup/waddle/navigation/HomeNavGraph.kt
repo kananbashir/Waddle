@@ -4,12 +4,6 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -17,12 +11,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.waddleup.core.base.viewmodel.state.UiEvent
+import com.waddleup.core.presentation.content.BaseScreen
 import com.waddleup.home.presentation.content.HomeContent
+import com.waddleup.home.viewmodel.HomeViewModel
+import com.waddleup.home.viewmodel.state.HomeIntent
 import com.waddleup.home.viewmodel.state.HomeState
 import com.waddleup.navigation.home.HomeDestinations
+import com.waddleup.waddle.navigation.util.stayAnim
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import timber.log.Timber
 
 /**
  * Created on 5/10/2025
@@ -30,27 +27,22 @@ import timber.log.Timber
  */
 
 fun NavGraphBuilder.homeNavGraph(
-    onUiEvent: (UiEvent) -> Unit,
-    navController: NavController
+    onUiEvent: (UiEvent) -> Unit
 ) {
     navigation<HomeDestinations.HomeRoot>(HomeDestinations.Home) {
-        Timber.tag("nav_args").d("route=${this.route}")
         composable<HomeDestinations.Home>(
             enterTransition = { fadeIn() },
-            exitTransition = { fadeOut() },
+            exitTransition = { stayAnim },
             popEnterTransition = { fadeIn() },
             popExitTransition = { fadeOut() }
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White),
-                contentAlignment = Alignment.Center
-            ) {
+            BaseScreen<HomeState, HomeIntent, HomeViewModel>(
+                onUiEvent = onUiEvent
+            ) { viewModel, state ->
                 HomeContent(
-                    state = HomeState(),
-                    onIntent = {},
-                    onEvent = {}
+                    state = state.value,
+                    onIntent = viewModel::onIntent,
+                    onEvent = viewModel::sendEvent
                 )
             }
         }

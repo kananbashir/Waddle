@@ -23,8 +23,12 @@ sealed class UiEvent {
     data class Navigate(
         val route: Any,
         val popUpTo: Any? = null,
-        val inclusive: Boolean = false
-    ) : UiEvent()
+        val popUpToStartDestination: Boolean = false,
+        val inclusive: Boolean = false,
+        val launchSingleTop: Boolean = false,
+        val saveState: Boolean = false,
+        val restoreState: Boolean = false,
+    ): UiEvent()
 
     data object NavigateBack : UiEvent()
 
