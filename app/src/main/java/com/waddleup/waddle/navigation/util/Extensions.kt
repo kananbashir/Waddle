@@ -32,19 +32,19 @@ inline fun <reified T : Any> NavGraphBuilder.waddleComposable(
     noinline enterTransition:
     (AnimatedContentTransitionScope<NavBackStackEntry>.() -> @JvmSuppressWildcards
     EnterTransition?)? =
-        { enterNavAnim },
+        { slideInFromRightAnim },
     noinline exitTransition:
     (AnimatedContentTransitionScope<NavBackStackEntry>.() -> @JvmSuppressWildcards
     ExitTransition?)? =
-        { exitNavAnim },
+        { slideOutToLeftAnim },
     noinline popEnterTransition:
     (AnimatedContentTransitionScope<NavBackStackEntry>.() -> @JvmSuppressWildcards
     EnterTransition?)? =
-        { popEnterNavAnim },
+        { popEnterFromLeftAnim },
     noinline popExitTransition:
     (AnimatedContentTransitionScope<NavBackStackEntry>.() -> @JvmSuppressWildcards
     ExitTransition?)? =
-        { popExitNavAnim },
+        { popExitToRightAnim },
     noinline sizeTransform:
     (AnimatedContentTransitionScope<NavBackStackEntry>.() -> @JvmSuppressWildcards
     SizeTransform?)? =

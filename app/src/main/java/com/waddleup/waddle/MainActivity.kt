@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -17,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -32,7 +33,6 @@ import com.waddleup.waddle.presentation.bottom_nav.WaddleBottomNavigation
 import com.waddleup.waddle.viewmodel.MainScreenIntent
 import com.waddleup.waddle.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
 
@@ -61,13 +61,18 @@ class MainActivity : ComponentActivity() {
 
                 mainScreenState.startDestination?.let { startDestination ->
                     Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        bottomBar = {
-                            if (shouldShowBottomNav) {
-                                WaddleBottomNavigation(
-                                    modifier = Modifier.navigationBarsPadding(),
-                                    currentDestination = currentDestination?.destination,
-                                    onNavigateToDestination = {
+                        modifier = Modifier.fillMaxSize()
+                    ) { paddings ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            contentAlignment = Alignment.BottomStart
+                        ) {
+                            WaddleBottomNavigation(
+                                modifier = Modifier.navigationBarsPadding(),
+                                currentDestination = currentDestination?.destination,
+                                onNavigateToDestination = {
+                                    if (shouldShowBottomNav) {
                                         navController.navigate(it.route) {
                                             popUpTo(navController.graph.findStartDestination().id) {
                                                 saveState = true
@@ -76,18 +81,14 @@ class MainActivity : ComponentActivity() {
                                             restoreState = true
                                         }
                                     }
-                                )
-                            }
-                        }
-                    ) { paddings ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(
-                                    bottom = paddings.calculateBottomPadding()
-                                )
-                        ) {
+                                }
+                            )
+
                             AppNavHost(
+                                modifier = Modifier
+                                    .padding(
+                                        bottom = paddings.calculateBottomPadding()
+                                    ),
                                 navController = navController,
                                 startDestination = startDestination,
                                 onOnboardingCompleted = {

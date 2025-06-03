@@ -56,6 +56,7 @@ import com.waddleup.home.presentation.components.TransactionHistoryHeader
 import com.waddleup.home.util.HomeScreenNestedScrollConnection
 import com.waddleup.home.viewmodel.state.HomeIntent
 import com.waddleup.home.viewmodel.state.HomeState
+import com.waddleup.navigation.notifications.NotificationsDestinations
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -95,12 +96,15 @@ fun HomeContent(
     WaddleMainContentWrapper(
         paddingValues = PaddingValues(),
         backgroundColor = WaddleTheme.colors.secondaryBackground,
+        includeBottomNavPadding = true,
         topBar = {
             HomeScreenTopBar(
                 modifier = Modifier
                     .padding(start = 16.dp, end = 16.dp, top = 16.dp),
                 onQuestionsClicked = {},
-                onNotificationsClicked = {}
+                onNotificationsClicked = {
+                    onEvent(UiEvent.Navigate(NotificationsDestinations.NotificationsRoot))
+                }
             )
         },
         content = {

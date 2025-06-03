@@ -40,6 +40,7 @@ fun WaddleMainContentWrapper(
     bottomBar: @Composable (() -> Unit)? = null,
     onBack: (() -> Unit)? = null,
     blurRadius: Dp = 3.dp,
+    includeBottomNavPadding: Boolean = false,
     content: @Composable (paddings: PaddingValues) -> Unit
 ) {
     val density = LocalDensity.current
@@ -66,6 +67,7 @@ fun WaddleMainContentWrapper(
 
     Box(
         modifier = modifier
+            .padding(bottom = if (includeBottomNavPadding) 55.dp else 0.dp)
             .fillMaxSize()
             .background(backgroundColor)
     ) {

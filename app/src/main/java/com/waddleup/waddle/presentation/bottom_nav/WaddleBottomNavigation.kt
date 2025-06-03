@@ -44,16 +44,17 @@ fun WaddleBottomNavigation(
 
     Box(
         modifier = modifier
+            .height(55.dp)
             .fillMaxWidth()
-            .background(colors.primaryBackground)
+            .background(colors.primaryBackground),
+        contentAlignment = Alignment.Center
     ) {
         val screenWidth = LocalConfiguration.current.screenWidthDp
         val itemWidth = rememberSaveable { screenWidth / BottomNavDestination.items.size }
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 5.dp),
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             BottomNavDestination.items.forEach { destination ->

@@ -30,9 +30,10 @@ fun AppNavHost(
     ) {
         onboardingNavGraph(onOnboardingCompleted)
         authNavGraph(activity, onUiEvent)
-        homeNavGraph(onUiEvent, navController)
+        homeNavGraph(onUiEvent)
         statisticsNavGraph(onUiEvent)
         aiSurpriseNavGraph(onUiEvent)
         settingsNavGraph(onUiEvent)
+        notificationNavGraph(onUiEvent)
     }
 }
