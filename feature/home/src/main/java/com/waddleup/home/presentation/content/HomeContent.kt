@@ -58,6 +58,7 @@ import com.waddleup.home.viewmodel.state.HomeIntent
 import com.waddleup.home.viewmodel.state.HomeState
 import com.waddleup.navigation.notifications.NotificationsDestinations
 import com.waddleup.theme.WaddleTheme
+import timber.log.Timber
 
 /**
  * Created on 5/18/2025

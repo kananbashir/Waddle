@@ -73,13 +73,16 @@ class MainActivity : ComponentActivity() {
                                 currentDestination = currentDestination?.destination,
                                 onNavigateToDestination = {
                                     if (shouldShowBottomNav) {
-                                        navController.navigate(it.route) {
-                                            popUpTo(navController.graph.findStartDestination().id) {
-                                                saveState = true
-                                            }
-                                            launchSingleTop = true
-                                            restoreState = true
-                                        }
+                                        mainViewModel.dispatchEvent(
+                                            UiEvent.Navigate(
+                                                route = it.route,
+                                                popUpToStartDestination = true,
+                                                saveState = true,
+                                                launchSingleTop = true,
+                                                restoreState = true
+                                            ),
+                                            navController
+                                        )
                                     }
                                 }
                             )

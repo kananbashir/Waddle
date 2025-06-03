@@ -4,37 +4,38 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.waddleup.core.base.usecase.NoParamUseCase
+import com.waddleup.core.base.usecase.Result
 import com.waddleup.core.base.usecase.UseCase
 import com.waddleup.core.base.util.DispatchersProvider
 import com.waddleup.core.base.viewmodel.state.UiEvent
+import com.waddleup.core.presentation.components.input.util.ValidatorParam
 import com.waddleup.core.repository.DatabaseException
 import com.waddleup.core.repository.ForbiddenException
+import com.waddleup.core.repository.NetworkException
 import com.waddleup.core.repository.NoConnectivityException
+import com.waddleup.core.repository.NotFoundException
 import com.waddleup.core.repository.ServerException
 import com.waddleup.core.repository.UnauthorizedException
-import com.waddleup.core.repository.NetworkException
-import com.waddleup.core.repository.NotFoundException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
-import com.waddleup.core.base.usecase.Result
-import com.waddleup.core.presentation.components.input.util.ValidatorParam
 import timber.log.Timber
 
 /**
@@ -55,8 +56,11 @@ abstract class BaseViewModel<State, Intent>(
     val currentUiStateData: State?
         get() = _uiState.value
 
-    private val _uiEvent = Channel<UiEvent>()
-    val uiEvent = _uiEvent.receiveAsFlow()
+    private val _uiEvent = MutableSharedFlow<UiEvent>(
+        replay = 0,
+        extraBufferCapacity = 1
+    )
+    val uiEvent: SharedFlow<UiEvent> = _uiEvent.asSharedFlow()
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         Timber.tag("${this::class.simpleName}_ex_handler").e("Caught exception in ViewModel: ${throwable.message}")
@@ -116,7 +120,7 @@ abstract class BaseViewModel<State, Intent>(
         _uiState.update { producer(it) }
     }
 
-    fun sendEvent(event: UiEvent) = launchMain { _uiEvent.send(event) }
+    fun sendEvent(event: UiEvent) = launchMain { _uiEvent.tryEmit(event) }
 
     protected fun launchMain(block: suspend CoroutineScope.() -> Unit) {
         viewModelScope.launch(dispatchersProvider.main) {

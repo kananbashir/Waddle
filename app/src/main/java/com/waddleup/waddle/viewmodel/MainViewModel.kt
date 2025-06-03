@@ -1,5 +1,7 @@
 package com.waddleup.waddle.viewmodel
 
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.waddleup.app.domain.CheckOnboardingStatusUseCase
 import com.waddleup.app.domain.CompleteOnboardingUseCase
@@ -11,7 +13,10 @@ import com.waddleup.navigation.auth.AuthDestinations
 import com.waddleup.navigation.home.HomeDestinations
 import com.waddleup.navigation.onboarding.OnboardingDestinations
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -35,6 +40,8 @@ class MainViewModel(
 
     private val _showError = Channel<UiEvent.ShowError?>()
     val showError = _showError.receiveAsFlow()
+
+    private val isNavigating = AtomicBoolean(false)
 
     override fun onIntent(intent: MainScreenIntent) {
         when (intent) {
@@ -105,10 +112,36 @@ class MainViewModel(
     }
 
     private fun handleNavigationEvent(navController: NavHostController, event: UiEvent.Navigate) {
-        navController.navigate(event.route) {
-            event.popUpTo?.let {
-                popUpTo(it) { inclusive = event.inclusive }
+        safeCoroutineScope.launch {
+            if (!isNavigating.compareAndSet(false, true)) return@launch
+
+            val currentDestination = navController.currentDestination
+            val currentRoute = event.route::class.qualifiedName
+            val isTheSame = currentDestination
+                ?.hierarchy?.any { it.route == currentRoute }
+
+            if (isTheSame == true) {
+                delay(300)
+                isNavigating.set(false)
+                return@launch
             }
+
+            navController.navigate(event.route) {
+                if (event.popUpToStartDestination) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = event.saveState
+                    }
+                } else if (event.popUpTo != null) {
+                    popUpTo(event.popUpTo as? String ?: return@navigate) {
+                        saveState = event.saveState
+                    }
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+
+            delay(300)
+            isNavigating.set(false)
         }
     }
 }
