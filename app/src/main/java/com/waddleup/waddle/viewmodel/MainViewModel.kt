@@ -130,10 +130,12 @@ class MainViewModel(
                 if (event.popUpToStartDestination) {
                     popUpTo(navController.graph.findStartDestination().id) {
                         saveState = event.saveState
+                        inclusive = event.inclusive
                     }
                 } else if (event.popUpTo != null) {
-                    popUpTo(event.popUpTo as? String ?: return@navigate) {
+                    popUpTo(event.popUpTo ?: return@navigate) {
                         saveState = event.saveState
+                        inclusive = event.inclusive
                     }
                 }
                 launchSingleTop = true
