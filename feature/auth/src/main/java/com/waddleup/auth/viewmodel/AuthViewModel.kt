@@ -252,7 +252,8 @@ class AuthViewModel(
                 sendEvent(
                     UiEvent.Navigate(
                         route = HomeDestinations.HomeRoot,
-                        popUpTo = AuthDestinations.AuthRoot
+                        popUpTo = AuthDestinations.AuthRoot,
+                        inclusive = true
                     )
                 )
             },

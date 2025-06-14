@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -56,7 +57,8 @@ fun OnboardingScreen(
         modifier = modifier
             .fillMaxSize()
             .background(WaddleTheme.colors.primaryBackground)
-            .padding(bottom = 16.dp),
+            .padding(bottom = 16.dp)
+            .statusBarsPadding(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         HorizontalPagerIndicator(
