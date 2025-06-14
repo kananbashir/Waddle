@@ -44,14 +44,14 @@ internal fun AuthHeader(
     ) {
         Text(
             text = title,
-            color = WaddleTheme.colors.primaryText,
+            color = WaddleTheme.colors.text.primary,
             style = WaddleTheme.typography.headline2Medium.Poppins,
             textAlign = TextAlign.Center
         )
 
         Text(
             text = subtitle,
-            color = WaddleTheme.colors.primaryText,
+            color = WaddleTheme.colors.text.primary,
             style = WaddleTheme.typography.body2Medium.Poppins,
             textAlign = TextAlign.Center
         )
@@ -67,16 +67,16 @@ internal fun OrDivider() {
     ) {
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            color = WaddleTheme.colors.primaryDivider
+            color = WaddleTheme.colors.dividers.primary
         )
         Text(
             text = "Or",
-            color = WaddleTheme.colors.primaryText,
+            color = WaddleTheme.colors.text.primary,
             style = WaddleTheme.typography.body2Regular.Poppins
         )
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            color = WaddleTheme.colors.primaryDivider
+            color = WaddleTheme.colors.dividers.primary
         )
     }
 }
@@ -88,7 +88,7 @@ internal fun LoginWithButtons() {
             modifier = Modifier
                 .weight(1f)
                 .clip(WaddleTheme.shapes.small)
-                .background(WaddleTheme.colors.primaryContainerBackground),
+                .background(WaddleTheme.colors.containers.primaryBackground),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -103,7 +103,7 @@ internal fun LoginWithButtons() {
             modifier = Modifier
                 .weight(1f)
                 .clip(WaddleTheme.shapes.small)
-                .background(WaddleTheme.colors.primaryContainerBackground),
+                .background(WaddleTheme.colors.containers.primaryBackground),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -130,7 +130,7 @@ internal fun FooterAccountLoginOrRegisterText(
             ClickableTextParams(
                 tag = clickableTextTag,
                 text = stringResource(id = clickableText),
-                color = WaddleTheme.colors.primaryText,
+                color = WaddleTheme.colors.text.primary,
                 style = WaddleTheme.typography.headline1Bold.Poppins,
                 linkInteractionListener = {
                     onLinkClicked()
@@ -143,7 +143,7 @@ internal fun FooterAccountLoginOrRegisterText(
                     .fillMaxWidth(),
                 text = annotatedText,
                 style = WaddleTheme.typography.headline1Bold.Poppins,
-                color = WaddleTheme.colors.primaryText,
+                color = WaddleTheme.colors.text.primary,
                 textAlign = TextAlign.Center,
             )
         }

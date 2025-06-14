@@ -46,7 +46,7 @@ fun WaddleBottomNavigation(
         modifier = modifier
             .height(55.dp)
             .fillMaxWidth()
-            .background(colors.primaryBackground),
+            .background(colors.background.primary),
         contentAlignment = Alignment.Center
     ) {
         val screenWidth = LocalConfiguration.current.screenWidthDp
@@ -70,7 +70,7 @@ fun WaddleBottomNavigation(
                         Box(
                             modifier = Modifier
                                 .clip(CircleShape)
-                                .background(colors.primaryButton)
+                                .background(colors.buttons.primary)
                                 .padding(12.dp),
                             contentAlignment = Alignment.Center
                         ) {
@@ -82,7 +82,7 @@ fun WaddleBottomNavigation(
                                     ) { onNavigateToDestination(destination) },
                                 painter = painterResource(destination.iconResId),
                                 contentDescription = "Create",
-                                tint = colors.primaryBackground
+                                tint = colors.background.primary
                             )
                         }
                     }
@@ -100,8 +100,8 @@ fun WaddleBottomNavigation(
                             modifier = Modifier.align(Alignment.CenterHorizontally),
                             painter = painterResource(destination.iconResId),
                             contentDescription = stringResource(destination.labelResId),
-                            tint = if (isSelected) colors.activeBottomNavItem
-                            else colors.nonActiveBottomNavItem
+                            tint = if (isSelected) colors.bottomNav.activeIcon
+                            else colors.bottomNav.inactiveIcon
                         )
 
                         Spacer(modifier = Modifier.height(3.dp))
@@ -110,8 +110,8 @@ fun WaddleBottomNavigation(
                             modifier = Modifier.fillMaxWidth(),
                             text = stringResource(destination.labelResId),
                             style = WaddleTheme.typography.overlineMedium.Poppins,
-                            color = if (isSelected) colors.activeBottomNavItem
-                            else colors.nonActiveBottomNavItem,
+                            color = if (isSelected) colors.bottomNav.activeIcon
+                            else colors.bottomNav.inactiveIcon,
                             textAlign = TextAlign.Center
                         )
                     }

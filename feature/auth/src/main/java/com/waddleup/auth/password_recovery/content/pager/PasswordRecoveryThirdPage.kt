@@ -85,7 +85,7 @@ fun PasswordRecoveryThirdPage(
         Text(
             text = "The password must contain:",
             style = WaddleTheme.typography.body2Regular.Poppins,
-            color = WaddleTheme.colors.primaryText
+            color = WaddleTheme.colors.text.primary
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -103,7 +103,7 @@ fun PasswordRecoveryThirdPage(
                     modifier = Modifier.padding(bottom = 16.dp),
                     text = stringResource(id = it.text),
                     style = WaddleTheme.typography.body2Regular.Poppins,
-                    color = WaddleTheme.colors.primaryText
+                    color = WaddleTheme.colors.text.primary
                 )
             }
         }

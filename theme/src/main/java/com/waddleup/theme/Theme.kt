@@ -52,7 +52,7 @@ fun WaddleTheme(
             )
 
             systemUiController.setNavigationBarColor(
-                color = color.primaryBackground,
+                color = color.background.primary,
                 darkIcons = !darkTheme
             )
         }

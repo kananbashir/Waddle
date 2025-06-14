@@ -87,7 +87,7 @@ fun HomeContent(
 
     WaddleMainContentWrapper(
         paddingValues = PaddingValues(),
-        backgroundColor = WaddleTheme.colors.secondaryBackground,
+        backgroundColor = WaddleTheme.colors.background.secondary,
         includeBottomNavPadding = true,
         topBar = {
             HomeScreenTopBar(
@@ -146,13 +146,13 @@ fun HomeContent(
                         Text(
                             text = "History",
                             style = WaddleTheme.typography.body1Medium.Poppins,
-                            color = WaddleTheme.colors.primaryText
+                            color = WaddleTheme.colors.text.primary
                         )
 
                         Text(
                             text = "See all",
                             style = WaddleTheme.typography.captionRegular.Poppins,
-                            color = WaddleTheme.colors.primaryText
+                            color = WaddleTheme.colors.text.primary
                         )
                     }
 

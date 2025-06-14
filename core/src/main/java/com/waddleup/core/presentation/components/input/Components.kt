@@ -79,7 +79,7 @@ internal fun AnimatedErrorMessage(
                     text = text,
                     style = style,
                     overflow = TextOverflow.Ellipsis,
-                    color = WaddleTheme.colors.inputFieldError
+                    color = WaddleTheme.colors.inputFields.primaryError
                 )
             }
         }

@@ -29,7 +29,7 @@ private fun WaddleTextFieldEnabled(
 
     Box(
         modifier = Modifier
-            .background(LocalAppColors.current.primaryBackground)
+            .background(LocalAppColors.current.background.primary)
             .padding(16.dp)
     ) {
 //        WaddleTextField(

@@ -144,9 +144,9 @@ internal fun WaddleTextFieldWrapper(
     val inputNameColor = remember(isError, enabled) {
         waddleColors.run {
             when {
-                isError -> inputFieldError
-                enabled -> primaryText
-                else -> primaryText.copy(alpha = 0.2f)
+                isError -> inputFields.primaryError
+                enabled -> inputFields.primaryText
+                else -> inputFields.primaryText.copy(alpha = 0.2f)
             }
         }
     }
@@ -180,7 +180,7 @@ internal fun WaddleTextFieldWrapper(
                 .applyIf(isError) {
                     border(
                         width = 1.dp,
-                        color = waddleColors.inputFieldError,
+                        color = waddleColors.inputFields.primaryError,
                         shape = shape
                     )
                 },
@@ -251,54 +251,54 @@ internal fun getUpdatedValue(
 
 @Composable
 fun TextFieldDefaults.mainWaddleColors() = WaddleTheme.colors.run {
-    val disabledColor = inputFieldText.copy(alpha = 0.2f)
-    val disabledErrorColor = inputFieldError.copy(alpha = 0.2f)
+    val disabledColor = inputFields.primaryText.copy(alpha = 0.2f)
+    val disabledErrorColor = inputFields.primaryError.copy(alpha = 0.2f)
 
     colors(
-        focusedTextColor = inputFieldText,
-        unfocusedTextColor = inputFieldText.copy(alpha = 0.7f),
+        focusedTextColor = inputFields.primaryText,
+        unfocusedTextColor = inputFields.primaryText.copy(alpha = 0.7f),
         disabledTextColor = disabledColor,
-        errorTextColor = inputFieldError,
-        focusedContainerColor = inputFieldBackground,
-        unfocusedContainerColor = inputFieldBackground,
-        disabledContainerColor = inputFieldBackground,
-        errorContainerColor = inputFieldBackground,
-        cursorColor = primaryButton,
-        errorCursorColor = inputFieldError,
+        errorTextColor = inputFields.primaryError,
+        focusedContainerColor = inputFields.primaryBackground,
+        unfocusedContainerColor = inputFields.primaryBackground,
+        disabledContainerColor = inputFields.primaryBackground,
+        errorContainerColor = inputFields.primaryBackground,
+        cursorColor = buttons.primary,
+        errorCursorColor = inputFields.primaryError,
         selectionColors = TextSelectionColors(
-            handleColor = primaryButton,
-            backgroundColor = primaryButton.copy(0.2f)
+            handleColor = buttons.primary,
+            backgroundColor = buttons.primary.copy(0.2f)
         ),
         focusedIndicatorColor = Color.Transparent,
         unfocusedIndicatorColor = Color.Transparent,
         disabledIndicatorColor = Color.Transparent,
         errorIndicatorColor = Color.Transparent,
-        focusedLeadingIconColor = inputFieldText,
-        unfocusedLeadingIconColor = inputFieldHint,
+        focusedLeadingIconColor = inputFields.primaryText,
+        unfocusedLeadingIconColor = inputFields.primaryHint,
         disabledLeadingIconColor = disabledColor,
-        errorLeadingIconColor = inputFieldError,
-        focusedTrailingIconColor = inputFieldText,
-        unfocusedTrailingIconColor = inputFieldHint,
+        errorLeadingIconColor = inputFields.primaryError,
+        focusedTrailingIconColor = inputFields.primaryText,
+        unfocusedTrailingIconColor = inputFields.primaryHint,
         disabledTrailingIconColor = disabledColor,
-        errorTrailingIconColor = inputFieldError,
-        focusedLabelColor = inputFieldText,
-        unfocusedLabelColor = inputFieldHint,
+        errorTrailingIconColor = inputFields.primaryError,
+        focusedLabelColor = inputFields.primaryText,
+        unfocusedLabelColor = inputFields.primaryHint,
         disabledLabelColor = disabledColor,
-        errorLabelColor = inputFieldError,
-        focusedPlaceholderColor = inputFieldHint.copy(0.3f),
-        unfocusedPlaceholderColor = inputFieldHint,
+        errorLabelColor = inputFields.primaryError,
+        focusedPlaceholderColor = inputFields.primaryHint.copy(0.3f),
+        unfocusedPlaceholderColor = inputFields.primaryHint,
         disabledPlaceholderColor = disabledColor,
         errorPlaceholderColor = disabledErrorColor,
-        focusedSupportingTextColor = inputFieldText,
-        unfocusedSupportingTextColor = inputFieldHint,
+        focusedSupportingTextColor = inputFields.primaryText,
+        unfocusedSupportingTextColor = inputFields.primaryHint,
         disabledSupportingTextColor = disabledColor,
-        errorSupportingTextColor = inputFieldError,
-        focusedPrefixColor = inputFieldHint,
-        unfocusedPrefixColor = inputFieldHint,
+        errorSupportingTextColor = inputFields.primaryError,
+        focusedPrefixColor = inputFields.primaryHint,
+        unfocusedPrefixColor = inputFields.primaryHint,
         disabledPrefixColor = disabledColor,
         errorPrefixColor = disabledErrorColor,
-        focusedSuffixColor = inputFieldHint,
-        unfocusedSuffixColor = inputFieldHint,
+        focusedSuffixColor = inputFields.primaryHint,
+        unfocusedSuffixColor = inputFields.primaryHint,
         disabledSuffixColor = disabledColor,
         errorSuffixColor = disabledErrorColor
     )

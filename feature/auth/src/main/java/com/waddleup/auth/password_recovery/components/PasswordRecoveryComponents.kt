@@ -32,7 +32,7 @@ fun HeaderText(
         modifier = modifier.fillMaxWidth(),
         text = text,
         style = WaddleTheme.typography.body2Regular.Poppins,
-        color = WaddleTheme.colors.secondaryText,
+        color = WaddleTheme.colors.text.secondary,
         textAlign = textAlign
     )
 }

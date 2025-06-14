@@ -87,21 +87,21 @@ internal fun WaddleButtonWrapper(
 }
 
 @Composable
-fun ButtonDefaults.primaryWaddleColors() = WaddleTheme.colors.run {
+fun ButtonDefaults.primaryWaddleColors() = WaddleTheme.colors.buttons.run {
     buttonColors(
-        containerColor = primaryButton,
-        contentColor = onPrimaryButton,
-        disabledContainerColor = primaryButton.copy(alpha = 0.2f),
-        disabledContentColor = onPrimaryButton
+        containerColor = primary,
+        contentColor = onPrimary,
+        disabledContainerColor = primary.copy(alpha = 0.2f),
+        disabledContentColor = onPrimary
     )
 }
 
 @Composable
-fun ButtonDefaults.secondaryWaddleColors() = WaddleTheme.colors.run {
+fun ButtonDefaults.secondaryWaddleColors() = WaddleTheme.colors.buttons.run {
     buttonColors(
-        containerColor = secondaryButton,
-        contentColor = onSecondaryButton,
-        disabledContainerColor = secondaryButton.copy(alpha = 0.2f),
-        disabledContentColor = onSecondaryButton
+        containerColor = secondary,
+        contentColor = onSecondary,
+        disabledContainerColor = secondary.copy(alpha = 0.2f),
+        disabledContentColor = onSecondary
     )
 }

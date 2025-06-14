@@ -56,15 +56,15 @@ fun OnboardingScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(WaddleTheme.colors.primaryBackground)
+            .background(WaddleTheme.colors.background.primary)
             .padding(bottom = 16.dp)
             .statusBarsPadding(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         HorizontalPagerIndicator(
             pagesSize = pages.size,
-            indicatorPassiveColor = WaddleTheme.colors.secondaryIndicator,
-            indicatorActiveColor = WaddleTheme.colors.primaryIndicator,
+            indicatorPassiveColor = WaddleTheme.colors.indicators.secondary,
+            indicatorActiveColor = WaddleTheme.colors.indicators.primary,
             pagerState = pagerState
         )
 
@@ -83,13 +83,13 @@ fun OnboardingScreen(
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = stringResource(id = pages[page].title),
-                        color = WaddleTheme.colors.primaryText,
+                        color = WaddleTheme.colors.text.primary,
                         style = WaddleTheme.typography.headline2Bold.PlusJakarta
                     )
 
                     Text(
                         text = stringResource(id = pages[page].subTitle),
-                        color = WaddleTheme.colors.primaryText,
+                        color = WaddleTheme.colors.text.primary,
                         style = WaddleTheme.typography.body2Medium.PlusJakarta
                     )
                 }

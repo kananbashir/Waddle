@@ -88,13 +88,13 @@ private fun TransactionItemEnd(
             Text(
                 text = "${amount}${currency}",
                 style = WaddleTheme.typography.body2Medium.Poppins,
-                color = WaddleTheme.colors.primaryText
+                color = WaddleTheme.colors.text.primary
             )
 
             Text(
                 text = "$issueDate • $issueTime",
                 style = WaddleTheme.typography.overlineMedium.Poppins,
-                color = WaddleTheme.colors.quaternaryText
+                color = WaddleTheme.colors.text.quaternary
             )
         }
     }
@@ -129,7 +129,7 @@ private fun TransactionItemStartDetails(
             Text(
                 text = title,
                 style = WaddleTheme.typography.body2Regular.Poppins,
-                color = WaddleTheme.colors.primaryText
+                color = WaddleTheme.colors.text.primary
             )
 
             VerticalSpacer(4.dp)
@@ -150,7 +150,7 @@ private fun TransactionItemStartCategoryPart(
         Row(
             modifier = modifier
                 .background(
-                    color = WaddleTheme.colors.inputFieldBackground,
+                    color = WaddleTheme.colors.inputFields.primaryBackground,
                     shape = RoundedCornerShape(50.dp)
                 )
                 .padding(vertical = 4.dp, horizontal = 8.dp),
@@ -169,7 +169,7 @@ private fun TransactionItemStartCategoryPart(
             Text(
                 text = category.categoryName,
                 style = WaddleTheme.typography.overline2Regular.Poppins,
-                color = WaddleTheme.colors.primaryText
+                color = WaddleTheme.colors.text.primary
             )
         }
     }

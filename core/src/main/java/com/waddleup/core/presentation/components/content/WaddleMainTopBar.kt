@@ -52,7 +52,7 @@ fun WaddleMainTopBar(
                     ) { onBackClicked() },
                 painter = painterResource(id = R.drawable.ic_left_arrow),
                 contentDescription = "Password recovery back button",
-                tint = WaddleTheme.colors.primaryButtonTint
+                tint = WaddleTheme.colors.icons.tertiaryTint
             )
         }
 

@@ -72,7 +72,7 @@ fun LoginContent(
                             indication = null
                         ) { onIntent(AuthIntent.Login.SubmitForgotPassword) },
                     text = "Forgot password?",
-                    color = WaddleTheme.colors.primaryButton,
+                    color = WaddleTheme.colors.buttons.primary,
                     style = WaddleTheme.typography.body2Medium.Poppins
                 )
 

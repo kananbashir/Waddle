@@ -63,7 +63,7 @@ fun PasswordRecoverySecondPage(
                 ClickableTextParams(
                     tag = "write_to_us_tag",
                     text = stringResource(id = R.string.text_do_not_receive_otp_clickable),
-                    color = WaddleTheme.colors.primaryButtonTint,
+                    color = WaddleTheme.colors.text.quinary,
                     style = WaddleTheme.typography.body2Bold.Poppins.copy(
                         textDecoration = TextDecoration.Underline
                     ),
@@ -75,7 +75,7 @@ fun PasswordRecoverySecondPage(
                     modifier = Modifier.padding(bottom = 22.dp),
                     text = annotatedText,
                     style = WaddleTheme.typography.body2Regular.Poppins,
-                    color = WaddleTheme.colors.secondaryText
+                    color = WaddleTheme.colors.text.secondary
                 )
             }
         )

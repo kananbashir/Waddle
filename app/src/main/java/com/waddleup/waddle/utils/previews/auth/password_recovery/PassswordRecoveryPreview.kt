@@ -34,7 +34,7 @@ private fun PasswordRecoveryPreview() {
 private fun PasswordRecoverySecondPagePreview() {
     Box(
         modifier = Modifier
-            .background(color = WaddleTheme.colors.primaryBackground)
+            .background(color = WaddleTheme.colors.background.primary)
     ) {
         PasswordRecoverySecondPage(
             authState = AuthState.PasswordRecoveryState(),
@@ -49,7 +49,7 @@ private fun PasswordRecoverySecondPagePreview() {
 private fun PasswordRecoveryThirdPagePreview() {
     Box(
         modifier = Modifier
-            .background(color = WaddleTheme.colors.primaryBackground)
+            .background(color = WaddleTheme.colors.background.primary)
     ) {
         PasswordRecoveryThirdPage(
             authState = AuthState.PasswordRecoveryState(),
@@ -64,7 +64,7 @@ private fun PasswordRecoveryThirdPagePreview() {
 private fun PasswordRecoveryFourthPagePreview() {
     Box(
         modifier = Modifier
-            .background(color = WaddleTheme.colors.primaryBackground)
+            .background(color = WaddleTheme.colors.background.primary)
     ) {
         PasswordRecoveryFourthPage()
     }

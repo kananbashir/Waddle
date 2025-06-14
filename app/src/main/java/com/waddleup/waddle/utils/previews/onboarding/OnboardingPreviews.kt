@@ -25,7 +25,7 @@ private fun OnboardingPreview() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(LocalAppColors.current.primaryBackground)
+                .background(LocalAppColors.current.background.primary)
         ) {
             OnboardingScreen(
                 pages = listOf(

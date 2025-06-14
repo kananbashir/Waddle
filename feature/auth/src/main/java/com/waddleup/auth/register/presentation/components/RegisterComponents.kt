@@ -120,20 +120,20 @@ internal fun TermsAndConditionsCheckBox(
 
         WaddleClickableText(
             fullText = stringResource(id = R.string.checkbox_text_terms_and_conditions),
-            textColor = WaddleTheme.colors.primaryText,
+            textColor = WaddleTheme.colors.text.primary,
             textStyle = WaddleTheme.typography.body2Regular.Poppins,
             links = listOf(
                 ClickableTextParams(
                     tag = "terms_tag",
                     text = stringResource(id = R.string.checkbox_text_terms_and_conditions_clickable_1),
-                    color = WaddleTheme.colors.primaryText,
+                    color = WaddleTheme.colors.text.primary,
                     style = WaddleTheme.typography.body2Bold.Poppins,
                     linkInteractionListener = { onTermsClicked() }
                 ),
                 ClickableTextParams(
                     tag = "conditions_tag",
                     text = stringResource(id = R.string.checkbox_text_terms_and_conditions_clickable_2),
-                    color = WaddleTheme.colors.primaryText,
+                    color = WaddleTheme.colors.text.primary,
                     style = WaddleTheme.typography.body2Bold.Poppins,
                     linkInteractionListener = { onConditionsClicked() }
                 )

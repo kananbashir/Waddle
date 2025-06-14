@@ -38,7 +38,7 @@ fun PrimaryInfoCard(
             .height(IntrinsicSize.Max)
             .padding(horizontal = 16.dp)
             .background(
-                color = WaddleTheme.colors.tertiaryContainerBackground,
+                color = WaddleTheme.colors.containers.tertiaryBackground,
                 shape = WaddleTheme.shapes.small
             ),
         verticalAlignment = Alignment.Bottom
@@ -63,13 +63,13 @@ fun PrimaryInfoCard(
                 Text(
                     text = title,
                     style = WaddleTheme.typography.body2Medium.Poppins,
-                    color = WaddleTheme.colors.primaryText
+                    color = WaddleTheme.colors.text.primary
                 )
 
                 Text(
                     text = subtitle,
                     style = WaddleTheme.typography.captionLight.Poppins,
-                    color = WaddleTheme.colors.primaryText
+                    color = WaddleTheme.colors.text.primary
                 )
             }
         }
