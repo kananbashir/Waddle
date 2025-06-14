@@ -48,7 +48,7 @@ import com.waddleup.home.presentation.components.TransactionItem
 import com.waddleup.home.util.HomeScreenNestedScrollConnection
 import com.waddleup.home.viewmodel.state.HomeIntent
 import com.waddleup.home.viewmodel.state.HomeState
-import com.waddleup.navigation.notifications.NotificationsDestinations
+import com.waddleup.navigation.notifications.NotificationsRootDestination
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -95,7 +95,7 @@ fun HomeContent(
                     .padding(start = 16.dp, end = 16.dp, top = 16.dp),
                 onQuestionsClicked = {},
                 onNotificationsClicked = {
-                    onEvent(UiEvent.Navigate(NotificationsDestinations.NotificationsRoot))
+                    onEvent(UiEvent.Navigate(NotificationsRootDestination))
                 }
             )
         },

@@ -10,7 +10,10 @@ import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.auth.viewmodel.AuthViewModel
 import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.content.BaseScreen
-import com.waddleup.navigation.auth.AuthDestinations
+import com.waddleup.navigation.auth.AuthRootDestination
+import com.waddleup.navigation.auth.AuthLoginDestination
+import com.waddleup.navigation.auth.PasswordRecoveryDestination
+import com.waddleup.navigation.auth.RegisterDestination
 import com.waddleup.waddle.navigation.util.waddleComposable
 import com.waddleup.waddle.navigation.util.waddleNavigation
 
@@ -23,8 +26,8 @@ fun NavGraphBuilder.authNavGraph(
     activity: ComponentActivity,
     onUiEvent: (UiEvent) -> Unit
 ) {
-    waddleNavigation<AuthDestinations.AuthRoot>(AuthDestinations.Login) {
-        waddleComposable<AuthDestinations.Login> {
+    waddleNavigation<AuthRootDestination>(AuthLoginDestination) {
+        waddleComposable<AuthLoginDestination> {
             BaseScreen<AuthState, AuthIntent, AuthViewModel>(
                 onUiEvent = onUiEvent,
                 viewModelStoreOwner = activity,
@@ -38,7 +41,7 @@ fun NavGraphBuilder.authNavGraph(
             )
         }
 
-        waddleComposable<AuthDestinations.Register> {
+        waddleComposable<RegisterDestination> {
             BaseScreen<AuthState, AuthIntent, AuthViewModel>(
                 onUiEvent = onUiEvent,
                 viewModelStoreOwner = activity,
@@ -52,7 +55,7 @@ fun NavGraphBuilder.authNavGraph(
             )
         }
 
-        waddleComposable<AuthDestinations.PasswordRecovery> {
+        waddleComposable<PasswordRecoveryDestination> {
             BaseScreen<AuthState, AuthIntent, AuthViewModel>(
                 onUiEvent = onUiEvent,
                 viewModelStoreOwner = activity,

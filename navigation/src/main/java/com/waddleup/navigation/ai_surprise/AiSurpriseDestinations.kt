@@ -7,8 +7,5 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Suppress("unused")
-sealed class AiSurpriseDestinations {
-    @Serializable data object AiSurpriseRoot: AiSurpriseDestinations()
-    @Serializable data object AiSurprise: AiSurpriseDestinations()
-}
+@Serializable data object AiSurpriseRootDestination
+@Serializable data object AiSurpriseDestination

@@ -13,8 +13,10 @@ import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.input.util.ValidatorParam.ValidationConditionParams
 import com.waddleup.core.presentation.components.input.util.ValidatorParam.ValidationRegexParams
 import com.waddleup.core.util.Regexes
-import com.waddleup.navigation.auth.AuthDestinations
-import com.waddleup.navigation.home.HomeDestinations
+import com.waddleup.navigation.auth.AuthRootDestination
+import com.waddleup.navigation.auth.PasswordRecoveryDestination
+import com.waddleup.navigation.auth.RegisterDestination
+import com.waddleup.navigation.home.HomeRootDestinations
 
 /**
  * Created on 5/16/2025
@@ -43,9 +45,9 @@ class AuthViewModel(
         when (intent) {
             is AuthIntent.Login.EmailChanged -> updateLoginEmail(intent.value)
             is AuthIntent.Login.PasswordChanged -> updateLoginPassword(intent.value)
-            AuthIntent.Login.SubmitForgotPassword -> sendEvent(UiEvent.Navigate(AuthDestinations.PasswordRecovery))
+            AuthIntent.Login.SubmitForgotPassword -> sendEvent(UiEvent.Navigate(PasswordRecoveryDestination))
             AuthIntent.Login.SubmitLogin -> login()
-            AuthIntent.Login.SubmitDoNotHaveAccount -> sendEvent(UiEvent.Navigate(AuthDestinations.Register))
+            AuthIntent.Login.SubmitDoNotHaveAccount -> sendEvent(UiEvent.Navigate(RegisterDestination))
             AuthIntent.Login.TogglePasswordVisibility -> updateLoginState { copy(isPasswordVisible = !isPasswordVisible) }
         }
     }
@@ -251,8 +253,8 @@ class AuthViewModel(
                 updateLoginState { copy(loginDto = it) }
                 sendEvent(
                     UiEvent.Navigate(
-                        route = HomeDestinations.HomeRoot,
-                        popUpTo = AuthDestinations.AuthRoot,
+                        route = HomeRootDestinations,
+                        popUpTo = AuthRootDestination,
                         inclusive = true
                     )
                 )

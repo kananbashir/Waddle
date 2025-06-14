@@ -7,10 +7,7 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Suppress("unused")
-sealed class AuthDestinations {
-    @Serializable data object AuthRoot: AuthDestinations()
-    @Serializable data object Login: AuthDestinations()
-    @Serializable data object Register: AuthDestinations()
-    @Serializable data object PasswordRecovery: AuthDestinations()
-}
+@Serializable data object AuthRootDestination
+@Serializable data object AuthLoginDestination
+@Serializable data object RegisterDestination
+@Serializable data object PasswordRecoveryDestination
