@@ -41,8 +41,6 @@ fun WaddleInfoBoxWrapper(
     trailingIconContent: @Composable (() -> Unit)? = null,
 ) {
     val colors = WaddleTheme.colors
-    val shapes = WaddleTheme.shapes
-    val types = WaddleTheme.typography
 
     Box(
         modifier = modifier
@@ -73,7 +71,7 @@ fun WaddleInfoBoxWrapper(
         ){
             Image(
                 modifier = Modifier
-                    .fillMaxWidth(bottomActionContent?.let { 0.37f } ?: 0.22f)
+                    .fillMaxWidth(bottomActionContent?.let { 0.37f } ?: 0.2f)
                     .fillMaxHeight(),
                 painter = painterResource(R.drawable.mascot_with_money),
                 contentDescription = null,
@@ -125,7 +123,7 @@ private fun WaddleInfoBoxWrapperPreview() {
             buttonText = R.string.button_see_more,
             trailingIcon = R.drawable.ic_error,
             onButtonClicked = {},
-            onCloseClicked = {}
+            onTrailingClicked = {}
         )
     }
 }

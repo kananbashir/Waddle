@@ -30,7 +30,7 @@ fun WaddleMainInfoBox(
     @StringRes buttonText: Int,
     @DrawableRes trailingIcon: Int,
     onButtonClicked: () -> Unit,
-    onCloseClicked: () -> Unit
+    onTrailingClicked: () -> Unit
 ) {
     WaddleMainInfoBoxWrapper(
         modifier = modifier,
@@ -39,7 +39,7 @@ fun WaddleMainInfoBox(
         buttonText = stringResource(buttonText),
         trailingIcon = trailingIcon,
         onButtonClicked = onButtonClicked,
-        onCloseClicked = onCloseClicked
+        onTrailingIconClicked = onTrailingClicked
     )
 }
 
@@ -50,7 +50,7 @@ fun WaddleMainInfoBox(
     @StringRes headerText: Int,
     @StringRes bodyText: Int,
     @DrawableRes trailingIcon: Int,
-    onCloseClicked: () -> Unit
+    onTrailingIconClicked: () -> Unit
 ) {
     WaddleMainInfoBoxWrapper(
         modifier = modifier,
@@ -59,7 +59,7 @@ fun WaddleMainInfoBox(
         buttonText = null,
         onButtonClicked = null,
         trailingIcon = trailingIcon,
-        onCloseClicked = onCloseClicked
+        onTrailingIconClicked = onTrailingIconClicked
     )
 }
 
@@ -71,7 +71,7 @@ private fun WaddleMainInfoBoxWrapper(
     buttonText: String? = null,
     @DrawableRes trailingIcon: Int,
     onButtonClicked: (() -> Unit)? = null,
-    onCloseClicked: () -> Unit
+    onTrailingIconClicked: () -> Unit
 ) {
     val colors = WaddleTheme.colors
     val shapes = WaddleTheme.shapes
@@ -137,7 +137,7 @@ private fun WaddleMainInfoBoxWrapper(
                     .clickable(
                         interactionSource = null,
                         indication = null
-                    ) { onCloseClicked() },
+                    ) { onTrailingIconClicked() },
                 painter = painterResource(trailingIcon),
                 contentDescription = "Close info box",
                 tint = colors.icons.secondaryTint
