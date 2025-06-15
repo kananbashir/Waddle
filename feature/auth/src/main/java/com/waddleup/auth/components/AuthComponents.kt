@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.text.WaddleAutoResizedText
 import com.waddleup.core.presentation.components.text.WaddleClickableText
 import com.waddleup.core.presentation.components.text.util.ClickableTextParams
@@ -28,9 +29,6 @@ import com.waddleup.theme.WaddleTheme
  * Created on 5/16/2025
  * @author Kanan Bashir
  */
-
-typealias core_R_drawable = com.waddleup.core.R.drawable
-typealias auth_R_drawable = com.waddleup.auth.R.drawable
 
 @Composable
 internal fun AuthHeader(
@@ -93,7 +91,7 @@ internal fun LoginWithButtons() {
         ) {
             Image(
                 modifier = Modifier.padding(vertical = 16.dp),
-                painter = painterResource(id = auth_R_drawable.ic_facebook),
+                painter = painterResource(id = R.drawable.ic_facebook),
 //                    imageVector = Icons.Default.CheckCircle,
                 contentDescription = "Login with facebook"
             )
@@ -108,7 +106,7 @@ internal fun LoginWithButtons() {
         ) {
             Image(
                 modifier = Modifier.padding(vertical = 16.dp),
-                painter = painterResource(id = auth_R_drawable.ic_google),
+                painter = painterResource(id = R.drawable.ic_google),
 //                    imageVector = Icons.Default.CheckCircle,
                 contentDescription = "Login with google"
             )

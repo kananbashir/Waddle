@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
+import com.waddleup.app.theme.R
 import com.waddleup.auth.components.AuthHeader
 import com.waddleup.auth.components.FooterAccountLoginOrRegisterText
 import com.waddleup.auth.components.LoginWithButtons
@@ -52,8 +52,8 @@ fun RegisterContent(
             .padding(top = 32.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
         AuthHeader(
-            title = stringResource(id = R.string.register_header_title),
-            subtitle = stringResource(id = R.string.register_header_subtitle)
+            title = stringResource(id = R.string.text_registration),
+            subtitle = stringResource(id = R.string.register_header_description)
         )
 
         Spacer(modifier = Modifier.height(spacingValue))
@@ -92,7 +92,7 @@ fun RegisterContent(
 
         WaddlePrimaryButton(
             modifier = Modifier.fillMaxWidth(),
-            buttonText = "Register",
+            buttonText = stringResource(R.string.text_register),
             isEnabled = state.allFieldsValid,
             onClick = {}
         )
@@ -110,7 +110,7 @@ fun RegisterContent(
         FooterAccountLoginOrRegisterText(
             fullText = R.string.text_already_have_an_account_login,
             clickableText = R.string.text_already_have_an_account_login_clickable,
-            clickableTextTag = "register_tag",
+            clickableTextTag = "login_tag",
             onLinkClicked = { onIntent(AuthIntent.Register.SubmitAlreadyHaveAccount) }
         )
     }

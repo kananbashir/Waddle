@@ -17,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.waddleup.core.R
+import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.other.HorizontalSpacer
 import com.waddleup.theme.WaddleTheme
 

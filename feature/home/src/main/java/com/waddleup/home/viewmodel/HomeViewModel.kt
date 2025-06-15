@@ -3,7 +3,7 @@ package com.waddleup.home.viewmodel
 import androidx.compose.ui.graphics.Color
 import com.waddleup.core.base.util.DispatchersProvider
 import com.waddleup.core.base.viewmodel.BaseViewModel
-import com.waddleup.home.R
+import com.waddleup.app.theme.R
 import com.waddleup.home.domain.Transaction
 import com.waddleup.home.domain.TransactionCategory
 import com.waddleup.home.viewmodel.state.HomeIntent

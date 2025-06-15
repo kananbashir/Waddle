@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
+import com.waddleup.app.theme.R
 import com.waddleup.auth.password_recovery.components.ConfirmPasswordTextField
 import com.waddleup.auth.password_recovery.components.CreatePasswordTextField
 import com.waddleup.auth.password_recovery.components.HeaderText

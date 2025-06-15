@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.waddleup.core.R
+import com.waddleup.app.theme.R
 import com.waddleup.navigation.ai_surprise.AiSurpriseRootDestination
 import com.waddleup.navigation.create.CreateRootDestination
 import com.waddleup.navigation.home.HomeRootDestinations
@@ -28,14 +28,14 @@ sealed class BottomNavDestination(
     data object Home: BottomNavDestination(
         route = HomeRootDestinations,
         startDestination = com.waddleup.navigation.home.HomeDestination,
-        labelResId = R.string.bottom_nav_item_home,
+        labelResId = R.string.text_home,
         iconResId = R.drawable.ic_bottom_nav_home,
     )
 
     data object Statistics: BottomNavDestination(
         route = StatisticsRootDestination,
         startDestination = com.waddleup.navigation.statictics.StatisticsDestination,
-        labelResId = R.string.bottom_nav_item_statistics,
+        labelResId = R.string.text_statistics,
         iconResId = R.drawable.ic_bottom_nav_statistics,
     )
 
@@ -49,14 +49,14 @@ sealed class BottomNavDestination(
     data object AiSurprise: BottomNavDestination(
         route = AiSurpriseRootDestination,
         startDestination = com.waddleup.navigation.ai_surprise.AiSurpriseDestination,
-        labelResId = R.string.bottom_nav_item_ai_surprise,
+        labelResId = R.string.text_ai_surprise,
         iconResId = R.drawable.ic_bottom_nav_ai_surprise,
     )
 
     data object Settings: BottomNavDestination(
         route = SettingsRootDestination,
         startDestination = com.waddleup.navigation.settings.SettingsDestination,
-        labelResId = R.string.bottom_nav_item_settings,
+        labelResId = R.string.text_settings,
         iconResId = R.drawable.ic_bottom_nav_settings,
     )
 

@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
-import com.waddleup.onboarding.R
+import com.waddleup.app.theme.R
 
 /**
  * Created on 5/15/2025

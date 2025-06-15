@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
+import com.waddleup.app.theme.R
 import com.waddleup.auth.password_recovery.components.EmailTextField
 import com.waddleup.auth.password_recovery.components.HeaderText
 import com.waddleup.auth.viewmodel.AuthIntent

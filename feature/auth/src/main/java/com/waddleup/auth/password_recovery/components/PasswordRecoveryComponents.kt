@@ -5,13 +5,13 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import com.waddleup.auth.components.auth_R_drawable
-import com.waddleup.auth.components.core_R_drawable
+import com.waddleup.app.theme.R
 import com.waddleup.auth.viewmodel.AuthIntent
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.presentation.components.input.WaddleTextField
@@ -46,8 +46,8 @@ fun EmailTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.email,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.EmailChanged(it)) },
-        titleText = "Email",
-        placeholderText = "Email",
+        titleText = stringResource(R.string.text_email),
+        placeholderText = stringResource(R.string.text_email),
         errorMessage = authState.emailError,
         isError = authState.emailError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
@@ -66,8 +66,8 @@ fun ConfirmationCodeTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.confirmationCode,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.ConfirmationCodeChanged(it)) },
-        titleText = "Enter confirmation code",
-        placeholderText = "Confirmation code",
+        titleText = stringResource(R.string.text_enter_confirmation_code),
+        placeholderText = stringResource(R.string.text_confirmation_code),
         errorMessage = authState.confirmationCodeError,
         isError = authState.confirmationCodeError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
@@ -87,15 +87,15 @@ fun CreatePasswordTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.createPassword,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.CreatePasswordChanged(it)) },
-        titleText = "Create password",
-        placeholderText = "Create password",
+        titleText = stringResource(R.string.text_create_password),
+        placeholderText = stringResource(R.string.text_create_password),
         errorMessage = authState.createPasswordError,
         isError = authState.createPasswordError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
         ),
-        trailingIconRes = if (authState.isCreatePasswordVisible) core_R_drawable.ic_error  else auth_R_drawable.ic_password_invisible,
+        trailingIconRes = if (authState.isCreatePasswordVisible) R.drawable.ic_error  else R.drawable.ic_password_invisible,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = if (authState.isCreatePasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
     )
@@ -111,15 +111,15 @@ fun ConfirmPasswordTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.confirmPassword,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.ConfirmPasswordChanged(it)) },
-        titleText = "Confirm password",
-        placeholderText = "Confirm password",
+        titleText = stringResource(R.string.text_confirm_password),
+        placeholderText = stringResource(R.string.text_confirm_password),
         errorMessage = authState.confirmPasswordError,
         isError = authState.confirmPasswordError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Done
         ),
-        trailingIconRes = if (authState.isConfirmPasswordVisible) core_R_drawable.ic_error  else auth_R_drawable.ic_password_invisible,
+        trailingIconRes = if (authState.isConfirmPasswordVisible) R.drawable.ic_error  else R.drawable.ic_password_invisible,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = if (authState.isConfirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
     )

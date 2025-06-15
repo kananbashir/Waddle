@@ -36,7 +36,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.waddleup.core.R
+import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.util.applyIf
 import com.waddleup.core.presentation.util.checkValues
 import com.waddleup.theme.WaddleTheme

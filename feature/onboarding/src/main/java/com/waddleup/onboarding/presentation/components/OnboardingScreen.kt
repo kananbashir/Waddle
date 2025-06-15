@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.waddleup.core.presentation.components.button.WaddlePrimaryButton
 import com.waddleup.core.presentation.components.button.WaddleSecondaryButton
-import com.waddleup.onboarding.R
+import com.waddleup.app.theme.R
 import com.waddleup.onboarding.presentation.model.OnboardingModel
 import com.waddleup.theme.WaddleTheme
 import kotlinx.coroutines.launch

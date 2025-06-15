@@ -29,6 +29,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
@@ -37,7 +38,7 @@ import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.content.WaddleMainContentWrapper
 import com.waddleup.core.presentation.components.info_card.PrimaryInfoCard
 import com.waddleup.core.presentation.components.other.VerticalSpacer
-import com.waddleup.home.R
+import com.waddleup.app.theme.R
 import com.waddleup.home.presentation.components.DailyLimitText
 import com.waddleup.home.presentation.components.DailyLimitTitle
 import com.waddleup.home.presentation.components.HomeScreenTopBar
@@ -144,13 +145,13 @@ fun HomeContent(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "History",
+                            text = stringResource(R.string.text_history),
                             style = WaddleTheme.typography.body1Medium.Poppins,
                             color = WaddleTheme.colors.text.primary
                         )
 
                         Text(
-                            text = "See all",
+                            text = stringResource(R.string.text_see_all),
                             style = WaddleTheme.typography.captionRegular.Poppins,
                             color = WaddleTheme.colors.text.primary
                         )

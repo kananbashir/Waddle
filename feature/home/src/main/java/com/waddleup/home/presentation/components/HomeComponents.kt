@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.waddleup.core.presentation.components.other.DragHandler
-import com.waddleup.home.R
+import com.waddleup.app.theme.R
 import com.waddleup.home.viewmodel.state.HomeState
 import com.waddleup.theme.WaddleTheme
 
