@@ -59,6 +59,7 @@ dependencies {
     implementation(projects.feature.onboarding)
     implementation(projects.feature.auth)
     implementation(projects.feature.home)
+    implementation(projects.feature.settings)
 
     // Core framework dependencies
     implementation(libs.androidx.core.ktx)
