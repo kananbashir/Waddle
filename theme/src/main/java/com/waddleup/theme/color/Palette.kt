@@ -39,6 +39,7 @@ object Palette {
 
     // Blues
     val GlaucousBlue = Color(0xFF507DBC)
+    val SpaceCadetBlue = Color(0xFF202E57)
 
     // Greens
     val KellyGreen = Color(0xFF28B525)

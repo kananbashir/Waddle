@@ -83,5 +83,12 @@ data class BottomNavColors(
     val inactiveIcon: Color
 )
 
+@Immutable
+data class InfoBoxColors(
+    val primaryBackground: Color,
+    val primaryForeground: Color,
+    val primaryForeground2: Color
+)
+
 
 

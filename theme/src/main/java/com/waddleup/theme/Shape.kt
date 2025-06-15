@@ -10,11 +10,18 @@ import androidx.compose.ui.unit.dp
  * @author Kanan Bashir
  */
 
+object CornerRadiusTokens {
+    val extraSmall = 12.dp
+    val small = 16.dp
+    val medium = 32.dp
+    val large = 48.dp
+}
+
 val LocalAppShapes = staticCompositionLocalOf {
     Shapes(
-        extraSmall = RoundedCornerShape(size = 12.dp),
-        small = RoundedCornerShape(size = 16.dp),
-        medium = RoundedCornerShape(size = 32.dp),
-        large = RoundedCornerShape(size = 48.dp)
+        extraSmall = RoundedCornerShape(CornerRadiusTokens.extraSmall),
+        small = RoundedCornerShape(CornerRadiusTokens.small),
+        medium = RoundedCornerShape(CornerRadiusTokens.medium),
+        large = RoundedCornerShape(CornerRadiusTokens.large)
     )
 }

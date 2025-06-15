@@ -1,18 +1,7 @@
-package com.waddleup.theme
+package com.waddleup.theme.color
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.waddleup.theme.color.BackgroundColors
-import com.waddleup.theme.color.BottomNavColors
-import com.waddleup.theme.color.ButtonColors
-import com.waddleup.theme.color.CheckBoxColors
-import com.waddleup.theme.color.ContainerColors
-import com.waddleup.theme.color.DividerColors
-import com.waddleup.theme.color.IconColors
-import com.waddleup.theme.color.IndicatorColors
-import com.waddleup.theme.color.InputFieldColors
-import com.waddleup.theme.color.Palette
-import com.waddleup.theme.color.TextColors
 
 /**
  * Created on 5/12/2025
@@ -30,7 +19,8 @@ data class WaddleAppColors (
     val dividers: DividerColors,
     val checkBoxes: CheckBoxColors,
     val icons: IconColors,
-    val bottomNav: BottomNavColors
+    val bottomNav: BottomNavColors,
+    val infoBoxes: InfoBoxColors
 )
 
 val LightAppColors = WaddleAppColors(
@@ -97,6 +87,12 @@ val LightAppColors = WaddleAppColors(
         primaryTint = Palette.GlaucousBlue,
         secondaryTint = Palette.White,
         tertiaryTint = Palette.JetGray
+    ),
+    
+    infoBoxes = InfoBoxColors(
+        primaryBackground = Palette.Black,
+        primaryForeground = Palette.GlaucousBlue,
+        primaryForeground2 = Palette.SpaceCadetBlue
     )
 )
 

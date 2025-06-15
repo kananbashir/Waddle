@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.waddleup.auth.password_recovery.content.PasswordRecoveryContent
+import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryFirstPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryFourthPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoverySecondPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryThirdPage
@@ -19,7 +20,7 @@ import com.waddleup.theme.WaddleTheme
  */
 
 @SuppressLint("UnrememberedMutableState")
-//@Preview
+@Preview
 @Composable
 private fun PasswordRecoveryPreview() {
     PasswordRecoveryContent(
@@ -27,6 +28,20 @@ private fun PasswordRecoveryPreview() {
         onIntent = {},
         onEvent = {}
     )
+}
+
+@Preview
+@Composable
+private fun PasswordRecoveryFirstPagePreview() {
+    Box(
+        modifier = Modifier
+            .background(color = WaddleTheme.colors.background.primary)
+    ) {
+        PasswordRecoveryFirstPage(
+            authState = AuthState.PasswordRecoveryState(),
+            onIntent = {}
+        )
+    }
 }
 
 //@Preview

@@ -5,8 +5,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -72,7 +74,11 @@ internal fun WaddleButtonWrapper(
         contentPadding = PaddingValues(0.dp),
         interactionSource = interactionSource,
         content = {
-            Box(modifier = modifier, contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier
+                    .height(IntrinsicSize.Max),
+                contentAlignment = Alignment.Center
+            ) {
                 when {
                     displayText != null -> ButtonText(
                         displayText!!,
