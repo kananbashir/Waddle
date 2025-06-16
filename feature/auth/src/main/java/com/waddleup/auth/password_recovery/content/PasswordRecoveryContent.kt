@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
+import com.waddleup.app.theme.R
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryFirstPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryFourthPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoverySecondPage

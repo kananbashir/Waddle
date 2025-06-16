@@ -10,6 +10,10 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.waddleup.theme.color.DarkAppColors
+import com.waddleup.theme.color.LightAppColors
+import com.waddleup.theme.color.LocalAppColors
+import com.waddleup.theme.color.WaddleAppColors
 
 /**
  * Created on 5/12/2025
@@ -52,7 +56,7 @@ fun WaddleTheme(
             )
 
             systemUiController.setNavigationBarColor(
-                color = color.primaryBackground,
+                color = color.background.primary,
                 darkIcons = !darkTheme
             )
         }

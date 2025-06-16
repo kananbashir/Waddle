@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
+import com.waddleup.app.theme.R
 import com.waddleup.auth.password_recovery.components.ConfirmPasswordTextField
 import com.waddleup.auth.password_recovery.components.CreatePasswordTextField
 import com.waddleup.auth.password_recovery.components.HeaderText
@@ -85,7 +85,7 @@ fun PasswordRecoveryThirdPage(
         Text(
             text = "The password must contain:",
             style = WaddleTheme.typography.body2Regular.Poppins,
-            color = WaddleTheme.colors.primaryText
+            color = WaddleTheme.colors.text.primary
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -103,7 +103,7 @@ fun PasswordRecoveryThirdPage(
                     modifier = Modifier.padding(bottom = 16.dp),
                     text = stringResource(id = it.text),
                     style = WaddleTheme.typography.body2Regular.Poppins,
-                    color = WaddleTheme.colors.primaryText
+                    color = WaddleTheme.colors.text.primary
                 )
             }
         }

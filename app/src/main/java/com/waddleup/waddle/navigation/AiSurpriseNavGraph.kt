@@ -11,7 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraphBuilder
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.navigation.ai_surprise.AiSurpriseDestinations
+import com.waddleup.navigation.ai_surprise.AiSurpriseDestination
+import com.waddleup.navigation.ai_surprise.AiSurpriseRootDestination
 import com.waddleup.waddle.navigation.util.waddleComposable
 import com.waddleup.waddle.navigation.util.waddleNavigation
 
@@ -23,8 +24,8 @@ import com.waddleup.waddle.navigation.util.waddleNavigation
 fun NavGraphBuilder.aiSurpriseNavGraph(
     onUiEvent: (UiEvent) -> Unit
 ) {
-    waddleNavigation<AiSurpriseDestinations.AiSurpriseRoot>(AiSurpriseDestinations.AiSurprise) {
-        waddleComposable<AiSurpriseDestinations.AiSurprise>(
+    waddleNavigation<AiSurpriseRootDestination>(AiSurpriseDestination) {
+        waddleComposable<AiSurpriseDestination>(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() },
             popEnterTransition = { fadeIn() },

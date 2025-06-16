@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.waddleup.onboarding.presentation.components.OnboardingScreen
 import com.waddleup.onboarding.presentation.model.OnboardingModel
-import com.waddleup.theme.LocalAppColors
+import com.waddleup.theme.color.LocalAppColors
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -25,7 +25,7 @@ private fun OnboardingPreview() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(LocalAppColors.current.primaryBackground)
+                .background(LocalAppColors.current.background.primary)
         ) {
             OnboardingScreen(
                 pages = listOf(

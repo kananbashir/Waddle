@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
+import com.waddleup.app.theme.R
 import com.waddleup.auth.components.AuthHeader
 import com.waddleup.auth.components.FooterAccountLoginOrRegisterText
 import com.waddleup.auth.components.LoginWithButtons
@@ -43,8 +43,8 @@ fun LoginContent(
         content = {
             Column {
                 AuthHeader(
-                    title = stringResource(id = R.string.login_header_title),
-                    subtitle = stringResource(id = R.string.login_header_subtitle)
+                    title = stringResource(id = R.string.text_log_in),
+                    subtitle = stringResource(id = R.string.login_header_description)
                 )
 
                 Spacer(modifier = Modifier.height(spacingValue))
@@ -71,8 +71,8 @@ fun LoginContent(
                             interactionSource = null,
                             indication = null
                         ) { onIntent(AuthIntent.Login.SubmitForgotPassword) },
-                    text = "Forgot password?",
-                    color = WaddleTheme.colors.primaryButton,
+                    text = stringResource(R.string.text_forgot_password),
+                    color = WaddleTheme.colors.buttons.primary,
                     style = WaddleTheme.typography.body2Medium.Poppins
                 )
 
@@ -81,7 +81,7 @@ fun LoginContent(
                 WaddlePrimaryButton(
                     modifier = Modifier.fillMaxWidth(),
                     isEnabled = state.allFieldsValid,
-                    buttonText = "Log in",
+                    buttonText = stringResource(R.string.text_log_in),
                     onClick = { onIntent(AuthIntent.Login.SubmitLogin) }
                 )
 
@@ -98,7 +98,7 @@ fun LoginContent(
                 FooterAccountLoginOrRegisterText(
                     fullText = R.string.text_do_not_have_an_account_register,
                     clickableText = R.string.text_do_not_have_an_account_register_clickable,
-                    clickableTextTag = "login_tag",
+                    clickableTextTag = "register_tag",
                     onLinkClicked = { onIntent(AuthIntent.Login.SubmitDoNotHaveAccount) }
                 )
             }

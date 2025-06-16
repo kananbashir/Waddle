@@ -10,7 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.navigation.notifications.NotificationsDestinations
+import com.waddleup.navigation.notifications.NotificationsDestination
+import com.waddleup.navigation.notifications.NotificationsRootDestination
 import com.waddleup.waddle.navigation.util.popEnterFromBottomAnim
 import com.waddleup.waddle.navigation.util.popExitToTopAnim
 import com.waddleup.waddle.navigation.util.slideInFromTopAnim
@@ -25,8 +26,8 @@ import com.waddleup.waddle.navigation.util.waddleComposable
 fun NavGraphBuilder.notificationNavGraph(
     onUiEvent: (UiEvent) -> Unit
 ) {
-    navigation<NotificationsDestinations.NotificationsRoot>(NotificationsDestinations.Notifications) {
-        waddleComposable<NotificationsDestinations.Notifications>(
+    navigation<NotificationsRootDestination>(NotificationsDestination) {
+        waddleComposable<NotificationsDestination>(
             enterTransition = { slideInFromTopAnim },
             exitTransition = { slideOutToBottomAnim },
             popEnterTransition = { popEnterFromBottomAnim },

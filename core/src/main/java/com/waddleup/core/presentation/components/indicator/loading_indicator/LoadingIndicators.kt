@@ -62,7 +62,7 @@ fun LoadingIndicator(
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center),
                 strokeWidth = 3.dp,
-                color = WaddleTheme.colors.primaryButton,
+                color = WaddleTheme.colors.buttons.primary,
                 strokeCap = StrokeCap.Round
             )
         }

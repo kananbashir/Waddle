@@ -30,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.waddleup.core.presentation.components.other.DragHandler
-import com.waddleup.home.R
+import com.waddleup.app.theme.R
 import com.waddleup.home.viewmodel.state.HomeState
 import com.waddleup.theme.WaddleTheme
 
@@ -66,13 +66,13 @@ fun HomeScreenTopBar(
                 Text(
                     text = stringResource(id = R.string.home_top_bar_say_hi, "Kanan"),
                     style = WaddleTheme.typography.body2Medium.Poppins,
-                    color = WaddleTheme.colors.tertiaryText
+                    color = WaddleTheme.colors.text.tertiary
                 )
 
                 Text(
                     text = stringResource(id = R.string.home_top_bar_welcome_back),
                     style = WaddleTheme.typography.overlineMedium.Poppins,
-                    color = WaddleTheme.colors.tertiaryText
+                    color = WaddleTheme.colors.text.tertiary
                 )
             }
         }
@@ -88,7 +88,7 @@ fun HomeScreenTopBar(
                     ) { onQuestionsClicked() },
                 painter = painterResource(id = R.drawable.ic_questions),
                 contentDescription = "Questions",
-                tint = WaddleTheme.colors.secondaryIconTint
+                tint = WaddleTheme.colors.icons.secondaryTint
             )
 
             Icon(
@@ -99,7 +99,7 @@ fun HomeScreenTopBar(
                     ) { onNotificationsClicked() },
                 painter = painterResource(id = R.drawable.ic_notifications),
                 contentDescription = "Notifications",
-                tint = WaddleTheme.colors.secondaryIconTint
+                tint = WaddleTheme.colors.icons.secondaryTint
             )
         }
     }
@@ -113,7 +113,7 @@ fun DailyLimitTitle(
         modifier = modifier,
         text = stringResource(id = R.string.text_your_daily_limit),
         style = WaddleTheme.typography.body2Regular.Poppins,
-        color = WaddleTheme.colors.tertiaryText
+        color = WaddleTheme.colors.text.tertiary
     )
 }
 
@@ -130,7 +130,7 @@ fun DailyLimitText(
         text = "${state.dailyLimit ?: 0.0}€",
         style = WaddleTheme.typography.headline1Bold.Poppins,
         fontSize = textSize.sp,
-        color = WaddleTheme.colors.tertiaryText
+        color = WaddleTheme.colors.text.tertiary
     )
 }
 
@@ -155,7 +155,7 @@ fun TransactionHistoryHeader(
         modifier = modifier
             .height(IntrinsicSize.Max)
             .background(
-                color = WaddleTheme.colors.secondaryDivider.copy(alpha = 0.2f),
+                color = WaddleTheme.colors.dividers.secondary.copy(alpha = 0.2f),
                 shape = RoundedCornerShape(
                     topStart = 12.dp,
                     topEnd = 12.dp
@@ -163,7 +163,7 @@ fun TransactionHistoryHeader(
             )
             .padding(top = 1.dp)
             .background(
-                color = WaddleTheme.colors.secondaryContainerBackground.copy(alpha = 0.6f),
+                color = WaddleTheme.colors.containers.secondaryBackground.copy(alpha = 0.6f),
                 shape = RoundedCornerShape(
                     topStart = 12.dp,
                     topEnd = 12.dp
@@ -180,7 +180,7 @@ fun TransactionHistoryHeader(
             modifier = Modifier
                 .padding(vertical = 8.dp),
             thickness = 1.dp,
-            color = WaddleTheme.colors.secondaryDivider.copy(alpha = 0.1f)
+            color = WaddleTheme.colors.dividers.secondary.copy(alpha = 0.1f)
         )
 
         TransactionHistoryHeaderRowItem(
@@ -208,13 +208,13 @@ fun TransactionHistoryHeaderRowItem(
             Text(
                 text = titleText,
                 style = WaddleTheme.typography.captionSemiBold.Poppins,
-                color = WaddleTheme.colors.secondaryContainerText
+                color = WaddleTheme.colors.containers.secondaryText
             )
 
             Text(
                 text = descText,
                 style = WaddleTheme.typography.captionSemiBold.Poppins,
-                color = WaddleTheme.colors.secondaryContainerText
+                color = WaddleTheme.colors.containers.secondaryText
             )
         }
     }

@@ -21,7 +21,7 @@ fun DragHandler(
     modifier: Modifier = Modifier,
     thickness: Dp = 4.dp,
     width: Dp = 33.dp,
-    color: Color = WaddleTheme.colors.secondaryIndicator
+    color: Color = WaddleTheme.colors.indicators.secondary
 ) {
     HorizontalDivider(
         modifier = modifier

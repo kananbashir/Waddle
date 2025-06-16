@@ -7,8 +7,5 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Suppress("unused")
-sealed class NotificationsDestinations {
-    @Serializable data object NotificationsRoot: NotificationsDestinations()
-    @Serializable data object Notifications: NotificationsDestinations()
-}
+@Serializable data object NotificationsRootDestination
+@Serializable data object NotificationsDestination

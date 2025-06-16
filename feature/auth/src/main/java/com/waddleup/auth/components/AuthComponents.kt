@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.text.WaddleAutoResizedText
 import com.waddleup.core.presentation.components.text.WaddleClickableText
 import com.waddleup.core.presentation.components.text.util.ClickableTextParams
@@ -28,9 +29,6 @@ import com.waddleup.theme.WaddleTheme
  * Created on 5/16/2025
  * @author Kanan Bashir
  */
-
-typealias core_R_drawable = com.waddleup.core.R.drawable
-typealias auth_R_drawable = com.waddleup.auth.R.drawable
 
 @Composable
 internal fun AuthHeader(
@@ -44,14 +42,14 @@ internal fun AuthHeader(
     ) {
         Text(
             text = title,
-            color = WaddleTheme.colors.primaryText,
+            color = WaddleTheme.colors.text.primary,
             style = WaddleTheme.typography.headline2Medium.Poppins,
             textAlign = TextAlign.Center
         )
 
         Text(
             text = subtitle,
-            color = WaddleTheme.colors.primaryText,
+            color = WaddleTheme.colors.text.primary,
             style = WaddleTheme.typography.body2Medium.Poppins,
             textAlign = TextAlign.Center
         )
@@ -67,16 +65,16 @@ internal fun OrDivider() {
     ) {
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            color = WaddleTheme.colors.primaryDivider
+            color = WaddleTheme.colors.dividers.primary
         )
         Text(
             text = "Or",
-            color = WaddleTheme.colors.primaryText,
+            color = WaddleTheme.colors.text.primary,
             style = WaddleTheme.typography.body2Regular.Poppins
         )
         HorizontalDivider(
             modifier = Modifier.weight(1f),
-            color = WaddleTheme.colors.primaryDivider
+            color = WaddleTheme.colors.dividers.primary
         )
     }
 }
@@ -88,12 +86,12 @@ internal fun LoginWithButtons() {
             modifier = Modifier
                 .weight(1f)
                 .clip(WaddleTheme.shapes.small)
-                .background(WaddleTheme.colors.primaryContainerBackground),
+                .background(WaddleTheme.colors.containers.primaryBackground),
             contentAlignment = Alignment.Center
         ) {
             Image(
                 modifier = Modifier.padding(vertical = 16.dp),
-                painter = painterResource(id = auth_R_drawable.ic_facebook),
+                painter = painterResource(id = R.drawable.ic_facebook),
 //                    imageVector = Icons.Default.CheckCircle,
                 contentDescription = "Login with facebook"
             )
@@ -103,12 +101,12 @@ internal fun LoginWithButtons() {
             modifier = Modifier
                 .weight(1f)
                 .clip(WaddleTheme.shapes.small)
-                .background(WaddleTheme.colors.primaryContainerBackground),
+                .background(WaddleTheme.colors.containers.primaryBackground),
             contentAlignment = Alignment.Center
         ) {
             Image(
                 modifier = Modifier.padding(vertical = 16.dp),
-                painter = painterResource(id = auth_R_drawable.ic_google),
+                painter = painterResource(id = R.drawable.ic_google),
 //                    imageVector = Icons.Default.CheckCircle,
                 contentDescription = "Login with google"
             )
@@ -130,7 +128,7 @@ internal fun FooterAccountLoginOrRegisterText(
             ClickableTextParams(
                 tag = clickableTextTag,
                 text = stringResource(id = clickableText),
-                color = WaddleTheme.colors.primaryText,
+                color = WaddleTheme.colors.text.primary,
                 style = WaddleTheme.typography.headline1Bold.Poppins,
                 linkInteractionListener = {
                     onLinkClicked()
@@ -143,7 +141,7 @@ internal fun FooterAccountLoginOrRegisterText(
                     .fillMaxWidth(),
                 text = annotatedText,
                 style = WaddleTheme.typography.headline1Bold.Poppins,
-                color = WaddleTheme.colors.primaryText,
+                color = WaddleTheme.colors.text.primary,
                 textAlign = TextAlign.Center,
             )
         }

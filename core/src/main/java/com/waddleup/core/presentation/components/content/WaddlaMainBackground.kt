@@ -34,7 +34,7 @@ import com.waddleup.theme.WaddleTheme
 fun WaddleMainContentWrapper(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(top = 32.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
-    backgroundColor: Color = WaddleTheme.colors.primaryBackground,
+    backgroundColor: Color = WaddleTheme.colors.background.primary,
     isLoading: Boolean = false,
     topBar: @Composable (() -> Unit)? = null,
     bottomBar: @Composable (() -> Unit)? = null,

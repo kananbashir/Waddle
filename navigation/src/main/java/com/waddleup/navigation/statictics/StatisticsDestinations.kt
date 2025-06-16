@@ -7,8 +7,5 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Suppress("unused")
-sealed class StatisticsDestinations {
-    @Serializable data object StatisticsRoot: StatisticsDestinations()
-    @Serializable data object Statistics: StatisticsDestinations()
-}
+@Serializable data object StatisticsRootDestination
+@Serializable data object StatisticsDestination

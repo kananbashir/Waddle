@@ -4,12 +4,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.waddleup.core.R
-import com.waddleup.navigation.ai_surprise.AiSurpriseDestinations
-import com.waddleup.navigation.create.CreateDestinations
-import com.waddleup.navigation.home.HomeDestinations
-import com.waddleup.navigation.settings.SettingsDestinations
-import com.waddleup.navigation.statictics.StatisticsDestinations
+import com.waddleup.app.theme.R
+import com.waddleup.navigation.ai_surprise.AiSurpriseRootDestination
+import com.waddleup.navigation.create.CreateRootDestination
+import com.waddleup.navigation.home.HomeRootDestinations
+import com.waddleup.navigation.settings.SettingsRootDestination
+import com.waddleup.navigation.statictics.StatisticsRootDestination
 
 /**
  * Created on 5/8/2025
@@ -26,37 +26,37 @@ sealed class BottomNavDestination(
     val qualifiedRoute get() = this.route::class.qualifiedName
 
     data object Home: BottomNavDestination(
-        route = HomeDestinations.HomeRoot,
-        startDestination = HomeDestinations.Home,
-        labelResId = R.string.bottom_nav_item_home,
+        route = HomeRootDestinations,
+        startDestination = com.waddleup.navigation.home.HomeDestination,
+        labelResId = R.string.text_home,
         iconResId = R.drawable.ic_bottom_nav_home,
     )
 
     data object Statistics: BottomNavDestination(
-        route = StatisticsDestinations.StatisticsRoot,
-        startDestination = StatisticsDestinations.Statistics,
-        labelResId = R.string.bottom_nav_item_statistics,
+        route = StatisticsRootDestination,
+        startDestination = com.waddleup.navigation.statictics.StatisticsDestination,
+        labelResId = R.string.text_statistics,
         iconResId = R.drawable.ic_bottom_nav_statistics,
     )
 
     data object Create: BottomNavDestination(
-        route = CreateDestinations.CreateRoot,
-        startDestination = CreateDestinations.Create,
+        route = CreateRootDestination,
+        startDestination = com.waddleup.navigation.create.CreateDestination,
         labelResId = -1,
         iconResId = R.drawable.ic_bottom_nav_create,
     )
 
     data object AiSurprise: BottomNavDestination(
-        route = AiSurpriseDestinations.AiSurpriseRoot,
-        startDestination = AiSurpriseDestinations.AiSurprise,
-        labelResId = R.string.bottom_nav_item_ai_surprise,
+        route = AiSurpriseRootDestination,
+        startDestination = com.waddleup.navigation.ai_surprise.AiSurpriseDestination,
+        labelResId = R.string.text_ai_surprise,
         iconResId = R.drawable.ic_bottom_nav_ai_surprise,
     )
 
     data object Settings: BottomNavDestination(
-        route = SettingsDestinations.SettingsRoot,
-        startDestination = SettingsDestinations.Settings,
-        labelResId = R.string.bottom_nav_item_settings,
+        route = SettingsRootDestination,
+        startDestination = com.waddleup.navigation.settings.SettingsDestination,
+        labelResId = R.string.text_settings,
         iconResId = R.drawable.ic_bottom_nav_settings,
     )
 

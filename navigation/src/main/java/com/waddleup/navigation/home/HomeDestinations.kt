@@ -7,9 +7,5 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Suppress("unused")
-sealed class HomeDestinations {
-    @Serializable
-    data object  HomeRoot: HomeDestinations()
-    @Serializable data object Home: HomeDestinations()
-}
+@Serializable data object HomeRootDestinations
+@Serializable data object HomeDestination

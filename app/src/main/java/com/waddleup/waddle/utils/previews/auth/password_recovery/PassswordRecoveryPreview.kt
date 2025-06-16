@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.waddleup.auth.password_recovery.content.PasswordRecoveryContent
+import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryFirstPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryFourthPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoverySecondPage
 import com.waddleup.auth.password_recovery.content.pager.PasswordRecoveryThirdPage
@@ -19,7 +20,7 @@ import com.waddleup.theme.WaddleTheme
  */
 
 @SuppressLint("UnrememberedMutableState")
-//@Preview
+@Preview
 @Composable
 private fun PasswordRecoveryPreview() {
     PasswordRecoveryContent(
@@ -29,12 +30,26 @@ private fun PasswordRecoveryPreview() {
     )
 }
 
+@Preview
+@Composable
+private fun PasswordRecoveryFirstPagePreview() {
+    Box(
+        modifier = Modifier
+            .background(color = WaddleTheme.colors.background.primary)
+    ) {
+        PasswordRecoveryFirstPage(
+            authState = AuthState.PasswordRecoveryState(),
+            onIntent = {}
+        )
+    }
+}
+
 //@Preview
 @Composable
 private fun PasswordRecoverySecondPagePreview() {
     Box(
         modifier = Modifier
-            .background(color = WaddleTheme.colors.primaryBackground)
+            .background(color = WaddleTheme.colors.background.primary)
     ) {
         PasswordRecoverySecondPage(
             authState = AuthState.PasswordRecoveryState(),
@@ -49,7 +64,7 @@ private fun PasswordRecoverySecondPagePreview() {
 private fun PasswordRecoveryThirdPagePreview() {
     Box(
         modifier = Modifier
-            .background(color = WaddleTheme.colors.primaryBackground)
+            .background(color = WaddleTheme.colors.background.primary)
     ) {
         PasswordRecoveryThirdPage(
             authState = AuthState.PasswordRecoveryState(),
@@ -64,7 +79,7 @@ private fun PasswordRecoveryThirdPagePreview() {
 private fun PasswordRecoveryFourthPagePreview() {
     Box(
         modifier = Modifier
-            .background(color = WaddleTheme.colors.primaryBackground)
+            .background(color = WaddleTheme.colors.background.primary)
     ) {
         PasswordRecoveryFourthPage()
     }

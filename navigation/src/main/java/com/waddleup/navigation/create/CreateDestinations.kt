@@ -7,9 +7,5 @@ import kotlinx.serialization.Serializable
  * @author Kanan Bashir
  */
 
-@Suppress("unused")
-@Serializable
-sealed class CreateDestinations {
-    @Serializable data object CreateRoot: CreateDestinations()
-    @Serializable data object Create: CreateDestinations()
-}
+@Serializable data object CreateRootDestination
+@Serializable data object CreateDestination

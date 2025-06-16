@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -29,7 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.waddleup.core.presentation.components.button.WaddlePrimaryButton
 import com.waddleup.core.presentation.components.button.WaddleSecondaryButton
-import com.waddleup.onboarding.R
+import com.waddleup.app.theme.R
 import com.waddleup.onboarding.presentation.model.OnboardingModel
 import com.waddleup.theme.WaddleTheme
 import kotlinx.coroutines.launch
@@ -55,14 +56,15 @@ fun OnboardingScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(WaddleTheme.colors.primaryBackground)
-            .padding(bottom = 16.dp),
+            .background(WaddleTheme.colors.background.primary)
+            .padding(bottom = 16.dp)
+            .statusBarsPadding(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         HorizontalPagerIndicator(
             pagesSize = pages.size,
-            indicatorPassiveColor = WaddleTheme.colors.secondaryIndicator,
-            indicatorActiveColor = WaddleTheme.colors.primaryIndicator,
+            indicatorPassiveColor = WaddleTheme.colors.indicators.secondary,
+            indicatorActiveColor = WaddleTheme.colors.indicators.primary,
             pagerState = pagerState
         )
 
@@ -81,13 +83,13 @@ fun OnboardingScreen(
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = stringResource(id = pages[page].title),
-                        color = WaddleTheme.colors.primaryText,
+                        color = WaddleTheme.colors.text.primary,
                         style = WaddleTheme.typography.headline2Bold.PlusJakarta
                     )
 
                     Text(
                         text = stringResource(id = pages[page].subTitle),
-                        color = WaddleTheme.colors.primaryText,
+                        color = WaddleTheme.colors.text.primary,
                         style = WaddleTheme.typography.body2Medium.PlusJakarta
                     )
                 }

@@ -16,7 +16,8 @@ import com.waddleup.home.presentation.content.HomeContent
 import com.waddleup.home.viewmodel.HomeViewModel
 import com.waddleup.home.viewmodel.state.HomeIntent
 import com.waddleup.home.viewmodel.state.HomeState
-import com.waddleup.navigation.home.HomeDestinations
+import com.waddleup.navigation.home.HomeDestination
+import com.waddleup.navigation.home.HomeRootDestinations
 import com.waddleup.waddle.navigation.util.stayAnim
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
@@ -29,8 +30,8 @@ import kotlinx.serialization.serializer
 fun NavGraphBuilder.homeNavGraph(
     onUiEvent: (UiEvent) -> Unit
 ) {
-    navigation<HomeDestinations.HomeRoot>(HomeDestinations.Home) {
-        composable<HomeDestinations.Home>(
+    navigation<HomeRootDestinations>(HomeDestination) {
+        composable<HomeDestination>(
             enterTransition = { fadeIn() },
             exitTransition = { stayAnim },
             popEnterTransition = { fadeIn() },

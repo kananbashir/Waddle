@@ -35,12 +35,12 @@ fun WaddleCheckBox(
     isEnabled: Boolean = true,
     isError: Boolean = false,
     size: Float = 20f,
-    checkedColor: Color = WaddleTheme.colors.primaryCheckBoxFilled,
-    uncheckedColor: Color = WaddleTheme.colors.primaryCheckBoxBorder,
-    disabledCheckedColor: Color = WaddleTheme.colors.primaryCheckBoxFilled.copy(0.2f),
-    disabledUncheckedColor: Color = WaddleTheme.colors.primaryCheckBoxBorder.copy(0.2f),
-    errorColor: Color = WaddleTheme.colors.primaryCheckBoxError,
-    disabledErrorColor: Color = WaddleTheme.colors.primaryCheckBoxError.copy(0.2f),
+    checkedColor: Color = WaddleTheme.colors.checkBoxes.primaryFilled,
+    uncheckedColor: Color = WaddleTheme.colors.checkBoxes.primaryBorder,
+    disabledCheckedColor: Color = WaddleTheme.colors.checkBoxes.primaryFilled.copy(0.2f),
+    disabledUncheckedColor: Color = WaddleTheme.colors.checkBoxes.primaryBorder.copy(0.2f),
+    errorColor: Color = WaddleTheme.colors.checkBoxes.primaryError,
+    disabledErrorColor: Color = WaddleTheme.colors.checkBoxes.primaryError.copy(0.2f),
     onValueChange: (Boolean) -> Unit
 ) {
     val checkboxColor: Color by animateColorAsState(
@@ -87,7 +87,7 @@ fun WaddleCheckBox(
                 Icon(
                     Icons.Default.Check,
                     contentDescription = "Check mark",
-                    tint = WaddleTheme.colors.primaryCheckMark
+                    tint = WaddleTheme.colors.checkBoxes.primaryMark
                 )
             }
         }

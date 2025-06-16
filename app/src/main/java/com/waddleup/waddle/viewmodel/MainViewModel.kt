@@ -9,9 +9,9 @@ import com.waddleup.auth.domain.usecase.CheckLoggedInStatusUseCase
 import com.waddleup.core.base.util.DispatchersProvider
 import com.waddleup.core.base.viewmodel.BaseViewModel
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.navigation.auth.AuthDestinations
-import com.waddleup.navigation.home.HomeDestinations
-import com.waddleup.navigation.onboarding.OnboardingDestinations
+import com.waddleup.navigation.auth.AuthRootDestination
+import com.waddleup.navigation.home.HomeRootDestinations
+import com.waddleup.navigation.onboarding.OnboardingRootDestination
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -67,9 +67,9 @@ class MainViewModel(
     private fun trySetStartDestination() {
         safeLaunch {
             val destination: Any = when {
-                !checkOnboardingStatus() -> OnboardingDestinations.OnboardingRoot
-                !checkLoggedInStatus() -> AuthDestinations.AuthRoot
-                else -> HomeDestinations.HomeRoot
+                !checkOnboardingStatus() -> OnboardingRootDestination
+                !checkLoggedInStatus() -> AuthRootDestination
+                else -> HomeRootDestinations
             }
 
             setState {
@@ -105,7 +105,7 @@ class MainViewModel(
         execute(
             useCase = completeOnboardingUseCase,
             onSuccess = {
-                setState { it.copy(startDestination = AuthDestinations.AuthRoot) }
+                setState { it.copy(startDestination = AuthRootDestination) }
             },
             onError = { msg, _ -> }
         )
@@ -130,10 +130,12 @@ class MainViewModel(
                 if (event.popUpToStartDestination) {
                     popUpTo(navController.graph.findStartDestination().id) {
                         saveState = event.saveState
+                        inclusive = event.inclusive
                     }
                 } else if (event.popUpTo != null) {
-                    popUpTo(event.popUpTo as? String ?: return@navigate) {
+                    popUpTo(event.popUpTo ?: return@navigate) {
                         saveState = event.saveState
+                        inclusive = event.inclusive
                     }
                 }
                 launchSingleTop = true

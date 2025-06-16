@@ -13,7 +13,8 @@ import androidx.navigation.NavGraphBuilder
 import com.waddleup.waddle.navigation.util.waddleComposable
 import com.waddleup.waddle.navigation.util.waddleNavigation
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.navigation.settings.SettingsDestinations
+import com.waddleup.navigation.settings.SettingsDestination
+import com.waddleup.navigation.settings.SettingsRootDestination
 
 /**
  * Created on 5/16/2025
@@ -23,8 +24,8 @@ import com.waddleup.navigation.settings.SettingsDestinations
 fun NavGraphBuilder.settingsNavGraph(
     onUiEvent: (UiEvent) -> Unit
 ) {
-    waddleNavigation<SettingsDestinations.SettingsRoot>(SettingsDestinations.Settings) {
-        waddleComposable<SettingsDestinations.Settings>(
+    waddleNavigation<SettingsRootDestination>(SettingsDestination) {
+        waddleComposable<SettingsDestination>(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() },
             popEnterTransition = { fadeIn() },

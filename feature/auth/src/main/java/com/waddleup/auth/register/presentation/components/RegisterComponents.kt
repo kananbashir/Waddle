@@ -14,9 +14,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.waddleup.auth.R
-import com.waddleup.auth.components.auth_R_drawable
-import com.waddleup.auth.components.core_R_drawable
+import com.waddleup.app.theme.R
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.presentation.components.checkbox.WaddleCheckBox
 import com.waddleup.core.presentation.components.input.WaddleTextField
@@ -38,8 +36,8 @@ internal fun FullNameTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.fullName,
         onValueChange = { text -> onValueChanged(text) },
-        titleText = "Full name",
-        placeholderText = "Full name",
+        titleText = stringResource(R.string.text_full_name),
+        placeholderText = stringResource(R.string.text_full_name),
         errorMessage = authState.fullNameError,
         isError = authState.fullNameError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
@@ -58,8 +56,8 @@ internal fun EmailTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.email,
         onValueChange = { text -> onValueChanged(text) },
-        titleText = "Email",
-        placeholderText = "Email",
+        titleText = stringResource(R.string.text_email),
+        placeholderText = stringResource(R.string.text_email),
         errorMessage = authState.emailError,
         isError = authState.emailError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
@@ -80,11 +78,11 @@ internal fun PasswordTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.password,
         onValueChange = { text ->  onValueChanged(text) },
-        titleText = "Password",
-        placeholderText = "Password",
+        titleText = stringResource(R.string.text_password),
+        placeholderText = stringResource(R.string.text_password),
         errorMessage = authState.passwordError,
         isError = authState.passwordError.isNullOrBlank().not(),
-        trailingIconRes = if (authState.isPasswordVisible) core_R_drawable.ic_error  else auth_R_drawable.ic_password_invisible,
+            trailingIconRes = if (authState.isPasswordVisible) R.drawable.ic_error  else R.drawable.ic_password_invisible,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = if (authState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(
@@ -120,20 +118,20 @@ internal fun TermsAndConditionsCheckBox(
 
         WaddleClickableText(
             fullText = stringResource(id = R.string.checkbox_text_terms_and_conditions),
-            textColor = WaddleTheme.colors.primaryText,
+            textColor = WaddleTheme.colors.text.primary,
             textStyle = WaddleTheme.typography.body2Regular.Poppins,
             links = listOf(
                 ClickableTextParams(
                     tag = "terms_tag",
                     text = stringResource(id = R.string.checkbox_text_terms_and_conditions_clickable_1),
-                    color = WaddleTheme.colors.primaryText,
+                    color = WaddleTheme.colors.text.primary,
                     style = WaddleTheme.typography.body2Bold.Poppins,
                     linkInteractionListener = { onTermsClicked() }
                 ),
                 ClickableTextParams(
                     tag = "conditions_tag",
                     text = stringResource(id = R.string.checkbox_text_terms_and_conditions_clickable_2),
-                    color = WaddleTheme.colors.primaryText,
+                    color = WaddleTheme.colors.text.primary,
                     style = WaddleTheme.typography.body2Bold.Poppins,
                     linkInteractionListener = { onConditionsClicked() }
                 )

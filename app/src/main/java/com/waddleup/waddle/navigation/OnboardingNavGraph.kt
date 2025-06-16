@@ -1,7 +1,8 @@
 package com.waddleup.waddle.navigation
 
 import androidx.navigation.NavGraphBuilder
-import com.waddleup.navigation.onboarding.OnboardingDestinations
+import com.waddleup.navigation.onboarding.OnboardingDestination
+import com.waddleup.navigation.onboarding.OnboardingRootDestination
 import com.waddleup.waddle.navigation.util.waddleComposable
 import com.waddleup.waddle.navigation.util.waddleNavigation
 import com.waddleup.onboarding.presentation.components.OnboardingScreen
@@ -15,8 +16,8 @@ import com.waddleup.onboarding.presentation.model.OnboardingModel
 fun NavGraphBuilder.onboardingNavGraph(
     onOnboardingCompleted: () -> Unit
 ) {
-    waddleNavigation<OnboardingDestinations.OnboardingRoot>(OnboardingDestinations.Onboarding) {
-        waddleComposable<OnboardingDestinations.Onboarding> {
+    waddleNavigation<OnboardingRootDestination>(OnboardingDestination) {
+        waddleComposable<OnboardingDestination> {
             OnboardingScreen(
                 pages = listOf(
                     OnboardingModel.FirstPage,

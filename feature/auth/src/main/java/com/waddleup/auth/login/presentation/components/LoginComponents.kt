@@ -5,12 +5,12 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import com.waddleup.auth.components.auth_R_drawable
-import com.waddleup.auth.components.core_R_drawable
+import com.waddleup.app.theme.R
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.presentation.components.input.WaddleTextField
 
@@ -28,8 +28,8 @@ internal fun EmailTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.email,
         onValueChange = { text -> onValueChanged(text) },
-        titleText = "Email",
-        placeholderText = "Email",
+        titleText = stringResource(R.string.text_email),
+        placeholderText = stringResource(R.string.text_email),
         errorMessage = authState.emailError,
         isError = authState.emailError.isNullOrBlank().not(),
         keyboardOptions = KeyboardOptions(
@@ -50,11 +50,11 @@ internal fun PasswordTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.password,
         onValueChange = { text ->  onValueChanged(text) },
-        titleText = "Password",
-        placeholderText = "Password",
+        titleText = stringResource(R.string.text_password),
+        placeholderText = stringResource(R.string.text_password),
         errorMessage = authState.passwordError,
         isError = authState.passwordError.isNullOrBlank().not(),
-        trailingIconRes = if (authState.isPasswordVisible) core_R_drawable.ic_error  else auth_R_drawable.ic_password_invisible,
+        trailingIconRes = if (authState.isPasswordVisible) R.drawable.ic_error  else R.drawable.ic_password_invisible,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = if (authState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(

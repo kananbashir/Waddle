@@ -15,7 +15,8 @@ import androidx.navigation.NavGraphBuilder
 import com.waddleup.waddle.navigation.util.waddleComposable
 import com.waddleup.waddle.navigation.util.waddleNavigation
 import com.waddleup.core.base.viewmodel.state.UiEvent
-import com.waddleup.navigation.statictics.StatisticsDestinations
+import com.waddleup.navigation.statictics.StatisticsDestination
+import com.waddleup.navigation.statictics.StatisticsRootDestination
 
 /**
  * Created on 5/16/2025
@@ -25,8 +26,8 @@ import com.waddleup.navigation.statictics.StatisticsDestinations
 fun NavGraphBuilder.statisticsNavGraph(
     onUiEvent: (UiEvent) -> Unit
 ) {
-    waddleNavigation<StatisticsDestinations.StatisticsRoot>(StatisticsDestinations.Statistics) {
-        waddleComposable<StatisticsDestinations.Statistics>(
+    waddleNavigation<StatisticsRootDestination>(StatisticsDestination) {
+        waddleComposable<StatisticsDestination>(
             enterTransition = { fadeIn() },
             exitTransition = { fadeOut() },
             popEnterTransition = { fadeIn() },
