@@ -2,19 +2,18 @@ package com.waddleup.waddle.navigation
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraphBuilder
-import com.waddleup.waddle.navigation.util.waddleComposable
-import com.waddleup.waddle.navigation.util.waddleNavigation
 import com.waddleup.core.base.viewmodel.state.UiEvent
+import com.waddleup.core.presentation.content.BaseScreen
 import com.waddleup.navigation.settings.SettingsDestination
 import com.waddleup.navigation.settings.SettingsRootDestination
+import com.waddleup.settings.presentation.content.SettingsContent
+import com.waddleup.settings.viewmodel.SettingsViewModel
+import com.waddleup.settings.viewmodel.state.SettingsIntent
+import com.waddleup.settings.viewmodel.state.SettingsState
+import com.waddleup.waddle.navigation.util.stayAnim
+import com.waddleup.waddle.navigation.util.waddleComposable
+import com.waddleup.waddle.navigation.util.waddleNavigation
 
 /**
  * Created on 5/16/2025
@@ -27,18 +26,20 @@ fun NavGraphBuilder.settingsNavGraph(
     waddleNavigation<SettingsRootDestination>(SettingsDestination) {
         waddleComposable<SettingsDestination>(
             enterTransition = { fadeIn() },
-            exitTransition = { fadeOut() },
+            exitTransition = { stayAnim },
             popEnterTransition = { fadeIn() },
             popExitTransition = { fadeOut() }
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Welcome Settings!")
-            }
+            BaseScreen<SettingsState, SettingsIntent, SettingsViewModel>(
+                onUiEvent = onUiEvent,
+                content = { viewModel, state ->
+                    SettingsContent(
+                        state = state.value,
+                        onIntent = viewModel::onIntent,
+                        onEvent = viewModel::sendEvent
+                    )
+                }
+            )
         }
     }
 }

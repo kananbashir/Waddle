@@ -34,7 +34,8 @@ val LightAppColors = WaddleAppColors(
         secondary = Palette.DavyGray,
         tertiary = Palette.White,
         quaternary = Palette.RhythmSilver,
-        quinary = Palette.JetGray
+        quinary = Palette.JetGray,
+        infoHeader = Palette.PhilippineSilver
     ),
 
     buttons = ButtonColors(
@@ -68,7 +69,8 @@ val LightAppColors = WaddleAppColors(
 
     dividers = DividerColors(
         primary = Palette.PalePlatinumWhite,
-        secondary = Palette.LotionWhite
+        secondary = Palette.LotionWhite,
+        tertiary = Palette.BrightGray
     ),
 
     checkBoxes = CheckBoxColors(
@@ -86,7 +88,9 @@ val LightAppColors = WaddleAppColors(
     icons = IconColors(
         primaryTint = Palette.GlaucousBlue,
         secondaryTint = Palette.White,
-        tertiaryTint = Palette.JetGray
+        tertiaryTint = Palette.JetGray,
+        quaternaryTint = Palette.Black,
+        quaternaryBackground = Palette.GlaucousBlue.copy(alpha = 0.5f)
     ),
     
     infoBoxes = InfoBoxColors(

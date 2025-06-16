@@ -20,7 +20,8 @@ data class TextColors(
     val secondary: Color,
     val tertiary: Color,
     val quaternary: Color,
-    val quinary: Color
+    val quinary: Color,
+    val infoHeader: Color
 )
 
 @Immutable
@@ -36,7 +37,7 @@ data class InputFieldColors(
     val primaryBackground: Color,
     val primaryText: Color,
     val primaryHint: Color,
-    val primaryError: Color,
+    val primaryError: Color
 )
 
 @Immutable
@@ -47,7 +48,7 @@ data class ContainerColors(
     val primaryActionText: Color,
     val secondaryBackground: Color,
     val secondaryText: Color,
-    val tertiaryBackground: Color,
+    val tertiaryBackground: Color
 )
 
 @Immutable
@@ -59,7 +60,8 @@ data class IndicatorColors(
 @Immutable
 data class DividerColors(
     val primary: Color,
-    val secondary: Color
+    val secondary: Color,
+    val tertiary: Color
 )
 
 @Immutable
@@ -67,7 +69,7 @@ data class CheckBoxColors(
     val primaryFilled: Color,
     val primaryBorder: Color,
     val primaryMark: Color,
-    val primaryError: Color,
+    val primaryError: Color
 )
 
 @Immutable
@@ -75,6 +77,8 @@ data class IconColors(
     val primaryTint: Color,
     val secondaryTint: Color,
     val tertiaryTint: Color,
+    val quaternaryTint: Color,
+    val quaternaryBackground: Color
 )
 
 @Immutable

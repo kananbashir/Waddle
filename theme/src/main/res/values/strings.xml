@@ -64,4 +64,18 @@
     <string name="text_confirmation_code">Confirmation code</string>
     <string name="text_create_password">Create password</string>
     <string name="text_confirm_password">Confirm password</string>
+    <string name="text_account_settings">Account Settings</string>
+    <string name="text_edit_profile">Edit profile</string>
+    <string name="text_change_password">Change password</string>
+    <string name="text_change_pin_code">Change pin code</string>
+    <string name="text_push_notifications">Push notifications</string>
+    <string name="text_change_language">Change language</string>
+    <string name="text_subscription_plan">Subscription plan</string>
+    <string name="text_budget_and_goals">Budget and Goals</string>
+    <string name="text_set_spending_limits">Set spending limits</string>
+    <string name="text_create_financial_goals">Create financial goals</string>
+    <string name="text_budget_reminders">Budget reminders</string>
+    <string name="text_support_and_feedback">Support and Feedback</string>
+    <string name="text_help_center">Help center</string>
+    <string name="text_faq">FAQ</string>
 </resources>

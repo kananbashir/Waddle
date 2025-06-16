@@ -22,6 +22,7 @@ object Palette {
     val BrightGray = Color(0xFFEBEBEB)
     val CadetGray = Color(0xFFB6B8BE)
     val FrenchGray = Color(0xFFB5B2C1)
+    val PhilippineSilver = Color(0xFFB1B1B1)
 
     //Whites
     val White = Color(0xFFFFFFFF)

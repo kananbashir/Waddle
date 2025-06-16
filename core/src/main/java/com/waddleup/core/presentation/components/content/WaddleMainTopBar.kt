@@ -1,9 +1,18 @@
 package com.waddleup.core.presentation.components.content
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,9 +22,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.waddleup.app.theme.R
 import com.waddleup.theme.WaddleTheme
 import kotlinx.coroutines.delay
@@ -29,6 +40,9 @@ import kotlinx.coroutines.delay
 fun WaddleMainTopBar(
     modifier: Modifier = Modifier,
     @StringRes title: Int,
+    @DrawableRes icon: Int = R.drawable.ic_left_arrow,
+    backgroundColor: Color = WaddleTheme.colors.background.primary,
+    paddingValues: PaddingValues = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
     onBackClicked: () -> Unit
 ) {
     var showStartButton by rememberSaveable { mutableStateOf(false) }
@@ -39,7 +53,9 @@ fun WaddleMainTopBar(
     }
 
     TopBarWrapper(
-        modifier = modifier,
+        modifier = modifier
+            .background(backgroundColor)
+            .padding(paddingValues),
         textContent = {
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -51,20 +67,35 @@ fun WaddleMainTopBar(
         leadingContent = {
             AnimatedContent(
                 targetState = showStartButton,
+                transitionSpec = {
+                    slideInHorizontally { -it * 2 } + fadeIn() togetherWith
+                            slideOutHorizontally { -it * 2 } + fadeOut()
+                }
             ) {
                 if (it) {
-                    Icon(
-                        modifier = Modifier
-                            .clickable(
-                                interactionSource = null,
-                                indication = null
-                            ) { onBackClicked() },
-                        painter = painterResource(id = R.drawable.ic_left_arrow),
-                        contentDescription = "Navigate back",
-                        tint = WaddleTheme.colors.icons.tertiaryTint
-                    )
+                    LeadingIcon(WaddleTheme.colors.icons.tertiaryTint, icon) { onBackClicked() }
+                } else {
+                    LeadingIcon(backgroundColor, icon) { onBackClicked() }
                 }
             }
         }
+    )
+}
+
+@Composable
+private fun LeadingIcon(
+    tint: Color,
+    @DrawableRes icon: Int,
+    onBackClicked: () -> Unit,
+) {
+    Icon(
+        modifier = Modifier
+            .clickable(
+                interactionSource = null,
+                indication = null
+            ) { onBackClicked() },
+        painter = painterResource(icon),
+        contentDescription = "Navigate back",
+        tint = tint
     )
 }

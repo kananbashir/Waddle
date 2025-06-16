@@ -5,4 +5,6 @@ package com.waddleup.settings.viewmodel.state
  * @author Kanan Bashir
  */
 
-sealed class SettingsIntent {}
+sealed class SettingsIntent {
+    data object InfoBoxCloseClicked: SettingsIntent()
+}

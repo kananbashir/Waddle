@@ -54,6 +54,7 @@ fun PasswordRecoveryContent(
             if (state.currentPage < 2) {
                 WaddleMainTopBar(
                     title = R.string.top_bar_password_recovery,
+                    paddingValues = PaddingValues(vertical = 8.dp),
                     onBackClicked = { onIntent(AuthIntent.PasswordRecovery.AbortProcess) }
                 )
             }

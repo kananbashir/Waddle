@@ -15,7 +15,7 @@ android {
 
 dependencies {
     // Project-specific modules
-    implementation(projects.theme)
+    api(projects.theme)
     implementation(projects.core)
 
     // Core framework dependencies
