@@ -44,7 +44,7 @@ fun TopBarWrapper(
         contentAlignment = Alignment.Center
     ) {
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -70,8 +70,7 @@ fun TopBarWrapper(
         Box(
             modifier = Modifier
                 .padding(
-                    horizontal = textHorizontalPadding.coerceAtLeast(0.dp),
-                    vertical = 8.dp
+                    horizontal = textHorizontalPadding.coerceAtLeast(0.dp)
                 ),
             content = { textContent() }
         )

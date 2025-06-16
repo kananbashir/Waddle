@@ -12,6 +12,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.waddleup.core.base.viewmodel.state.UiEvent
@@ -51,6 +54,7 @@ fun SettingsContent(
     onEvent: (UiEvent) -> Unit
 ) {
     val colors = WaddleTheme.colors
+    val density = LocalDensity.current
     var infoBoxHeight by remember { mutableIntStateOf(0) }
     var animatedInfoBoxHeight = animateIntAsState(
         targetValue = if (state.showInfoBox) infoBoxHeight else 0,
@@ -85,6 +89,7 @@ fun SettingsContent(
                 ) {
                     SettingsInfoBox(
                         modifier = Modifier
+                            .padding(top = 16.dp)
                             .padding(horizontal = (16.5).dp),
                         onCloseClicked = { onIntent(SettingsIntent.InfoBoxCloseClicked) }
                     )
@@ -110,12 +115,16 @@ fun SettingsContent(
                         items(header.actions) {
                             key(it.item.id) {
                                 SettingsActionItem(
-                                    modifier = Modifier
-                                        .padding(horizontal = 16.dp, vertical = 14.dp),
                                     settingsAction = it,
                                     onClick = {}
                                 )
                             }
+                        }
+                    }
+
+                    item {
+                        if (animatedInfoBoxHeight.value != 0) {
+                            Spacer(modifier = Modifier.height(with(density) { animatedInfoBoxHeight.value.toDp() }))
                         }
                     }
                 }

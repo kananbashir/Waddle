@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waddleup.app.theme.R
 import com.waddleup.theme.WaddleTheme
@@ -42,7 +43,7 @@ fun WaddleMainTopBar(
     @StringRes title: Int,
     @DrawableRes icon: Int = R.drawable.ic_left_arrow,
     backgroundColor: Color = WaddleTheme.colors.background.primary,
-    paddingValues: PaddingValues = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
+    paddingValues: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
     onBackClicked: () -> Unit
 ) {
     var showStartButton by rememberSaveable { mutableStateOf(false) }
@@ -97,5 +98,14 @@ private fun LeadingIcon(
         painter = painterResource(icon),
         contentDescription = "Navigate back",
         tint = tint
+    )
+}
+
+@Preview
+@Composable
+private fun WaddleMainTopBarPreview() {
+    WaddleMainTopBar(
+        title = R.string.text_settings,
+        onBackClicked = {}
     )
 }

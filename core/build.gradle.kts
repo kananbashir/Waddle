@@ -15,7 +15,7 @@ android {
 
 dependencies {
     // Project-specific modules
-    implementation(projects.theme)
+    api(projects.theme)
 
     // Core framework dependencies
     implementation(libs.androidx.core.ktx)
@@ -26,6 +26,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.accompanist.systemuicontroller)

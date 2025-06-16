@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,8 +46,12 @@ fun SettingsActionItem(
             .clickable(
                 enabled = settingsAction.item.actionType != SettingsActionType.Switch,
                 interactionSource = null,
-                indication = null
-            ) { onClick() },
+                indication = ripple(
+                    bounded = true,
+                    color = WaddleTheme.colors.buttons.primary
+                )
+            ) { onClick() }
+            .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
