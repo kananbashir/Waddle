@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.other.HorizontalSpacer
+import com.waddleup.core.presentation.components.switcher.MainSwitch
 import com.waddleup.settings.presentation.model.SettingsAction
 import com.waddleup.settings.presentation.model.SettingsActionItem
 import com.waddleup.settings.presentation.model.SettingsActionType
@@ -38,6 +39,7 @@ import com.waddleup.theme.WaddleTheme
 fun SettingsActionItem(
     modifier: Modifier = Modifier,
     settingsAction: SettingsAction,
+    isChecked: Boolean? = null,
     onClick: () -> Unit
 ) {
     Row(
@@ -62,7 +64,9 @@ fun SettingsActionItem(
         HorizontalSpacer(16.dp)
 
         SettingActionItemTrailingContent(
-            settingsActionType = settingsAction.item.actionType
+            settingsActionType = settingsAction.item.actionType,
+            isChecked = isChecked,
+            onCheckedChange = { onClick() }
         )
     }
 }
@@ -109,7 +113,9 @@ private fun SettingActionItemLeadingContent(
 @Composable
 private fun SettingActionItemTrailingContent(
     modifier: Modifier = Modifier,
-    settingsActionType: SettingsActionType
+    settingsActionType: SettingsActionType,
+    isChecked: Boolean? = null,
+    onCheckedChange: ((Boolean) -> Unit)? = null
 ) {
     val colors = WaddleTheme.colors
 
@@ -134,7 +140,13 @@ private fun SettingActionItemTrailingContent(
             )
         }
         SettingsActionType.Switch -> {
-
+            isChecked?.let {
+                MainSwitch(
+                    modifier = modifier,
+                    isChecked = isChecked,
+                    onCheckedChange = { onCheckedChange?.invoke(it) }
+                )
+            }
         }
     }
 }
@@ -149,6 +161,7 @@ private fun SettingsActionItemPreview() {
     ) {
         SettingsActionItem(
             settingsAction = SettingsAction.ChangePassword,
+            isChecked = false,
             onClick = {}
         )
     }

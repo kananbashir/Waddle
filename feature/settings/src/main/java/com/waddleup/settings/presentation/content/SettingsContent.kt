@@ -36,6 +36,7 @@ import com.waddleup.settings.presentation.component.SettingsActionHeaderItem
 import com.waddleup.settings.presentation.component.SettingsActionItem
 import com.waddleup.settings.presentation.component.SettingsInfoBox
 import com.waddleup.settings.presentation.component.SettingsTopBar
+import com.waddleup.settings.presentation.model.SettingsAction
 import com.waddleup.settings.presentation.model.SettingsActionHeader
 import com.waddleup.settings.viewmodel.state.SettingsIntent
 import com.waddleup.settings.viewmodel.state.SettingsState
@@ -116,7 +117,11 @@ fun SettingsContent(
                             key(it.item.id) {
                                 SettingsActionItem(
                                     settingsAction = it,
-                                    onClick = {}
+                                    isChecked = when (it) {
+                                        SettingsAction.PushNotifications -> state.isPushNotificationsToggled
+                                        else -> null
+                                    },
+                                    onClick = { onIntent(SettingsIntent.SettingsActionClicked(it)) }
                                 )
                             }
                         }

@@ -10,5 +10,6 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class SettingsState(
     val isLoading: Boolean = false,
-    val showInfoBox: Boolean = false
+    val showInfoBox: Boolean = false,
+    val isPushNotificationsToggled: Boolean? = null
 )
