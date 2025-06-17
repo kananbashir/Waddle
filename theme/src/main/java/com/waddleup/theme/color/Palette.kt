@@ -20,6 +20,7 @@ object Palette {
     val BattleshipGrey = Color(0xFF868686)
     val RhythmSilver = Color(0xFF7B7999)
     val BrightGray = Color(0xFFEBEBEB)
+    val BrightSilverGray = Color(0xFFE9E9E9)
     val CadetGray = Color(0xFFB6B8BE)
     val FrenchGray = Color(0xFFB5B2C1)
     val PhilippineSilver = Color(0xFFB1B1B1)

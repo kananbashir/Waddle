@@ -64,7 +64,8 @@ val LightAppColors = WaddleAppColors(
 
     indicators = IndicatorColors(
         primary = Palette.Black,
-        secondary = Palette.EerieBlack.copy(alpha = 0.1f)
+        secondary = Palette.EerieBlack.copy(alpha = 0.1f),
+        tertiary = Palette.BrightSilverGray
     ),
 
     dividers = DividerColors(
