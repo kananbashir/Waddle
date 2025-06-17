@@ -54,7 +54,8 @@ data class ContainerColors(
 @Immutable
 data class IndicatorColors(
     val primary: Color,
-    val secondary: Color
+    val secondary: Color,
+    val tertiary: Color,
 )
 
 @Immutable
