@@ -62,11 +62,11 @@ private fun TransactionItemStart(
         Row(
             modifier = modifier
         ) {
-            TransactionItemStartImage(
-                transaction = transaction
-            )
-
-            HorizontalSpacer(12.dp)
+//            TransactionItemStartImage(
+//                transaction = transaction
+//            )
+//
+//            HorizontalSpacer(12.dp)
 
             TransactionItemStartDetails(
                 transaction = transaction
