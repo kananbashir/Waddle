@@ -72,87 +72,87 @@ val poppinsFontFamily = FontFamily(
  * */
 @Immutable
 data class WaddleTypography(
-    /**48sp*/ val headline1Bold: TextStyleParams = TextStyleParams(
+    /**48 / 700*/ val headline1Bold: TextStyleParams = TextStyleParams(
         fontSize = 48.sp,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal
     ),
-    /**24sp*/ val headline2Medium: TextStyleParams = TextStyleParams(
+    /**24 / 500*/ val headline2Medium: TextStyleParams = TextStyleParams(
         fontSize = 24.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
-    /**24sp*/ val headline2Bold: TextStyleParams = TextStyleParams(
+    /**24 / 700*/ val headline2Bold: TextStyleParams = TextStyleParams(
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal
     ),
-    /**18sp*/ val subtitle1Medium: TextStyleParams = TextStyleParams(
+    /**18 / 500*/ val subtitle1Medium: TextStyleParams = TextStyleParams(
         fontSize = 18.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
-    /**16sp*/ val body1Regular: TextStyleParams = TextStyleParams(
+    /**16 / 400*/ val body1Regular: TextStyleParams = TextStyleParams(
         fontSize = 16.sp,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal
     ),
-    /**16sp*/ val body1Medium: TextStyleParams = TextStyleParams(
+    /**16 / 500*/ val body1Medium: TextStyleParams = TextStyleParams(
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
-    /**16sp*/ val body1Bold: TextStyleParams = TextStyleParams(
+    /**16 / 700*/ val body1Bold: TextStyleParams = TextStyleParams(
         fontSize = 16.sp,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal
     ),
-    /**14sp*/ val body2SemiBold: TextStyleParams = TextStyleParams(
+    /**14 / 600*/ val body2SemiBold: TextStyleParams = TextStyleParams(
         fontSize = 14.sp,
         fontWeight = FontWeight.SemiBold,
         fontStyle = FontStyle.Normal
     ),
-    /**14sp*/ val body2Regular: TextStyleParams = TextStyleParams(
+    /**14 / 400*/ val body2Regular: TextStyleParams = TextStyleParams(
         fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal
     ),
-    /**14sp*/ val body2Medium: TextStyleParams = TextStyleParams(
+    /**14 / 500*/ val body2Medium: TextStyleParams = TextStyleParams(
         fontSize = 14.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
-    /**14sp*/ val body2Bold: TextStyleParams = TextStyleParams(
+    /**14 / 700*/ val body2Bold: TextStyleParams = TextStyleParams(
         fontSize = 14.sp,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal
     ),
-    /**12sp*/ val captionLight: TextStyleParams = TextStyleParams(
+    /**12 / 300*/ val captionLight: TextStyleParams = TextStyleParams(
         fontSize = 12.sp,
         fontWeight = FontWeight.Light,
         fontStyle = FontStyle.Normal
     ),
-    /**12sp*/ val captionRegular: TextStyleParams = TextStyleParams(
+    /**12 / 400*/ val captionRegular: TextStyleParams = TextStyleParams(
         fontSize = 12.sp,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal
     ),
-    /**12sp*/ val captionMedium: TextStyleParams = TextStyleParams(
+    /**12 / 500*/ val captionMedium: TextStyleParams = TextStyleParams(
         fontSize = 12.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
-    /**12sp*/ val captionSemiBold: TextStyleParams = TextStyleParams(
+    /**12 / 600*/ val captionSemiBold: TextStyleParams = TextStyleParams(
         fontSize = 12.sp,
         fontWeight = FontWeight.SemiBold,
         fontStyle = FontStyle.Normal
     ),
-    /**11sp*/ val overlineMedium: TextStyleParams = TextStyleParams(
+    /**11 / 500*/ val overlineMedium: TextStyleParams = TextStyleParams(
         fontSize = 11.sp,
         fontWeight = FontWeight.Medium,
         fontStyle = FontStyle.Normal
     ),
-    /**10sp*/ val overline2Regular: TextStyleParams = TextStyleParams(
+    /**10 / 400*/ val overline2Regular: TextStyleParams = TextStyleParams(
         fontSize = 10.sp,
         fontWeight = FontWeight.Normal,
         fontStyle = FontStyle.Normal

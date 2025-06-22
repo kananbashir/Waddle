@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.waddleup.app.theme.R
 import com.waddleup.auth.viewmodel.AuthState
 import com.waddleup.core.presentation.components.checkbox.WaddleCheckBox
-import com.waddleup.core.presentation.components.input.WaddleTextField
+import com.waddleup.core.presentation.components.input.WaddleMainTextField
 import com.waddleup.core.presentation.components.text.WaddleClickableText
 import com.waddleup.core.presentation.components.text.util.ClickableTextParams
 import com.waddleup.theme.WaddleTheme
@@ -32,7 +32,7 @@ internal fun FullNameTextField(
     authState: AuthState.RegisterState,
     onValueChanged: (text: String) -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.fullName,
         onValueChange = { text -> onValueChanged(text) },
@@ -52,7 +52,7 @@ internal fun EmailTextField(
     authState: AuthState.RegisterState,
     onValueChanged: (text: String) -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.email,
         onValueChange = { text -> onValueChanged(text) },
@@ -74,7 +74,7 @@ internal fun PasswordTextField(
     onTrailingIconClicked: () -> Unit,
     onDone: () -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.password,
         onValueChange = { text ->  onValueChanged(text) },

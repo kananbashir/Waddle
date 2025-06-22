@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.waddleup.app.theme.R
 import com.waddleup.auth.viewmodel.AuthState
-import com.waddleup.core.presentation.components.input.WaddleTextField
+import com.waddleup.core.presentation.components.input.WaddleMainTextField
 
 /**
  * Created on 5/16/2025
@@ -24,7 +24,7 @@ internal fun EmailTextField(
     authState: AuthState.LoginState,
     onValueChanged: (text: String) -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.email,
         onValueChange = { text -> onValueChanged(text) },
@@ -46,7 +46,7 @@ internal fun PasswordTextField(
     onTrailingIconClicked: () -> Unit,
     onDone: () -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.password,
         onValueChange = { text ->  onValueChanged(text) },

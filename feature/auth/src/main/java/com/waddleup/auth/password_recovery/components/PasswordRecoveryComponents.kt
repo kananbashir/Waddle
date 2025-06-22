@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.waddleup.app.theme.R
 import com.waddleup.auth.viewmodel.AuthIntent
 import com.waddleup.auth.viewmodel.AuthState
-import com.waddleup.core.presentation.components.input.WaddleTextField
+import com.waddleup.core.presentation.components.input.WaddleMainTextField
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -42,7 +42,7 @@ fun EmailTextField(
     authState: AuthState.PasswordRecoveryState,
     onIntent: (AuthIntent.PasswordRecovery) -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.email,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.EmailChanged(it)) },
@@ -62,7 +62,7 @@ fun ConfirmationCodeTextField(
     authState: AuthState.PasswordRecoveryState,
     onIntent: (AuthIntent.PasswordRecovery) -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.confirmationCode,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.ConfirmationCodeChanged(it)) },
@@ -83,7 +83,7 @@ fun CreatePasswordTextField(
     onIntent: (AuthIntent.PasswordRecovery) -> Unit,
     onTrailingIconClicked: () -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.createPassword,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.CreatePasswordChanged(it)) },
@@ -107,7 +107,7 @@ fun ConfirmPasswordTextField(
     onIntent: (AuthIntent.PasswordRecovery) -> Unit,
     onTrailingIconClicked: () -> Unit
 ) {
-    WaddleTextField(
+    WaddleMainTextField(
         modifier = Modifier.fillMaxWidth(),
         value = authState.confirmPassword,
         onValueChange = { onIntent(AuthIntent.PasswordRecovery.ConfirmPasswordChanged(it)) },

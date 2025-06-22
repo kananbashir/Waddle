@@ -1,4 +1,4 @@
-package com.waddleup.core.presentation.components.input
+package com.waddleup.core.presentation.components.input.wrapper.component
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -25,7 +25,7 @@ import androidx.compose.ui.zIndex
 import com.waddleup.theme.WaddleTheme
 
 /**
- * Created on 5/15/2025
+ * Created on 6/22/2025
  * @author Kanan Bashir
  */
 

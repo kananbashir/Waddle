@@ -37,6 +37,7 @@ data class InputFieldColors(
     val primaryBackground: Color,
     val primaryText: Color,
     val primaryHint: Color,
+    val secondaryHint: Color,
     val primaryError: Color
 )
 

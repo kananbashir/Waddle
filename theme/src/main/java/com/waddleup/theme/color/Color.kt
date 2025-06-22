@@ -49,6 +49,7 @@ val LightAppColors = WaddleAppColors(
         primaryBackground = Palette.WhiteSmoke,
         primaryText = Palette.Black,
         primaryHint = Palette.CadetGray,
+        secondaryHint = Palette.FrenchGray,
         primaryError = Palette.CrayolaRed
     ),
 

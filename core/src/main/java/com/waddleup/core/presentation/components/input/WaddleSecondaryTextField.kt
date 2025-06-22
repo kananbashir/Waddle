@@ -1,24 +1,36 @@
 package com.waddleup.core.presentation.components.input
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.waddleup.core.presentation.components.input.wrapper.WaddleTextFieldWrapper
+import com.waddleup.core.presentation.components.input.util.mainWaddleColors
 import com.waddleup.theme.WaddleTheme
 
 /**
- * Created on 5/15/2025
+ * Created on 6/22/2025
  * @author Kanan Bashir
  */
 
 @Composable
-fun WaddleTextField(
+fun WaddleSecondaryTextField(
     modifier: Modifier = Modifier,
     value: String,
     textStyle: TextStyle = WaddleTheme.typography.body1Medium.Poppins,
@@ -40,7 +52,10 @@ fun WaddleTextField(
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
     interactionSource: MutableInteractionSource? = null,
-    colors: TextFieldColors = TextFieldDefaults.mainWaddleColors()
+    colors: TextFieldColors = TextFieldDefaults.mainWaddleColors().copy(
+        focusedPlaceholderColor = WaddleTheme.colors.inputFields.secondaryHint,
+        unfocusedPlaceholderColor = WaddleTheme.colors.inputFields.primaryHint,
+    )
 ) {
     WaddleTextFieldWrapper(
         modifier = modifier,
@@ -65,5 +80,24 @@ fun WaddleTextField(
         minLines = minLines,
         interactionSource = interactionSource,
         colors = colors,
+        animatedPlaceholder = true
     )
+}
+
+@Preview
+@Composable
+private fun WaddleSecondaryTextFieldPreview() {
+    var text by remember { mutableStateOf("") }
+
+    Box(
+        modifier = Modifier
+            .background(Color.White)
+            .padding(32.dp)
+    ) {
+        WaddleSecondaryTextField(
+            value = text,
+            onValueChange = { text = it },
+            titleText = "Email"
+        )
+    }
 }
