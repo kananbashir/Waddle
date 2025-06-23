@@ -28,7 +28,8 @@ fun WaddleTextFieldDecorator(
     innerTextField: @Composable () -> Unit,
     leadingIcon: (@Composable () -> Unit)?,
     trailingIcon: (@Composable () -> Unit)?,
-    iconTint: Color,
+    leadingIconTint: Color,
+    trailingIconTint: Color,
     colors: TextFieldColors,
     shape: Shape,
     modifier: Modifier = Modifier
@@ -41,7 +42,7 @@ fun WaddleTextFieldDecorator(
             .padding(vertical = 7.dp, horizontal = 24.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextFieldLeadingIconSection(leadingIcon, iconTint)
+        TextFieldLeadingIconSection(leadingIcon, leadingIconTint)
 
         TextFieldTextSection(
             placeholderText,
@@ -54,6 +55,6 @@ fun WaddleTextFieldDecorator(
             modifier = Modifier.weight(1f, fill = true)
         )
 
-        TextFieldTrailingIconSection(trailingIcon, iconTint)
+        TextFieldTrailingIconSection(trailingIcon, trailingIconTint)
     }
 }

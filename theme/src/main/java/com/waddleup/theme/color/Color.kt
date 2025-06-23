@@ -42,7 +42,9 @@ val LightAppColors = WaddleAppColors(
         primary = Palette.GlaucousBlue,
         onPrimary = Palette.White,
         secondary = Palette.PlatinumWhite,
-        onSecondary = Palette.Black
+        onSecondary = Palette.Black,
+        tertiary = Palette.WhiteSmoke,
+        onTertiary = Palette.Black
     ),
 
     inputFields = InputFieldColors(
@@ -98,7 +100,9 @@ val LightAppColors = WaddleAppColors(
     infoBoxes = InfoBoxColors(
         primaryBackground = Palette.Black,
         primaryForeground = Palette.GlaucousBlue,
-        primaryForeground2 = Palette.SpaceCadetBlue
+        primaryForeground2 = Palette.SpaceCadetBlue,
+        secondaryBackground = Palette.AntiFlashWhite,
+        onSecondaryBackground = Palette.NightBlack
     )
 )
 

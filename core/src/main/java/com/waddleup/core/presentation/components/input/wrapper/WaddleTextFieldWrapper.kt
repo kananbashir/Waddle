@@ -80,6 +80,8 @@ internal fun WaddleTextFieldWrapper(
     colors: TextFieldColors = TextFieldDefaults.mainWaddleColors(),
     @DrawableRes leadingIconRes: Int? = null,
     @DrawableRes trailingIconRes: Int? = null,
+    unspecifiedLeadingIconColor: Boolean = false,
+    unspecifiedTrailingIconColor: Boolean = false,
     onLeadingIconClicked: (() -> Unit)? = null,
     onTrailingIconClicked: (() -> Unit)? = null,
     placeholderText: String? = null,
@@ -146,9 +148,22 @@ internal fun WaddleTextFieldWrapper(
         }
     }
 
-    val iconColor by remember(isError, derivedIsFocused, enabled) {
+    val leadingIconColor by remember(isError, derivedIsFocused, enabled) {
         derivedStateOf {
-            when {
+            if (unspecifiedLeadingIconColor) Color.Unspecified
+            else when {
+                isError -> colors.errorLeadingIconColor
+                !enabled -> colors.disabledLeadingIconColor
+                derivedIsFocused.value -> colors.focusedLeadingIconColor
+                else -> colors.unfocusedLeadingIconColor
+            }
+        }
+    }
+
+    val trailingIconColor by remember(isError, derivedIsFocused, enabled) {
+        derivedStateOf {
+            if (unspecifiedTrailingIconColor) Color.Unspecified
+            else when {
                 isError -> colors.errorTrailingIconColor
                 !enabled -> colors.disabledTrailingIconColor
                 derivedIsFocused.value -> colors.focusedTrailingIconColor
@@ -225,7 +240,8 @@ internal fun WaddleTextFieldWrapper(
                     innerTextField,
                     updatedLeadingIcon,
                     updatedTrailingIcon,
-                    iconColor,
+                    leadingIconColor,
+                    trailingIconColor,
                     colors,
                     shape
                 )

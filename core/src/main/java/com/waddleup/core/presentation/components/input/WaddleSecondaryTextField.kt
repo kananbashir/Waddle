@@ -20,8 +20,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.waddleup.core.presentation.components.input.util.secondaryWaddleColors
 import com.waddleup.core.presentation.components.input.wrapper.WaddleTextFieldWrapper
-import com.waddleup.core.presentation.components.input.util.mainWaddleColors
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -39,11 +39,13 @@ fun WaddleSecondaryTextField(
     prefixText: String? = null,
     suffixText: String? = null,
     errorMessage: String? = null,
-    titleText: String,
+    titleText: String? = null,
     enabled: Boolean = true,
     isError: Boolean = false,
     @DrawableRes leadingIconRes: Int? = null,
     @DrawableRes trailingIconRes: Int? = null,
+    unspecifiedLeadingIconColor: Boolean = false,
+    unspecifiedTrailingIconColor: Boolean = false,
     onLeadingIconClicked: (() -> Unit)? = null,
     onTrailingIconClicked: (() -> Unit)? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -52,10 +54,7 @@ fun WaddleSecondaryTextField(
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
     interactionSource: MutableInteractionSource? = null,
-    colors: TextFieldColors = TextFieldDefaults.mainWaddleColors().copy(
-        focusedPlaceholderColor = WaddleTheme.colors.inputFields.secondaryHint,
-        unfocusedPlaceholderColor = WaddleTheme.colors.inputFields.primaryHint,
-    )
+    colors: TextFieldColors = TextFieldDefaults.secondaryWaddleColors()
 ) {
     WaddleTextFieldWrapper(
         modifier = modifier,
@@ -71,6 +70,8 @@ fun WaddleSecondaryTextField(
         isError = isError,
         leadingIconRes = leadingIconRes,
         trailingIconRes = trailingIconRes,
+        unspecifiedLeadingIconColor = unspecifiedLeadingIconColor,
+        unspecifiedTrailingIconColor = unspecifiedTrailingIconColor,
         onLeadingIconClicked = onLeadingIconClicked,
         onTrailingIconClicked = onTrailingIconClicked,
         visualTransformation = visualTransformation,
@@ -97,7 +98,8 @@ private fun WaddleSecondaryTextFieldPreview() {
         WaddleSecondaryTextField(
             value = text,
             onValueChange = { text = it },
-            titleText = "Email"
+            titleText = "Email",
+            placeholderText = "Email",
         )
     }
 }

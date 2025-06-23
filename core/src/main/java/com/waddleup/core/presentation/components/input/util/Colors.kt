@@ -65,3 +65,11 @@ fun TextFieldDefaults.mainWaddleColors() = WaddleTheme.colors.run {
         errorSuffixColor = disabledErrorColor
     )
 }
+
+@Composable
+fun TextFieldDefaults.secondaryWaddleColors() = TextFieldDefaults.mainWaddleColors().copy(
+    focusedPlaceholderColor = WaddleTheme.colors.inputFields.secondaryHint,
+    unfocusedPlaceholderColor = WaddleTheme.colors.inputFields.primaryHint,
+    unfocusedLeadingIconColor = WaddleTheme.colors.inputFields.primaryText,
+    unfocusedTrailingIconColor = WaddleTheme.colors.inputFields.primaryText
+)

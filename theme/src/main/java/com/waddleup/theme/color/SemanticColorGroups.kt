@@ -29,7 +29,9 @@ data class ButtonColors(
     val primary: Color,
     val onPrimary: Color,
     val secondary: Color,
-    val onSecondary: Color
+    val onSecondary: Color,
+    val tertiary: Color,
+    val onTertiary: Color
 )
 
 @Immutable
@@ -93,7 +95,9 @@ data class BottomNavColors(
 data class InfoBoxColors(
     val primaryBackground: Color,
     val primaryForeground: Color,
-    val primaryForeground2: Color
+    val primaryForeground2: Color,
+    val secondaryBackground: Color,
+    val onSecondaryBackground: Color
 )
 
 
