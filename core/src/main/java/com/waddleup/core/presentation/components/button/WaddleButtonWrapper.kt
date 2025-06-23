@@ -111,3 +111,13 @@ fun ButtonDefaults.secondaryWaddleColors() = WaddleTheme.colors.buttons.run {
         disabledContentColor = onSecondary
     )
 }
+
+@Composable
+fun ButtonDefaults.tertiaryWaddleColors() = WaddleTheme.colors.buttons.run {
+    buttonColors(
+        containerColor = tertiary,
+        contentColor = onTertiary,
+        disabledContainerColor = tertiary.copy(alpha = 0.2f),
+        disabledContentColor = onTertiary
+    )
+}

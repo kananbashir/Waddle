@@ -69,6 +69,7 @@ fun WaddleSecondaryButton(
     isEnabled: Boolean = true,
     buttonText: String? = null,
     shape: Shape = WaddleTheme.shapes.small,
+    colors: ButtonColors = ButtonDefaults.secondaryWaddleColors(),
     hideKeyboardOnClick: Boolean = true,
 ) {
     WaddlePrimaryButton(
@@ -76,7 +77,7 @@ fun WaddleSecondaryButton(
         modifier = modifier,
         isEnabled = isEnabled,
         shape = shape,
-        colors = ButtonDefaults.secondaryWaddleColors(),
+        colors = colors,
         hideKeyboardOnClick = hideKeyboardOnClick,
         buttonText = buttonText,
     )
@@ -88,6 +89,7 @@ fun WaddleSecondaryButton(
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     shape: Shape = WaddleTheme.shapes.small,
+    colors: ButtonColors = ButtonDefaults.secondaryWaddleColors(),
     hideKeyboardOnClick: Boolean = true,
     content: @Composable (RowScope.() -> Unit)? = null
 ) {
@@ -96,7 +98,7 @@ fun WaddleSecondaryButton(
         modifier = modifier,
         isEnabled = isEnabled,
         shape = shape,
-        colors = ButtonDefaults.secondaryWaddleColors(),
+        colors = colors,
         hideKeyboardOnClick = hideKeyboardOnClick,
         content = content,
     )
