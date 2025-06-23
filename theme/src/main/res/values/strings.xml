@@ -39,12 +39,17 @@
     <string name="settings_info_box_header">Manage your profile all in one place</string>
     <string name="settings_info_box_body">Customize your Finance experience</string>
 
+    <string name="add_income_source_header_1">Monthly Income &amp; Sources</string>
+    <string name="add_income_source_body_1">Add your income and its sources to help Waddle create a personalized spending plan just for you.</string>
+    <string name="add_income_source_action_add_new_category">Add new expense category</string>
+
     <string name="button_next">Next</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_go_to_login">Go to Login</string>
     <string name="button_start">Start</string>
     <string name="button_previous">Previous</string>
     <string name="button_see_more">See more</string>
+    <string name="button_skip">Skip</string>
 
     <string name="text_home">Home</string>
     <string name="text_statistics">Statistics</string>
@@ -78,4 +83,8 @@
     <string name="text_support_and_feedback">Support and Feedback</string>
     <string name="text_help_center">Help center</string>
     <string name="text_faq">FAQ</string>
+    <string name="text_income_source">Income Source</string>
+    <string name="text_income_amount">Income Amount</string>
+    <string name="text_currency">Currency</string>
+    <string name="text_total_amount_with_colon">Total amount:</string>
 </resources>

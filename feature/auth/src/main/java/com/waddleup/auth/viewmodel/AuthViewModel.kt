@@ -13,10 +13,10 @@ import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.input.util.ValidatorParam.ValidationConditionParams
 import com.waddleup.core.presentation.components.input.util.ValidatorParam.ValidationRegexParams
 import com.waddleup.core.util.Regexes
+import com.waddleup.navigation.add_income_source.AddIncomeSourceRootDestination
 import com.waddleup.navigation.auth.AuthRootDestination
 import com.waddleup.navigation.auth.PasswordRecoveryDestination
 import com.waddleup.navigation.auth.RegisterDestination
-import com.waddleup.navigation.home.HomeRootDestinations
 
 /**
  * Created on 5/16/2025
@@ -253,7 +253,7 @@ class AuthViewModel(
                 updateLoginState { copy(loginDto = it) }
                 sendEvent(
                     UiEvent.Navigate(
-                        route = HomeRootDestinations,
+                        route = AddIncomeSourceRootDestination,
                         popUpTo = AuthRootDestination,
                         inclusive = true
                     )

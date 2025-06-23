@@ -1,5 +1,6 @@
 package com.waddleup.waddle.di
 
+import com.waddleup.add_income_source.di.addIncomeSourceModule
 import com.waddleup.auth.di.authModule
 import com.waddleup.core.di.dataModule
 import com.waddleup.core.di.networkModule
@@ -22,5 +23,6 @@ private enum class Modules(vararg val modules: Module) {
     MainModules(mainModule),
     AuthModules(authModule),
     HomeModules(homeModule),
-    SettingsModules(settingsModule)
+    SettingsModules(settingsModule),
+    AddIncomeSource(addIncomeSourceModule)
 }

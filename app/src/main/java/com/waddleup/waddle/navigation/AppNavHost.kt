@@ -35,5 +35,6 @@ fun AppNavHost(
         aiSurpriseNavGraph(onUiEvent)
         settingsNavGraph(onUiEvent)
         notificationNavGraph(onUiEvent)
+        addIncomeSourceNavGraph(onUiEvent)
     }
 }

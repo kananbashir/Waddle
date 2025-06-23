@@ -17,7 +17,7 @@ class LoginUseCase(
 
     override suspend fun execute(): Result<LoginDto> {
         delay(4000)
-        authRepository.setLoggedInStatus(true)
+//        authRepository.setLoggedInStatus(true)
         return Result.Success(LoginDto())
     }
 
