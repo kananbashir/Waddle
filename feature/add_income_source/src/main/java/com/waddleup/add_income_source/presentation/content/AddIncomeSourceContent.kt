@@ -58,9 +58,11 @@ fun AddIncomeSourceContent(
                     AddIncomeSourcePage.MonthlyIncomeAndSources.ordinal -> {
                         MonthlyIncomeSourcesPage(
                             state = state,
-                            onIncomeSourceUpdated = { s, i -> onIntent(AddIncomeSourceIntent.IncomeSourceChanged(s, i)) },
-                            onIncomeAmountUpdated = { s, i -> onIntent(AddIncomeSourceIntent.IncomeAmountChanged(s, i)) },
+                            onIncomeSourceUpdated = { onIntent(AddIncomeSourceIntent.IncomeSourceChanged(it)) },
+                            onIncomeAmountUpdated = { onIntent(AddIncomeSourceIntent.IncomeAmountChanged(it)) },
                             onCurrencyClicked = { /* Show bottom sheet */ },
+                            onAddNewExpenseCategoryClicked = { onIntent(AddIncomeSourceIntent.AddNewExpenseCategoryClicked) },
+                            onEditClicked = { onIntent(AddIncomeSourceIntent.EditExpenseCategoryClicked(it)) }
                         )
                     }
                     AddIncomeSourcePage.FixedExpenses.ordinal -> {}

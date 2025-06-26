@@ -42,6 +42,7 @@
     <string name="add_income_source_header_1">Monthly Income &amp; Sources</string>
     <string name="add_income_source_body_1">Add your income and its sources to help Waddle create a personalized spending plan just for you.</string>
     <string name="add_income_source_action_add_new_category">Add new expense category</string>
+    <string name="add_income_source_action_edit_new_category">Edit expense category</string>
 
     <string name="button_next">Next</string>
     <string name="button_cancel">Cancel</string>
@@ -87,4 +88,5 @@
     <string name="text_income_amount">Income Amount</string>
     <string name="text_currency">Currency</string>
     <string name="text_total_amount_with_colon">Total amount:</string>
+    <string name="text_edit">Edit</string>
 </resources>

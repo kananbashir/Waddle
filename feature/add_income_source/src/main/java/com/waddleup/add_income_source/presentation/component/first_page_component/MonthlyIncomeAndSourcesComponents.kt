@@ -1,8 +1,8 @@
-package com.waddleup.add_income_source.presentation.component
+package com.waddleup.add_income_source.presentation.component.first_page_component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,6 +14,7 @@ import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -35,31 +36,30 @@ import com.waddleup.theme.WaddleTheme
 
 @Composable
 fun MonthlyIncomeAndSourcesTextFields(
-    expenseSource: AddIncomeSourceState.ExpenseSource,
-    columnScope: ColumnScope,
+    state: AddIncomeSourceState,
     onIncomeSourceUpdated: (String) -> Unit,
     onIncomeAmountUpdated: (String) -> Unit,
     onCurrencyClicked: () -> Unit
 ) {
-    columnScope.apply {
+    Column {
         VerticalSpacer(32.dp)
 
         IncomeSourceTextField(
-            expenseSource = expenseSource,
+            state = state,
             onValueChange = onIncomeSourceUpdated
         )
 
         VerticalSpacer(8.dp)
 
         IncomeAmountTextField(
-            expenseSource = expenseSource,
+            state = state,
             onValueChange = onIncomeAmountUpdated
         )
 
         VerticalSpacer(8.dp)
 
         CurrencyTextField(
-            expenseSource = expenseSource,
+            state = state,
             onClicked = onCurrencyClicked
         )
     }
@@ -68,18 +68,18 @@ fun MonthlyIncomeAndSourcesTextFields(
 @Composable
 private fun IncomeSourceTextField(
     modifier: Modifier = Modifier,
-    expenseSource: AddIncomeSourceState.ExpenseSource,
+    state: AddIncomeSourceState,
     onValueChange: (String) -> Unit
 ) {
     WaddleSecondaryTextField(
         modifier = modifier,
-        value = expenseSource.incomeSource,
+        value = state.incomeSource,
         onValueChange = onValueChange,
         placeholderText = stringResource(R.string.text_income_source),
-        errorMessage = expenseSource.incomeSourceError,
+        errorMessage = state.incomeSourceError,
         leadingIconRes = R.drawable.ic_suitcase,
         keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Decimal,
+            keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
         )
     )
@@ -88,19 +88,19 @@ private fun IncomeSourceTextField(
 @Composable
 private fun IncomeAmountTextField(
     modifier: Modifier = Modifier,
-    expenseSource: AddIncomeSourceState.ExpenseSource,
+    state: AddIncomeSourceState,
     onValueChange: (String) -> Unit
 ) {
     WaddleSecondaryTextField(
         modifier = modifier,
-        value = expenseSource.incomeAmount,
+        value = state.incomeAmount,
         onValueChange = onValueChange,
         placeholderText = stringResource(R.string.text_income_amount),
-        errorMessage = expenseSource.incomeAmountError,
+        errorMessage = state.incomeAmountError,
         leadingIconRes = R.drawable.ic_money_cash,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Decimal,
-            imeAction = ImeAction.Next
+            imeAction = ImeAction.Done
         )
     )
 }
@@ -108,11 +108,12 @@ private fun IncomeAmountTextField(
 @Composable
 private fun CurrencyTextField(
     modifier: Modifier = Modifier,
-    expenseSource: AddIncomeSourceState.ExpenseSource,
+    state: AddIncomeSourceState,
     onClicked: () -> Unit
 ) {
     WaddleSecondaryTextField(
         modifier = modifier
+            .clip(WaddleTheme.shapes.small)
             .clickable(
                 interactionSource = null,
                 indication = ripple(
@@ -120,20 +121,16 @@ private fun CurrencyTextField(
                     color = WaddleTheme.colors.buttons.primary
                 )
             ) { onClicked() },
-        value = expenseSource.currency,
+        value = state.currency,
         onValueChange = {},
         placeholderText = stringResource(R.string.text_currency),
-        errorMessage = expenseSource.currencyError,
-        unspecifiedLeadingIconColor = expenseSource.currencyLeadingIcon != R.drawable.ic_money_cash_repeat,
-        leadingIconRes = expenseSource.currencyLeadingIcon,
+        errorMessage = state.currencyError,
+        unspecifiedLeadingIconColor = state.currencyLeadingIcon != R.drawable.ic_money_cash_repeat,
+        leadingIconRes = state.currencyLeadingIcon,
         trailingIconRes = R.drawable.ic_down_arrow,
         colors = TextFieldDefaults.secondaryWaddleColors().copy(
             disabledLeadingIconColor = WaddleTheme.colors.inputFields.primaryText,
             disabledTrailingIconColor = WaddleTheme.colors.inputFields.primaryText
-        ),
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Decimal,
-            imeAction = ImeAction.Done
         ),
         enabled = false
     )
@@ -142,10 +139,13 @@ private fun CurrencyTextField(
 @Composable
 fun AddNewExpenseActionText(
     modifier: Modifier = Modifier,
+    state: AddIncomeSourceState,
     onClick: () -> Unit
 ) {
     val colors = WaddleTheme.colors
     val types = WaddleTheme.typography
+    val text = if (state.editingIndex != null) R.string.add_income_source_action_edit_new_category
+    else R.string.add_income_source_action_add_new_category
 
     Row(
         modifier = modifier
@@ -167,7 +167,7 @@ fun AddNewExpenseActionText(
         HorizontalSpacer(8.dp)
 
         Text(
-            text = stringResource(R.string.add_income_source_action_add_new_category),
+            text = stringResource(text),
             style = types.body2Medium.PlusJakarta,
             color = colors.icons.primaryTint
         )

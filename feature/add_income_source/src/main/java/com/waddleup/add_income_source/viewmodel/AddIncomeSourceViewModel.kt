@@ -18,45 +18,73 @@ class AddIncomeSourceViewModel(
 
     override fun onIntent(intent: AddIncomeSourceIntent) {
         when (intent) {
-            is AddIncomeSourceIntent.IncomeSourceChanged -> updateIncomeSource(intent.value, intent.sourceIndex)
-            is AddIncomeSourceIntent.IncomeAmountChanged -> updateIncomeAmount(intent.value, intent.sourceIndex)
+            is AddIncomeSourceIntent.IncomeSourceChanged -> updateIncomeSource(intent.value)
+            is AddIncomeSourceIntent.IncomeAmountChanged -> updateIncomeAmount(intent.value)
             is AddIncomeSourceIntent.CurrencySelected -> {}
+            is AddIncomeSourceIntent.EditExpenseCategoryClicked -> editExpenseCategory(intent.index)
+            is AddIncomeSourceIntent.AddNewExpenseCategoryClicked -> addNewExpenseCategory()
         }
     }
 
-    private fun updateIncomeSource(value: String, sourceIndex: Int) {
-        val expenseSource = currentUiStateData?.expenseSourceList?.getOrNull(sourceIndex)
-        expenseSource?.let {
-            currentUiStateData?.expenseSourceList?.set(
-                sourceIndex,
-                expenseSource.copy(
-                    incomeSource = value
-                )
-            )
+    private fun editExpenseCategory(index: Int) {
+        uiState.value.apply {
+            val item = savedExpenseSourceList.getOrNull(index)
+
+            item?.let {
+                val amount = if (it.incomeAmount.isNotEmpty()) it.incomeAmount.toDouble()
+                else 0.0
+                val totalAmount = totalAmount.minus(amount)
+
+                savedExpenseSourceList.removeAt(index)
+
+                setState {
+                    it.copy(
+                        incomeSource = item.incomeSource,
+                        incomeAmount = item.incomeAmount,
+                        currency = item.currency,
+                        editingIndex = index,
+                        totalAmount = totalAmount
+                    )
+                }
+            }
         }
     }
 
-    private fun updateIncomeAmount(value: String, sourceIndex: Int) {
-        val expenseSource = currentUiStateData?.expenseSourceList?.getOrNull(sourceIndex)
-        expenseSource?.let {
-            currentUiStateData?.expenseSourceList?.set(
-                sourceIndex,
-                expenseSource.copy(
-                    incomeAmount = value
+    private fun addNewExpenseCategory() {
+        uiState.value.apply {
+            val amount = if (incomeAmount.isNotEmpty()) incomeAmount.toDouble()
+            else 0.0
+            val totalAmount = totalAmount.plus(amount)
+            savedExpenseSourceList.add(
+                editingIndex ?: savedExpenseSourceList.size,
+                AddIncomeSourceState.ExpenseSource(
+                    incomeSource = incomeSource,
+                    incomeAmount = amount.toString(),
+                    currency = currency
                 )
             )
+
+            setState {
+                it.copy(
+                    incomeSource = "",
+                    incomeAmount = "",
+                    currency = "",
+                    totalAmount = totalAmount,
+                    editingIndex = null
+                )
+            }
         }
     }
 
-    private fun updateCurrency(value: String, sourceIndex: Int) {
-        val expenseSource = currentUiStateData?.expenseSourceList?.getOrNull(sourceIndex)
-        expenseSource?.let {
-            currentUiStateData?.expenseSourceList?.set(
-                sourceIndex,
-                expenseSource.copy(
-                    currency = value
-                )
-            )
-        }
+    private fun updateIncomeSource(value: String) {
+        setState { it.copy(incomeSource = value) }
+    }
+
+    private fun updateIncomeAmount(value: String) {
+        setState { it.copy(incomeAmount = value) }
+    }
+
+    private fun updateCurrency(value: String) {
+        setState { it.copy(currency = value) }
     }
 }

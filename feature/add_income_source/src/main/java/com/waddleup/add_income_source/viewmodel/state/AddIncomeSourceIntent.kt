@@ -8,7 +8,9 @@ import androidx.annotation.DrawableRes
  */
 
 sealed class AddIncomeSourceIntent {
-    data class IncomeSourceChanged(val value: String, val sourceIndex: Int): AddIncomeSourceIntent()
-    data class IncomeAmountChanged(val value: String, val sourceIndex: Int): AddIncomeSourceIntent()
+    data class IncomeSourceChanged(val value: String): AddIncomeSourceIntent()
+    data class IncomeAmountChanged(val value: String): AddIncomeSourceIntent()
     data class CurrencySelected(val value: String, @DrawableRes val icon: Int): AddIncomeSourceIntent()
+    data object AddNewExpenseCategoryClicked: AddIncomeSourceIntent()
+    data class EditExpenseCategoryClicked(val index: Int): AddIncomeSourceIntent()
 }

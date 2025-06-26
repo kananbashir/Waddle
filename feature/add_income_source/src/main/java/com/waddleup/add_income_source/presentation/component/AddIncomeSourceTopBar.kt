@@ -44,5 +44,7 @@ fun AddIncomeSourceTopBar(
             style = types.body2Medium.PlusJakarta,
             color = colors.text.primary
         )
+
+        VerticalSpacer(16.dp)
     }
 }

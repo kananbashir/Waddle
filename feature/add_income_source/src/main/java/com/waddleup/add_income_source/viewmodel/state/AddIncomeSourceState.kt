@@ -15,10 +15,16 @@ import com.waddleup.app.theme.R
 data class AddIncomeSourceState(
     val isLoading: Boolean = false,
     val currentPage: Int = 0,
-    val totalAmount: Int = 0,
-    val expenseSourceList: SnapshotStateList<ExpenseSource> = mutableStateListOf(
-        ExpenseSource()
-    )
+    val totalAmount: Double = 0.0,
+    val incomeSource: String = "",
+    val incomeSourceError: String = "",
+    val incomeAmount: String = "",
+    val incomeAmountError: String = "",
+    val currency: String = "",
+    val currencyError: String? = "",
+    @DrawableRes val currencyLeadingIcon: Int = R.drawable.ic_money_cash_repeat,
+    val editingIndex: Int? = null,
+    val savedExpenseSourceList: SnapshotStateList<ExpenseSource> = mutableStateListOf()
 ) {
     @Immutable
     data class ExpenseSource(
