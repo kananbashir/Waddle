@@ -29,7 +29,7 @@ fun WaddleMainTextField(
     prefixText: String? = null,
     suffixText: String? = null,
     errorMessage: String? = null,
-    titleText: String,
+    titleText: String?,
     enabled: Boolean = true,
     isError: Boolean = false,
     leadingIcon: @Composable (() -> Unit)? = null,
