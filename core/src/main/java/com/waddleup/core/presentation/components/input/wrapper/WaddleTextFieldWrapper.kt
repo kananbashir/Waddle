@@ -41,7 +41,6 @@ import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.input.util.mainWaddleColors
 import com.waddleup.core.presentation.components.input.wrapper.component.AnimatedErrorMessage
 import com.waddleup.core.presentation.components.input.wrapper.component.WaddleTextFieldDecorator
-import com.waddleup.core.presentation.components.input.wrapper.component.getTrailingIcon
 import com.waddleup.core.presentation.components.input.wrapper.component.getUpdatedValue
 import com.waddleup.core.presentation.util.applyIf
 import com.waddleup.core.presentation.util.checkValues
@@ -69,6 +68,7 @@ internal fun WaddleTextFieldWrapper(
     suffix: @Composable (() -> Unit)? = null,
     supportingText: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
+    @DrawableRes errorIconRed: Int = R.drawable.ic_error,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -177,7 +177,7 @@ internal fun WaddleTextFieldWrapper(
 
 
     val updatedTrailingIcon: (@Composable () -> Unit)? =
-        getTrailingIcon(trailingIcon, trailingIconRes, isError, onTrailingIconClicked)
+        getUpdatedValue(trailingIcon, if (isError.not()) trailingIconRes else errorIconRed, "Trailing icon", onTrailingIconClicked)
 
     LaunchedEffect(value) {
         if (value != textFieldValue.text) {

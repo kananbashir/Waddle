@@ -20,6 +20,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.input.util.secondaryWaddleColors
 import com.waddleup.core.presentation.components.input.wrapper.WaddleTextFieldWrapper
 import com.waddleup.theme.WaddleTheme
@@ -100,6 +101,8 @@ private fun WaddleSecondaryTextFieldPreview() {
             onValueChange = { text = it },
             titleText = "Email",
             placeholderText = "Email",
+            leadingIconRes = R.drawable.ic_down_arrow,
+            trailingIconRes = R.drawable.ic_down_arrow
         )
     }
 }
