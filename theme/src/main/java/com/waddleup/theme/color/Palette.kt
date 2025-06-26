@@ -14,16 +14,18 @@ object Palette {
     val EerieBlack = Color(0xFF121212)
 
     // Grays
+    val RhythmSilver = Color(0xFF7B7999)
     val JetGray = Color(0xFF333333)
     val DavyGray = Color(0xFF5C5C5C)
-    val OldSilver = Color(0xFF858585)
     val BattleshipGrey = Color(0xFF868686)
-    val RhythmSilver = Color(0xFF7B7999)
+    val OldSilver = Color(0xFF858585)
+    val PhilippineSilver = Color(0xFFB1B1B1)
+    val FrenchGray = Color(0xFFB5B2C1)
+    val CadetGray = Color(0xFFB6B8BE)
+    val LightSilver = Color(0xFFD6D6D6)
     val BrightGray = Color(0xFFEBEBEB)
     val BrightSilverGray = Color(0xFFE9E9E9)
-    val CadetGray = Color(0xFFB6B8BE)
-    val FrenchGray = Color(0xFFB5B2C1)
-    val PhilippineSilver = Color(0xFFB1B1B1)
+    val LightGermanGray = Color(0xFFEFF1F6)
 
     //Whites
     val White = Color(0xFFFFFFFF)

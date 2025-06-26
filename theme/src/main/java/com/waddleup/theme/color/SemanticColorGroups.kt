@@ -65,7 +65,8 @@ data class IndicatorColors(
 data class DividerColors(
     val primary: Color,
     val secondary: Color,
-    val tertiary: Color
+    val tertiary: Color,
+    val quaternary: Color
 )
 
 @Immutable
@@ -73,7 +74,8 @@ data class CheckBoxColors(
     val primaryFilled: Color,
     val primaryBorder: Color,
     val primaryMark: Color,
-    val primaryError: Color
+    val primaryError: Color,
+    val secondaryBorder: Color
 )
 
 @Immutable

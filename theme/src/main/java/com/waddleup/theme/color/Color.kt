@@ -74,14 +74,16 @@ val LightAppColors = WaddleAppColors(
     dividers = DividerColors(
         primary = Palette.PalePlatinumWhite,
         secondary = Palette.LotionWhite,
-        tertiary = Palette.BrightGray
+        tertiary = Palette.BrightGray,
+        quaternary = Palette.LightGermanGray
     ),
 
     checkBoxes = CheckBoxColors(
         primaryFilled = Palette.GlaucousBlue,
         primaryBorder = Palette.FrenchGray,
         primaryMark = Palette.White,
-        primaryError = Palette.CrayolaRed
+        primaryError = Palette.CrayolaRed,
+        secondaryBorder = Palette.LightSilver
     ),
 
     bottomNav = BottomNavColors(
