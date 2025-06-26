@@ -1,11 +1,18 @@
 package com.waddleup.add_income_source.presentation.component.first_page_component
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -16,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -23,6 +31,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceState
 import com.waddleup.app.theme.R
+import com.waddleup.core.presentation.components.input.WaddleMainTextField
 import com.waddleup.core.presentation.components.input.WaddleSecondaryTextField
 import com.waddleup.core.presentation.components.input.util.secondaryWaddleColors
 import com.waddleup.core.presentation.components.other.HorizontalSpacer
@@ -111,7 +120,7 @@ private fun CurrencyTextField(
     state: AddIncomeSourceState,
     onClicked: () -> Unit
 ) {
-    WaddleSecondaryTextField(
+    WaddleMainTextField(
         modifier = modifier
             .clip(WaddleTheme.shapes.small)
             .clickable(
@@ -123,16 +132,39 @@ private fun CurrencyTextField(
             ) { onClicked() },
         value = state.currency,
         onValueChange = {},
+        titleText = null,
         placeholderText = stringResource(R.string.text_currency),
         errorMessage = state.currencyError,
-        unspecifiedLeadingIconColor = state.currencyLeadingIcon != R.drawable.ic_money_cash_repeat,
-        leadingIconRes = state.currencyLeadingIcon,
-        trailingIconRes = R.drawable.ic_down_arrow,
+        leadingIcon = {
+            AnimatedContent(
+                targetState = state.currencyFlag,
+                transitionSpec = { fadeIn() togetherWith fadeOut() }
+            ) { flag ->
+                if (flag == null) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_money_cash_repeat),
+                        contentDescription = null
+                    )
+                } else {
+                    Image(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clip(CircleShape),
+                        painter = painterResource(flag),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop
+                    )
+                }
+            }
+        },
+        trailingIconRes = if (state.currencyFlag == null) R.drawable.ic_down_arrow else null,
         colors = TextFieldDefaults.secondaryWaddleColors().copy(
             disabledLeadingIconColor = WaddleTheme.colors.inputFields.primaryText,
-            disabledTrailingIconColor = WaddleTheme.colors.inputFields.primaryText
+            disabledTrailingIconColor = WaddleTheme.colors.inputFields.primaryText,
+            unfocusedTextColor = WaddleTheme.colors.inputFields.primaryText,
+            disabledTextColor = WaddleTheme.colors.inputFields.primaryText,
         ),
-        enabled = false
+        enabled = false,
     )
 }
 

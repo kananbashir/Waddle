@@ -19,11 +19,12 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waddleup.add_income_source.presentation.component.first_page_component.AddNewExpenseActionText
-import com.waddleup.add_income_source.presentation.component.first_page_component.TotalAmountInfoBox
 import com.waddleup.add_income_source.presentation.component.first_page_component.ExpenseCategoryItem
 import com.waddleup.add_income_source.presentation.component.first_page_component.MonthlyIncomeAndSourcesTextFields
+import com.waddleup.add_income_source.presentation.component.first_page_component.TotalAmountInfoBox
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceState
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceState.ExpenseSource
+import com.waddleup.app.theme.R
 import com.waddleup.core.presentation.components.other.VerticalSpacer
 import com.waddleup.theme.WaddleTheme
 
@@ -42,9 +43,6 @@ fun MonthlyIncomeSourcesPage(
     onAddNewExpenseCategoryClicked: () -> Unit,
     onEditClicked: (Int) -> Unit
 ) {
-    val colors = WaddleTheme.colors
-    val types = WaddleTheme.typography
-    val shapes = WaddleTheme.shapes
     val density = LocalDensity.current
     var totalAmountBoxHeight by remember { mutableIntStateOf(0) }
     var totalAmountBoxHeightDp = remember(totalAmountBoxHeight) {
@@ -109,16 +107,20 @@ private fun MonthlyIncomeSourcesPagePreview() {
     ) {
         MonthlyIncomeSourcesPage(
             state = AddIncomeSourceState(
+                currencyFlag = R.drawable.ic_launcher_background,
+                currency = "AZN",
                 savedExpenseSourceList = mutableStateListOf(
                     ExpenseSource(
                         incomeSource = "Waddle company",
                         incomeAmount = "1500",
-                        currency = "USD"
+                        currency = "USD",
+                        currencyFlag = R.drawable.ic_launcher_background
                     ),
                     ExpenseSource(
                         incomeSource = "Waddle company 2",
                         incomeAmount = "1500",
-                        currency = "USD"
+                        currency = "USD",
+                        currencyFlag = R.drawable.ic_launcher_background
                     )
                 )
             ),

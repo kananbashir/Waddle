@@ -1,10 +1,11 @@
 package com.waddleup.add_income_source.viewmodel.state
 
-import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import com.waddleup.app.theme.R
+import com.waddleup.add_income_source.presentation.component.bottom_sheet.select_currency.model.CurrencyItem
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
 
 /**
  * Created on 6/22/2025
@@ -21,10 +22,12 @@ data class AddIncomeSourceState(
     val incomeAmount: String = "",
     val incomeAmountError: String = "",
     val currency: String = "",
+    val currencyFlag: Int? = null,
     val currencyError: String? = "",
-    @DrawableRes val currencyLeadingIcon: Int = R.drawable.ic_money_cash_repeat,
     val editingIndex: Int? = null,
-    val savedExpenseSourceList: SnapshotStateList<ExpenseSource> = mutableStateListOf()
+    val savedExpenseSourceList: SnapshotStateList<ExpenseSource> = mutableStateListOf(),
+    val selectedCurrencyId: Int? = null,
+    val currencies: PersistentList<CurrencyItem> = persistentListOf()
 ) {
     @Immutable
     data class ExpenseSource(
@@ -34,6 +37,6 @@ data class AddIncomeSourceState(
         val incomeAmountError: String = "",
         val currency: String = "",
         val currencyError: String? = "",
-        @DrawableRes val currencyLeadingIcon: Int = R.drawable.ic_money_cash_repeat
+        val currencyFlag: Int?
     )
 }

@@ -61,7 +61,8 @@ fun ExpenseCategoryItem(
         )
 
         CurrencySavedExpenseCategoryOptionItem(
-            currency = savedExpenseSource.currency
+            currency = savedExpenseSource.currency,
+            icon = savedExpenseSource.currencyFlag ?: R.drawable.ic_launcher_background
         )
 
         EditSavedExpenseCategoryActionItem(
@@ -86,13 +87,14 @@ private fun EditSavedExpenseCategoryActionItem(
 @Composable
 private fun CurrencySavedExpenseCategoryOptionItem(
     modifier: Modifier = Modifier,
-    currency: String
+    currency: String,
+    @DrawableRes icon: Int,
 ) {
     SavedExpenseCategoryOptionItem(
         modifier = modifier,
         optionText = R.string.text_currency,
         text = currency,
-        icon = R.drawable.placeholder_profile_image
+        icon = icon
     )
 }
 
