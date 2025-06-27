@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waddleup.add_income_source.presentation.component.AddIncomeSourceBottomBar
@@ -45,6 +46,7 @@ fun AddIncomeSourceContent(
     )
     val scope = rememberCoroutineScope()
     val selectCurrencyBottomSheetState = rememberModalBottomSheetState(true)
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(key1 = state.currentPage) {
         pagerState.animateScrollToPage(state.currentPage)
@@ -69,7 +71,10 @@ fun AddIncomeSourceContent(
                             state = state,
                             onIncomeSourceUpdated = { onIntent(AddIncomeSourceIntent.IncomeSourceChanged(it)) },
                             onIncomeAmountUpdated = { onIntent(AddIncomeSourceIntent.IncomeAmountChanged(it)) },
-                            onCurrencyClicked = { selectCurrencyBottomSheetState.show(scope) },
+                            onCurrencyClicked = {
+                                keyboardController?.hide()
+                                selectCurrencyBottomSheetState.show(scope)
+                            },
                             onAddNewExpenseCategoryClicked = { onIntent(AddIncomeSourceIntent.AddNewExpenseCategoryClicked) },
                             onEditClicked = { onIntent(AddIncomeSourceIntent.EditExpenseCategoryClicked(it)) }
                         )

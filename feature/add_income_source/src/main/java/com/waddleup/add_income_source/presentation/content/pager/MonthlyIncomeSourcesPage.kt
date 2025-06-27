@@ -66,6 +66,8 @@ fun MonthlyIncomeSourcesPage(
                 key = { i, s -> s.incomeSource }
             ) { index, savedExpenseSource ->
                 ExpenseCategoryItem(
+                    modifier = Modifier
+                        .animateItem(),
                     savedExpenseSource = savedExpenseSource,
                     onEditClicked = { onEditClicked(index) }
                 )
