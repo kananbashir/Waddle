@@ -1,5 +1,7 @@
 package com.waddleup.add_income_source.viewmodel
 
+import com.waddleup.add_income_source.domain.usecase.ClassifyTextUseCase
+import com.waddleup.add_income_source.domain.usecase.LoadCategoriesUseCase
 import com.waddleup.add_income_source.presentation.component.bottom_sheet.select_currency.model.CurrencyItem
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceIntent
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceState
@@ -7,6 +9,7 @@ import com.waddleup.app.theme.R
 import com.waddleup.core.base.util.DispatchersProvider
 import com.waddleup.core.base.viewmodel.BaseViewModel
 import kotlinx.collections.immutable.persistentListOf
+import timber.log.Timber
 
 /**
  * Created on 6/22/2025
@@ -14,12 +17,17 @@ import kotlinx.collections.immutable.persistentListOf
  */
 
 class AddIncomeSourceViewModel(
-    dispatchersProvider: DispatchersProvider
+    dispatchersProvider: DispatchersProvider,
+    private val loadCategoriesUseCase: LoadCategoriesUseCase,
+    private val classifyTextUseCase: ClassifyTextUseCase,
 ): BaseViewModel<AddIncomeSourceState, AddIncomeSourceIntent>(dispatchersProvider) {
     override val initialState: AddIncomeSourceState
         get() = AddIncomeSourceState()
 
+    private var cached: List<Pair<String, FloatArray>> = emptyList()
+
     init {
+        loadCategories()
         setState {
             it.copy(
                 currencies = persistentListOf(
@@ -70,8 +78,44 @@ class AddIncomeSourceViewModel(
             is AddIncomeSourceIntent.EditExpenseCategoryClicked -> editExpenseCategory(intent.index)
             is AddIncomeSourceIntent.AddNewExpenseCategoryClicked -> addNewExpenseCategory()
             is AddIncomeSourceIntent.CurrencyClicked -> setState { it.copy(selectedCurrencyId = intent.id) }
+            is AddIncomeSourceIntent.CategorySearchChanged -> updateCategorySearch(intent.value)
             AddIncomeSourceIntent.CurrencySelected -> selectCurrency()
         }
+    }
+
+    private fun updateCategorySearch(value: String) {
+        setState { it.copy(fixedExpenseCategorySearch = value) }
+
+        if (cached.isEmpty()) return
+        classifyText(value)
+    }
+
+    private fun classifyText(text: String) {
+        execute(
+            useCase = classifyTextUseCase,
+            params = ClassifyTextUseCase.Params(
+                cached = cached,
+                text = text
+            ),
+            onSuccess = {
+                Timber.tag("category_search").d("Suggested text: $it")
+                setState { s -> s.copy(categorySuggestion = it) }
+            },
+            onError = { msg, _ -> }
+        )
+    }
+
+    private fun loadCategories() {
+        execute(
+            useCase = loadCategoriesUseCase,
+            onSuccess = {
+                it?.let {
+                    cached = it
+                }
+                Timber.tag("category_search").d("Categories loaded successfully: ${it?.map { s -> s.first }}")
+            },
+            onError = { msg, _ -> }
+        )
     }
 
     private fun selectCurrency() {

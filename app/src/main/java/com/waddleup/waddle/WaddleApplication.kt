@@ -1,6 +1,9 @@
 package com.waddleup.waddle
 
 import android.app.Application
+import com.google.firebase.Firebase
+import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.waddleup.waddle.di.KoinModuleLoader
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,6 +24,20 @@ class WaddleApplication: Application() {
             androidLogger()
             androidContext(this@WaddleApplication)
             modules(KoinModuleLoader.loadModules())
+        }
+
+        Firebase.remoteConfig.apply {
+            setConfigSettingsAsync(
+                remoteConfigSettings {
+                    minimumFetchIntervalInSeconds = 0
+                }
+            )
+            setDefaultsAsync(
+                mapOf(
+                    "categories" to """["Restaurant","Hotel","Clothes"]"""
+                )
+            )
+            fetchAndActivate()
         }
     }
 }

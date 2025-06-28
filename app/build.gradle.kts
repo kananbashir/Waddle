@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.firebase)
 }
 
 val waddleKeyAlias = project.properties["KEY_ALIAS"] as? String
@@ -67,6 +68,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.collections)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.ml.modeldownloader)
 
     // UI and compose dependencies
     implementation(platform(libs.androidx.compose.bom))

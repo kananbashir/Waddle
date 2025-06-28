@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "257331010760",
+    "project_id": "waddle-19e0e",
+    "storage_bucket": "waddle-19e0e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257331010760:android:c9cd7d34b85534e91f59fd",
+        "android_client_info": {
+          "package_name": "com.waddleup.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmPZUtPe-FcJcYtgQKbIhQTK4u6YF4w8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257331010760:android:69b212989bb513541f59fd",
+        "android_client_info": {
+          "package_name": "com.waddleup.app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmPZUtPe-FcJcYtgQKbIhQTK4u6YF4w8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -27,7 +27,9 @@ data class AddIncomeSourceState(
     val editingIndex: Int? = null,
     val savedExpenseSourceList: SnapshotStateList<ExpenseSource> = mutableStateListOf(),
     val selectedCurrencyId: Int? = null,
-    val currencies: PersistentList<CurrencyItem> = persistentListOf()
+    val currencies: PersistentList<CurrencyItem> = persistentListOf(),
+    val fixedExpenseCategorySearch: String = "",
+    val categorySuggestion: String? = null
 ) {
     @Immutable
     data class ExpenseSource(

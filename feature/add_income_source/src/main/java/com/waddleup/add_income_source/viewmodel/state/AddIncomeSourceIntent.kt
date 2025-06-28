@@ -12,4 +12,5 @@ sealed class AddIncomeSourceIntent {
     data class EditExpenseCategoryClicked(val index: Int): AddIncomeSourceIntent()
     data class CurrencyClicked(val id: Int): AddIncomeSourceIntent()
     data object CurrencySelected: AddIncomeSourceIntent()
+    data class CategorySearchChanged(val value: String): AddIncomeSourceIntent()
 }

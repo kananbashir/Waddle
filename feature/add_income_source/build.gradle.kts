@@ -23,6 +23,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.collections)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.ml.modeldownloader)
+    implementation(libs.tensorflow.lite)
+    implementation(libs.mediapipe.tasks.core)
+    implementation(libs.mediapipe.tasks.text)
 
     // UI and compose dependencies
     implementation(platform(libs.androidx.compose.bom))
@@ -38,6 +44,9 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.androidx.compose.navigation)
+
+    // Networking
+    implementation(libs.retrofit)
 
     // Lifecycle and coroutines
     implementation(libs.kotlinx.coroutines.android)

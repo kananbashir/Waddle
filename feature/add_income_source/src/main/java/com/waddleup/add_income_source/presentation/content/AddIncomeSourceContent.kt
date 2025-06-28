@@ -15,14 +15,13 @@ import androidx.compose.ui.unit.dp
 import com.waddleup.add_income_source.presentation.component.AddIncomeSourceBottomBar
 import com.waddleup.add_income_source.presentation.component.AddIncomeSourceTopBar
 import com.waddleup.add_income_source.presentation.component.bottom_sheet.select_currency.SelectCurrencyBottomSheet
-import com.waddleup.add_income_source.presentation.content.pager.MonthlyIncomeSourcesPage
+import com.waddleup.add_income_source.presentation.content.pager.FixedExpensesPage
 import com.waddleup.add_income_source.presentation.model.AddIncomeSourcePage
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceIntent
 import com.waddleup.add_income_source.viewmodel.state.AddIncomeSourceState
 import com.waddleup.core.base.viewmodel.state.UiEvent
 import com.waddleup.core.presentation.components.content.WaddleMainContentWrapper
 import com.waddleup.core.presentation.util.hide
-import com.waddleup.core.presentation.util.show
 import com.waddleup.theme.WaddleTheme
 
 /**
@@ -67,17 +66,22 @@ fun AddIncomeSourceContent(
             ) {page ->
                 when (page) {
                     AddIncomeSourcePage.MonthlyIncomeAndSources.ordinal -> {
-                        MonthlyIncomeSourcesPage(
+                        FixedExpensesPage(
                             state = state,
-                            onIncomeSourceUpdated = { onIntent(AddIncomeSourceIntent.IncomeSourceChanged(it)) },
-                            onIncomeAmountUpdated = { onIntent(AddIncomeSourceIntent.IncomeAmountChanged(it)) },
-                            onCurrencyClicked = {
-                                keyboardController?.hide()
-                                selectCurrencyBottomSheetState.show(scope)
-                            },
-                            onAddNewExpenseCategoryClicked = { onIntent(AddIncomeSourceIntent.AddNewExpenseCategoryClicked) },
-                            onEditClicked = { onIntent(AddIncomeSourceIntent.EditExpenseCategoryClicked(it)) }
+                            onCategorySearchUpdated = { onIntent(AddIncomeSourceIntent.CategorySearchChanged(it)) }
                         )
+
+//                        MonthlyIncomeSourcesPage(
+//                            state = state,
+//                            onIncomeSourceUpdated = { onIntent(AddIncomeSourceIntent.IncomeSourceChanged(it)) },
+//                            onIncomeAmountUpdated = { onIntent(AddIncomeSourceIntent.IncomeAmountChanged(it)) },
+//                            onCurrencyClicked = {
+//                                keyboardController?.hide()
+//                                selectCurrencyBottomSheetState.show(scope)
+//                            },
+//                            onAddNewExpenseCategoryClicked = { onIntent(AddIncomeSourceIntent.AddNewExpenseCategoryClicked) },
+//                            onEditClicked = { onIntent(AddIncomeSourceIntent.EditExpenseCategoryClicked(it)) }
+//                        )
                     }
                     AddIncomeSourcePage.FixedExpenses.ordinal -> {}
                     AddIncomeSourcePage.FinancialGoal.ordinal -> {}
