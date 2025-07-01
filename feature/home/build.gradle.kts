@@ -13,53 +13,24 @@ android {
 }
 
 dependencies {
-    // Project-specific modules
     implementation(projects.theme)
     implementation(projects.core)
     implementation(projects.navigation)
 
-    // Core framework dependencies
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.kotlinx.collections)
+    implementation(libs.bundles.compose.ui)
+    implementation(libs.bundles.core.ktx)
+    implementation(libs.bundles.constraint.layout)
+    implementation(libs.bundles.datastore)
+    implementation(libs.bundles.koin)
+    implementation(libs.bundles.kotlinx.collections)
+    implementation(libs.bundles.lifecycle.activity)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.timber)
 
-    // UI and compose dependencies
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.blur.view)
+    testImplementation(libs.bundles.junit)
 
-    // Dependency Injection (Koin)
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.androidx.compose.navigation)
+    androidTestImplementation(libs.bundles.android.test)
+    androidTestImplementation(libs.bundles.compose.test)
 
-    // Data storage
-    implementation(libs.data.store)
-    implementation(libs.data.store.core)
-
-    // Networking
-    implementation(libs.retrofit)
-
-    // Logging
-    implementation(libs.timber)
-
-    // Unit testing dependencies
-    testImplementation(libs.junit)
-
-    // Android instrumented testing dependencies
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-
-    // Debug-only dependencies
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(libs.bundles.debug.ui.tooling)
 }

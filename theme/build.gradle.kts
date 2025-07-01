@@ -13,23 +13,12 @@ android {
 }
 
 dependencies {
-    // Core framework dependencies
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.bundles.accompanist.system.ui)
+    implementation(libs.bundles.appcompat.material)
+    implementation(libs.bundles.compose.ui)
+    implementation(libs.bundles.core.ktx)
 
-    // UI and compose dependencies
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.accompanist.systemuicontroller)
+    testImplementation(libs.bundles.junit)
 
-    // Unit testing dependencies
-    testImplementation(libs.junit)
-
-    // Android instrumented testing dependencies
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.bundles.android.test)
 }

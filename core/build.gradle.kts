@@ -14,55 +14,21 @@ android {
 }
 
 dependencies {
-    // Project-specific modules
     api(projects.theme)
 
-    // Core framework dependencies
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.bundles.accompanist.system.ui)
+    implementation(libs.bundles.appcompat.material)
+    implementation(libs.bundles.compose.ui)
+    implementation(libs.bundles.core.ktx)
+    implementation(libs.bundles.datastore)
+    implementation(libs.bundles.koin)
+    implementation(libs.bundles.lifecycle.coroutines)
+    implementation(libs.bundles.lottie)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.serialization)
+    implementation(libs.bundles.timber)
 
-    // UI and compose dependencies
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.lottie)
+    testImplementation(libs.bundles.junit)
 
-    // Lifecycle and coroutines
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.lifecycle.viewmodel.savedstate)
-
-    // Dependency Injection (Koin)
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.androidx.compose.navigation)
-
-    // Data storage
-    implementation(libs.data.store)
-    implementation(libs.data.store.core)
-
-    // Networking
-    implementation(libs.retrofit)
-
-    // Logging
-    implementation(libs.timber)
-
-    // Data serialization
-    implementation(libs.kotlinx.serialization.json)
-
-    // Unit testing dependencies
-    testImplementation(libs.junit)
-
-    // Android instrumented testing dependencies
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.bundles.android.test)
 }

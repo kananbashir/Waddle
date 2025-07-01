@@ -14,48 +14,21 @@ android {
 }
 
 dependencies {
-    // Project-specific modules
     implementation(projects.theme)
     implementation(projects.core)
 
-    // Core framework dependencies
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.bundles.compose.ui)
+    implementation(libs.bundles.core.ktx)
+    implementation(libs.bundles.lifecycle.activity)
+    implementation(libs.bundles.lifecycle.coroutines)
+    implementation(libs.bundles.navigation.compose)
+    implementation(libs.bundles.serialization)
+    implementation(libs.bundles.timber)
 
-    // UI and compose dependencies
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    testImplementation(libs.bundles.junit)
 
-    // Lifecycle and coroutines
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.lifecycle.viewmodel.savedstate)
+    androidTestImplementation(libs.bundles.android.test)
+    androidTestImplementation(libs.bundles.compose.test)
 
-    // Logging
-    implementation(libs.timber)
-
-    // Data serialization
-    implementation(libs.kotlinx.serialization.json)
-
-    // Navigation
-    implementation(libs.navigation.compose)
-
-    // Unit testing dependencies
-    testImplementation(libs.junit)
-
-    // Android instrumented testing dependencies
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-
-    // Debug-only dependencies
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(libs.bundles.debug.ui.tooling)
 }
